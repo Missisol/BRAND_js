@@ -1,0 +1,238 @@
+@import "_reset_css";
+@import "_variables";
+@import "_style_header";
+@import "_style_sub_footer";
+
+body {
+    font-family: Lato, sans-serif;
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.newArrivals {
+    .newArrivalsMixin();
+}
+
+.shoppingCart {
+    margin-top: 85px;
+    margin-bottom: 20px;
+}
+
+.shoppingCartHeader,
+.shoppingCartProduct,
+.shoppingCartHeaderRight,
+.shoppingCartProductRight, 
+.shoppingCartProductLeft,
+.shoppingControl,
+.shoppingForms {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shoppingCartHeader,
+.shoppingCartProduct {
+    border-bottom: 1px solid #eaeaea;
+    font-size: 13px;
+    line-height: 20px;
+
+    h5 {
+        font-weight: bold;
+        letter-spacing: -0.2px;
+        color: #222222;
+        text-transform: uppercase;
+    }
+}
+
+.shoppingCartHeader {
+    padding-bottom: 17px;
+}
+
+.shoppingCartHeaderRight__unit {
+    margin-left: 80px;
+}
+
+.shoppingCartProduct {
+    padding: 25px 0 20px;
+    box-sizing: border-box;
+}
+
+.shoppingCartProductLeft_img {
+    margin-right: 18px;
+    .transDuration();
+
+    &:hover {
+        transform: scale(1.05);
+	}
+}
+
+.shoppingCartProductLeft__description {
+    margin-top: 5px;
+
+    a {
+        text-decoration: none;
+    }
+
+    h5 {
+        font-weight: 400;
+        letter-spacing: 0;
+        padding-bottom: 29px;
+
+        &:hover {
+            color: @colorBrand;
+        }
+    }
+
+    p  {
+        color: #575757;
+
+        span {
+            font-weight: 300;
+            color: #6f6e6e;
+            padding-left: 8px;
+        }
+    } 
+}
+
+.shoppingCartProductRight {
+    align-items: center;
+    padding-left: 262px;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+
+    p {
+        color: #656565;
+    }
+}
+
+.shoppingAction {
+    .shoppingActionMixin();
+    margin-left: 0;
+    font-size: 16px;
+}
+
+
+.quantity {
+    border: solid 1px #eaeaea;
+    box-sizing: border-box;
+    width: 54px;
+    height: 30px;
+    font-size: 13px;
+    text-align: center;
+    color: #656565;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.shoppingControl {
+    padding: 42px 0;
+}
+
+.shoppingControlButton {
+    .buttonLinkMixin(17px, 37px);
+}
+
+.shoppingForms {
+    margin-bottom: 84px;
+}
+
+.shoppingField {
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 700;
+        color: #222222;
+        margin-bottom: 20px;
+    }
+}
+
+.shoppingInput,
+.shoppingSubmit {
+    background-color: #ffffff;
+    border: solid 1px #eaeaea;
+    font-weight: 300;
+    box-sizing: border-box;
+}
+
+.shoppingInput {
+    width: 355px;
+    height: 45px;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 0 18px;
+    margin-bottom: 20px;
+}
+
+.shoppingSubmit {
+    .buttonInputMixin(100px, 35px, 11px);
+}
+
+.cuponDiscount {
+
+    .shoppingInput {
+        margin-top: 30px;
+    }
+
+    p {
+        font-size: 14px;
+        font-weight: 300;
+        color: #000000;
+    }
+}
+
+.discountSubmit {
+    width: 118px;
+    margin-top: 24px;
+}
+
+.proceedToCheckout {
+    background-color: #f5f3f3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 42px 42px 40px;
+    box-sizing: border-box;
+    margin-bottom: 54px;
+
+    p {
+        font-size: 11px;
+        color: #4a4a4a;
+        margin-bottom: 18px;
+
+        span {
+            text-transform: uppercase;
+            margin-right: 18px;
+        }
+    }
+
+    h4 {
+        font-weight: bold;
+        color: #222222;
+        margin-top: -22px;
+        width: 100%;
+        text-align: right;
+        border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 22px;
+
+        span {
+           color: @colorBrand; 
+           margin-left: 18px;
+        }
+    }
+}
+
+.proceedToCheckoutButton {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    .buttonMixin(16px, 42px);
+}

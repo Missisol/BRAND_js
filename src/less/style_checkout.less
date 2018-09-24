@@ -1,0 +1,181 @@
+@import "_reset_css";
+@import "_variables";
+@import "_style_header";
+@import "_style_sub_footer";
+
+body {
+    font-family: Lato, sans-serif;
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.newArrivals {
+    .newArrivalsMixin();
+}
+
+.spoilerCheckout {
+    margin-top: 59px;
+    margin-bottom: 93px;
+    width: 100%;
+}
+
+.spoilerCheckoutDetails {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.spoilerCheckoutSummary {
+    color:  #222222;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 72px;
+    text-transform: uppercase;
+
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        cursor: pointer;
+        color: @colorBrand;
+    }
+
+    span {
+        padding-right: 10px;
+    }
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+.spoilerCheckoutDetails[open] > summary {
+    color: @colorBrand;
+}
+
+.spoilerCheckoutSummaryWrap {
+    display: flex;
+    margin-top: 9px;
+    margin-left: 36px;
+}
+
+.spoilerCheckoutSummaryLeft,
+.spoilerCheckoutSummaryRight {
+    width: 50%;
+    font-weight: 400;
+    color:  #222222;
+
+    h5 {
+        font-size: 13px;
+        text-transform: uppercase;
+        margin-bottom: 13px;
+    }
+
+    .pAfterH {
+        color:  #b3b2b2;
+        font-size: 13px;
+        margin-bottom: 29px;
+    }
+}
+
+.inputSubmitLeft,
+.inputSubmitRight {
+    .buttonInputMixin(180px, 50px, 14px);
+}
+
+.inputSubmitLeft {
+    margin-top: 38px;
+    margin-bottom: 79px;
+}
+
+.radioItemWrap {
+    margin-bottom: 30px;
+}
+
+.radioItem {
+    display: flex;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 15px;
+
+    input[type="radio"] {
+        margin: 3px 14px 0 0;
+    }
+
+    .inputLabel {
+        padding-top: 3px;
+    }
+}
+
+.registerPluses  {
+    font-size: 13px;
+    color: #b3b2b2;
+
+    &::before {
+        content: '\00bb';
+        font-size: 20px;
+        padding-right: 5px;
+    }
+}
+
+.inputRightWrap {
+    display: flex;
+    flex-direction: column;
+
+    .inputLabel {
+        font-size: 12px;
+        text-transform: uppercase;
+
+        &::after {
+            content: '\002A';
+            font-size: 17px;
+            color: #ff0d0d; 
+        }
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 390px;
+        height: 45px;
+        background-color: #ffffff;
+        border: solid 1px #eaeaea;
+        padding: 0 15px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        margin-top: 16px;
+    }
+}
+
+.requiredFileds {
+    font-size: 13px;
+    color: #ff0d0d;
+
+    &::before {
+        content: '\002A';
+        font-size: 17px;
+    }
+}
+
+.inputSubmitRightWrap {
+    margin-top: 32px;
+    display: flex;
+
+    a {
+        font-size: 14px;
+        margin-top: 22px;
+        margin-left: 28px;
+        text-decoration: none;
+        color: #222222;
+
+        &:hover {
+            color: @colorBrand;
+        }
+    }
+}
+
+.spoilerCheckoutSummaryWrapText {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+}

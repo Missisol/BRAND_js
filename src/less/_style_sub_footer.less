@@ -1,0 +1,247 @@
+.subscribe {
+    width: 100%;
+    height: 438px;
+    background-color: #e8e8e8;
+    margin-bottom: 109px;
+}
+
+.subscribeImgBackground {
+    height: 100%;
+    margin: 0 auto;
+    background: url(../images/index/subscribe_bcg.jpg) no-repeat center;
+}
+    
+.subscribeWrap {
+    height: 100%;
+    display: flex;
+}
+
+.subscribeLeft {
+    width: 50%;
+    border-right: 1px solid #ffffff;
+    padding: 111px 73px 0 0;
+    display: flex;
+}
+
+.textsubscribeLeft {
+    margin-left: 28px;
+    font-size: 16px;
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    .comment {
+        color:  #222224;
+        font-style: italic;
+        line-height: 26px;
+    }
+
+    .author {
+        color:  #f16d7f;
+        font-weight: 700;
+        line-height: 20px;
+        margin-bottom: 41px;
+
+        span {
+            color:  #222224;
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 14px;
+        }
+    }
+
+    .line {
+        width: 38px;
+        height: 4px;
+        background-color: #d6d6d6;
+        float: left;
+        margin-right: 13px;
+
+        a {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+        }
+    }
+
+    .colorBrand {
+        background-color: #f16d7f;
+    }
+}
+
+
+.subscribeRight {
+    padding-top: 140px;
+    width: 50%;
+    color:  #222224;
+    text-transform: uppercase;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 35px;
+    }
+
+    form {
+        font-size: 14px;
+        font-weight: 400;
+
+        input[type="email"] {
+            background-color:  #e1e1e1;
+            width: 282px;
+            height: 46px;
+            text-transform: capitalize;
+            padding: 0 28px;
+            box-sizing: border-box;
+            border-top-left-radius: 23px;
+            border-bottom-left-radius: 23px;
+        }
+
+        input[type="submit"] {
+            background-color:  #f16d7f;
+            width: 104px;
+            height: 46px;
+            color: #ffffff;
+            border-top-right-radius: 23px;
+            border-bottom-right-radius: 23px;
+            margin-left: -3px;
+            .transDuration();
+
+            &:hover {
+                filter: brightness(80%);
+            }
+        }
+    }
+}
+
+.footer {
+    height: 349px;
+}
+
+.footerWrap {
+    height: 260px;
+    margin-bottom: 89px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logoFooter {
+    width: 427px;
+    height: 100%;
+    .logoMixin();
+
+    .textLogoFooter {
+        height: 180px;
+        margin-top: 20px;
+        color:  #898989;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 24px;
+        overflow: hidden;
+
+        p {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+.menuFooter {
+    height: 100%;
+    margin-left: 64px;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.menuFooterColumn {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h3 {
+        color:  #f16d7f;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    .menuItems {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+
+    a {
+        padding: 10px 0;
+        color:  #898989;
+        font-size: 16px;
+        font-weight: 400;
+        text-decoration: none;
+
+        &:hover {
+            color: @colorBrand;
+        }
+    }
+}
+
+
+.footerBottom {
+    height: 79px;
+    background-color: #e6e6e6;
+}
+
+.footerBottomWrap {
+    height: 100%;
+    color:  #7a7a7a;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 79px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerBottomRight {
+    font-size: 20px;
+    display: flex;
+    
+    a {
+        background-color: #ffffff;
+        color:  #b2b2b2;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 32px;
+        display: block;
+        text-align: center;
+        width: 32px;
+        height: 32px;
+        margin-left: 8px;
+        .transDuration(0.3s);
+
+        &:hover {
+            color: #ffffff;
+            background-color: #f16d7f;
+        }
+
+        &:focus {
+            background-color: #eeeeee;
+            color: #d6d6d6;
+        }
+    }
+}
+
+
