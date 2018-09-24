@@ -1,0 +1,173 @@
+{
+  "basket": [],
+  "products": [
+    {
+      "id": 1,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_1_min.jpg",
+      "src": "images/product/man_product_1.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 2,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_2_min.jpg",
+      "src": "images/product/man_product_2.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 3,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_3_min.jpg",
+      "src": "images/product/man_product_3.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 4,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_4_min.jpg",
+      "src": "images/product/man_product_4.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 5,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_5_min.jpg",
+      "src": "images/product/man_product_5.jpg",
+      "quantity": 4
+    },
+    {
+      "id": 6,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_6_min.jpg",
+      "src": "images/product/man_product_6.jpg",
+      "quantity": 4
+    },
+    {
+      "id": 7,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_7_min.jpg",
+      "src": "images/product/man_product_7.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 8,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_8_min.jpg",
+      "src": "images/product/man_product_8.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 9,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_9_min.jpg",
+      "src": "images/product/man_product_9.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 10,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_1_min.jpg",
+      "src": "images/index/feturedItems/product_1.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 11,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_2_min.jpg",
+      "src": "images/index/feturedItems/product_2.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 12,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_3_min.jpg",
+      "src": "images/index/feturedItems/product_3.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 13,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_4_min.jpg",
+      "src": "images/index/feturedItems/product_4.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 14,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_5_min.jpg",
+      "src": "images/index/feturedItems/product_5.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 15,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_6_min.jpg",
+      "src": "images/index/feturedItems/product_6.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 16,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_7_min.jpg",
+      "src": "images/index/feturedItems/product_7.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 16,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_8_min.jpg",
+      "src": "images/index/feturedItems/product_8.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 17,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/single_page/product_sp_1_min.jpg",
+      "src": "images/single_page/product_sp_1.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 18,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/single_page/product_sp_2_min.jpg",
+      "src": "images/single_page/product_sp_2.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 19,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/single_page/product_sp_3_min.jpg",
+      "src": "images/single_page/product_sp_3.jpg",
+      "quantity": 5
+    },
+    {
+      "id": 20,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/single_page/product_sp_4_min.jpg",
+      "src": "images/single_page/product_sp_4.jpg",
+      "quantity": 5
+    }
+  ]
+}
