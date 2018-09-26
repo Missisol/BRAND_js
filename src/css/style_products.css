@@ -1320,17 +1320,16 @@ body {
   font-weight: 700;
   padding: 10px 7px;
 }
-.pagination a:hover {
-  color: #636262;
+.pagination a.active {
+  color: #f16d7f;
 }
-.pagination a:nth-child(2) {
+.pagination a:hover {
   color: #f16d7f;
 }
 .pagination a:first-child {
   font-size: 20px;
 }
 .pagination a:last-child {
-  color: #f16d7f;
   font-size: 20px;
 }
 .buttonViewAll {
