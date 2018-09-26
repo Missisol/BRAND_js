@@ -1,9 +1,9 @@
 /**
  * Выводит карточки товаров на странице.
  */
-function renderProducts() {
+function renderProducts(url) {
   $.ajax({
-    url: 'http://localhost:3000/products?_start=9&_limit=8',
+    url: url,
     dataType: 'json',
     success: function(result) {
       result.forEach(function(product) {
@@ -53,7 +53,14 @@ function renderProducts() {
 (function($) {
   $(function() {
     // Выводим карточки товаров на странице
-    renderProducts();
+    renderProducts('http://localhost:3000/products?_start=9&_limit=8');
+
+    // При нажатии на кнопку "посмотреть все продукты" выводит на странице все продукты
+    $('.buttonItem').on('click', function() {
+      $('.products').empty();
+      renderProducts('http://localhost:3000/products');
+    });
+    
 
     $(document).ajaxError(function() {
       $('.products').addClass('error').text('Произошла ошибка получения данных с сервера');
