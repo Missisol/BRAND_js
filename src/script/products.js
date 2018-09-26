@@ -1,11 +1,12 @@
 /**
  * Выводит карточки товаров на странице.
  */
-function renderProducts() {
+function renderProducts(url) {
+  $('.products').empty();
   $.ajax({
-    url: 'http://localhost:3000/products?_page=1&_limit=9',
+    url: url,
     dataType: 'json',
-    success: function(result) {
+    success: function(result, status, xhr) {
       result.forEach(function(product) {
         // Создаем обертку карточки продукта
         var $oneProductWrap = $('<div />', {
@@ -50,6 +51,52 @@ function renderProducts() {
   });
 }
 
+/**
+ * Создает элемент паджинации
+ * @param {string} a - Номер страницы, на который кликнул пользователь 
+ */
+function makePagination(a) {
+  $('.page').remove();
+  var activePageId = a;
+  var first;
+  if (activePageId > 1) {
+    first = activePageId;
+  } else first = 2;
+
+  $.ajax({
+    url: 'http://localhost:3000/products',
+    dataType: 'json',
+    success: function(result) {
+      var amountPage = Math.ceil(result.length / 9);
+      $('.last').attr('id', amountPage).text(amountPage);
+     
+      if (first === 2) {
+        for (var i = first; i <= 4; i++) {
+          $('<a />', {href: '#', id: i, class: 'page'}).text(i).insertBefore('.last');
+        }
+        $('<a />', {href: '#', class: 'page'}).text('...').insertBefore('.last');
+        $('.pagination').children('a').removeClass('active');
+        $('.pagination').children('#' + activePageId).addClass('active');
+      } else if (first > 2 && first <= amountPage - 3) {
+        $('<a />', {href: '#', class: 'page'}).text('...').insertBefore('.last');
+        for (var j = first, k = 1; j < amountPage, k <= 3; j++, k++) {
+          $('<a />', {href: '#', id: j, class: 'page'}).text(j).insertBefore('.last');
+        }
+        $('<a />', {href: '#', class: 'page'}).text('...').insertBefore('.last');
+        $('.pagination').children('a').removeClass('active');
+        $('.pagination').children('#' + activePageId).addClass('active');
+      } else if (first >= amountPage - 3) {
+        $('<a />', {href: '#', id: 'point', class: 'page'}).text('...').insertAfter('#1');
+        for (var l = amountPage - 1; l >= amountPage - 3; l--) {
+          $('<a />', {href: '#', id: l, class: 'page'}).text(l).insertAfter('#point');
+        }
+        $('.pagination').children('a').removeClass('active');
+        $('.pagination').children('#' + activePageId).addClass('active');
+      }
+    }
+  });
+}
+
 (function($) {
   $(function() {
      // Создаем карусель товаров в шапке.
@@ -80,14 +127,27 @@ function renderProducts() {
       }
     });
 
-    // Выводим карточки товаров на странице
-    renderProducts();
+    // Выводим элемент паджинации и карточки товаров на странице
+    makePagination('1');
+    renderProducts('http://localhost:3000/products?_page=1&_limit=9');
+
+    // При клике на номер страницы определяе url и передает в функцию вывода карточек товаров
+    $('.pagination').on('click', 'a', function() {
+      var activePageId = $(this).attr('id');
+      makePagination(activePageId);
+      var url = 'http://localhost:3000/products?_page=' + activePageId + '&_limit=9';
+      renderProducts(url);
+    });
+
+    // При нажатии на кнопку "посмотреть все" выводит на странице все продукты
+    $('.buttonViewAll').on('click', function() {
+      renderProducts('http://localhost:3000/products');
+    });
 
     // В случае неудачного завершения запроса к серверу выводим сообщение об ошибке
     $(document).ajaxError(function() {
       $('.products').addClass('error').text('Произошла ошибка получения данных с сервера');
     });
-
   });
 })(jQuery);
 
