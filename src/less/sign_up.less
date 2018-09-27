@@ -1,0 +1,101 @@
+.signUpForm {
+  width: 490px;
+  margin: 50px auto;
+  background-color:  #ffffff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.17);
+  padding: 30px 50px 50px;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 36%;
+  z-index: 110;
+
+  &__input,
+  &__gender,
+  &__submit {
+    height: 45px;
+    border: solid 1px #eaeaea;
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  &__input,
+  &__submit {
+    width: 390px;
+    background-color: #ffffff;
+  }
+
+  &__input.invalid {
+    border: solid 1px #e94b4b;
+  }
+
+  &__submit {
+    font-weight: bold;
+    color: #4a4a4a;
+    text-transform: uppercase;
+  }
+
+  &__gender {
+    width: 100px;
+    align-self: flex-start;
+    margin-top: 0;
+  }
+
+  &__close {
+    align-self: flex-end;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #4a4a4a;
+    cursor: pointer;
+  }
+
+  &__remember {
+    background-color: #ffffff ;
+  }
+
+  &__label {
+    align-self: flex-start;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Lato, sans-serif;
+    margin-bottom: 16px;
+  }
+}
+
+.innerWrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxWrap {
+  margin-top: 40px;
+}
+
+.invalid-feedback {
+  text-transform: none;
+  font-style: italic;
+  font-size: 12px;
+  color: #e94b4b;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 105;
+  background-color: #000000;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
