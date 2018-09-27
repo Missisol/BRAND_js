@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="assets/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="assets/slick-1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" href="css/style_checkout.css">
+    <link rel="stylesheet" href="css/sign_up.css">
 
 </head>
 <body>
@@ -159,7 +160,7 @@
                         <summary class="spoilerCheckoutSummary"><span>01.</span>Shipping Adress</summary>
                         <div class="spoilerCheckoutSummaryWrap">
                             <div class="spoilerCheckoutSummaryLeft">
-                                <form action="#" method="POST">
+                                <form>
                                     <fieldset>
                                         <legend><h5>Check as a guest or register</h5></legend>
                                         <p class="pAfterH">Register with us for future convenience</p>
@@ -177,12 +178,13 @@
                                         <p class="pAfterH">Register with us for future convenience</p>
                                         <p class="registerPluses">Fast and easy checkout</p>
                                         <p class="registerPluses">Easy access to your order history and status</p>
-                                        <input class="inputSubmitLeft" type="submit" value="Continue">
+                                        <!-- <input class="inputSubmitLeft" type="submit" value="Continue"> -->
+                                        <button class="inputSubmitLeft">Continue</button>
                                     </fieldset>
                                 </form>
                             </div>
                             <div class="spoilerCheckoutSummaryRight">
-                                <form action="#" method="POST">
+                                <form>
                                     <fieldset>
                                         <legend><h5>Already registed?</h5></legend>
                                         <p class="pAfterH">Please log in below</p>
@@ -192,7 +194,7 @@
                                             <label for="userPass"><span class="inputLabel">PASSWORD</span></label>
                                             <input type="password" id="userPass" placeholder="Enter your password" required>
                                         </div>
-                                        <p class="requiredFileds">Required Fileds</p>
+                                        <p class="requiredFileds">Required Fields</p>
                                         <div class="inputSubmitRightWrap">
                                             <input class="inputSubmitRight" type="submit" value="Log in">
                                             <a href="#">Forgot Password ?</a> 
@@ -376,6 +378,44 @@
             </div>
         </footer>
     </div>
+    <form class="signUpForm" name="signUpForm">
+        <span class="signUpForm__close">&times;</span>
+        <label class="signUpForm__label">Name 
+            <input type="text" class="signUpForm__input" data-validation_rule="name" name="name" placeholder="Enter a username">
+        </label>
+        <label class="signUpForm__label">Surname
+            <input type="text" class="signUpForm__input" data-validation_rule="name" name="user_lastname" placeholder="Pick a lastname">
+        </label>
+        <label class="signUpForm__label">Log in
+            <input type="text" class="signUpForm__input" data-validation_rule="name" name="user_login" placeholder="Pick a login name">
+        </label>
+        <label class="signUpForm__label">Password
+            <input type="text" class="signUpForm__input" data-validation_rule="password" name="password" placeholder="Create a password">
+        </label>
+        <label class="signUpForm__label">Credit card number
+            <input type="text" class="signUpForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Credit card number 1234567-1234-123456-123">
+        </label>
+        <label class="signUpForm__label">E-mail
+            <input type="text" class="signUpForm__input" data-validation_rule="email" name="email" placeholder="youmail@example.ru">
+        </label>
+        <div class="innerWrap">
+        <div class="selectWrap">
+            <label class="signUpForm__label" for="gender"></label>
+            <select class="signUpForm__gender" id="gender">
+                <option value="f">male</option>
+                <option value="m">female</option>
+            </select>
+        </div>
+        <div class="checkboxWrap">
+            <label class="signUpForm__label">
+                <input type="checkbox" name="remember" class="remember"> Remember
+            </label>
+        </div>
+        </div>
+        <button type="submit" id="submit" class="signUpForm__submit" >Sign up</button>
+    </form>
+    <div class="overlay"></div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/slick-1.8.1/slick/slick.min.js"></script>
     <script src="script/checkout.js"></script>
