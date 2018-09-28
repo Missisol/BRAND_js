@@ -1,6 +1,15 @@
 {
   "reg": [
-   
+    {
+      "name": "g",
+      "user_lastname": "g",
+      "user_login": "g",
+      "password": "gggggg",
+      "credit_card": "1234567-1234-123456-123",
+      "email": "ggg@bbb.hh",
+      "gender": "f",
+      "id": 1
+    }
   ],
   "basket": [],
   "products": [

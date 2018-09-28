@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="assets/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="assets/slick-1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" href="css/style_checkout.css">
-    <link rel="stylesheet" href="css/sign_up.css">
 
 </head>
 <body>
@@ -71,6 +70,23 @@
                                 </div>
                             </div>
                             <a class="myAccount" href="#"><span>My Account</span><i class="fas fa-sort-down"></i></a>
+                            <div class="myAccountSignIn">
+                                <div class="myAccountSignIn__triangle"></div>
+                                <form class="myAccountSignIn__form">
+                                    <label class="myAccountSignIn__label">Username
+                                        <input type="text" class="myAccountSignIn__input" data-validation_rule="name" name="username">
+                                    </label>
+                                    <label class="myAccountSignIn__label">Password
+                                        <input type="text" class="myAccountSignIn__input" data-validation_rule="password" name="userpass">
+                                    </label>
+                                    <div class="checkboxWrap">
+                                        <label class="signUpForm__label">
+                                            <input type="checkbox" name="cookie" class="remember"> Remember
+                                        </label>
+                                    </div>
+                                    <button type="submit" id="submitSignIn" class="myAccountSignIn__submit" >Sign in</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -406,11 +422,6 @@
                 <option value="m">male</option>
                 <option value="f">female</option>
             </select>
-        </div>
-        <div class="checkboxWrap">
-            <label class="signUpForm__label">
-                <input type="checkbox" name="remember" class="remember"> Remember
-            </label>
         </div>
         </div>
         <button type="submit" id="submit" class="signUpForm__submit" >Sign up</button>

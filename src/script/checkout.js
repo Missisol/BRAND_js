@@ -43,9 +43,9 @@ function sendValues() {
     success: function() {
       $('.signUpForm__input').val('');
       $('#empty').attr('selected', 'selected');
-      if (!$('.remember').is(':checked')) {
-        $('.remember').prop('checked', true);
-      }
+      // if (!$('.remember').is(':checked')) {
+      //   $('.remember').prop('checked', true);
+      // }
     },
     error: function() {
       $('#submit').empty().text('Ошибка регистрации');
