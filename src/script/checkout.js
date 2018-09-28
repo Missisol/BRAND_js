@@ -13,6 +13,7 @@ var message = {
   password: 'Длина пароля должна быть не меньше 6 символов',
   creditCard: 'Введите номер карты в формате 1234567-1234-123456-123',
   email: 'Введите e-mail в формате mymail@mail.ru или my.mail@mail.ru или my_mail@mail.ru',
+  gender: 'Заполните это поле',
 };
 
 /**
@@ -40,10 +41,14 @@ function sendValues() {
     type: 'POST',
     data: signUpFields,
     success: function() {
-      console.log('Регистрация прошла успешно');
+      $('.signUpForm__input').val('');
+      $('#empty').attr('selected', 'selected');
+      if (!$('.remember').is(':checked')) {
+        $('.remember').prop('checked', true);
+      }
     },
     error: function() {
-      console.log('Ошибка регистрации');
+      $('#submit').empty().text('Ошибка регистрации');
     }
   });
 }
@@ -67,6 +72,7 @@ function sendValues() {
     $('.inputSubmitLeft').on('click', function(e) {
       $('.overlay').css('display', 'block');
       $('.signUpForm').css('display', 'flex');
+      $('.remember').attr('checked', 'checked');
       e.preventDefault();
     });
 
@@ -75,10 +81,18 @@ function sendValues() {
       $('.overlay, .signUpForm').css('display', 'none');
     });
 
-    // Валидирует форму регистрации перед отправкой
+    // Валидирует форму регистрации перед отправкой и передает данные для отправки через ajax
     $('.signUpForm').on('click', '.signUpForm__submit', function(e) {
+      var mess;
+      var $el = $('#gender');
+      if ($el.val() === '') {
+        mess = message.gender;
+        setInvalidField(mess, $el);
+      } else {
+        $($el).removeClass('invalid');
+        $($el).next('.invalid-feedback').remove();
+      }
       $.each(rules, function(index, rule) {
-        var mess;
         var $fields = $('[data-validation_rule=' + index + ']');
         $fields.each(function(key, field) {
          if(rule.test(field.value)) {
@@ -93,8 +107,10 @@ function sendValues() {
           }
         });
       });
-       e.preventDefault();
-       sendValues();
+      e.preventDefault();
+      if ($('.signUpForm').find('.invalid').length === 0 && $('#gender').val() !== '') {
+        sendValues();
+      } else console.log('error');
     });
 
   });
