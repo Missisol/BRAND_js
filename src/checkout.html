@@ -69,24 +69,25 @@
                                     <a class="userBasketGoToCart" href="shopping_cart.html">Go to cart</a>
                                 </div>
                             </div>
-                            <a class="myAccount" href="#"><span>My Account</span><i class="fas fa-sort-down"></i></a>
-                            <div class="myAccountSignIn">
-                                <div class="myAccountSignIn__triangle"></div>
-                                <form class="myAccountSignIn__form">
-                                    <label class="myAccountSignIn__label">Username
-                                        <input type="text" class="myAccountSignIn__input" data-validation_rule="name" name="username">
-                                    </label>
-                                    <label class="myAccountSignIn__label">Password
-                                        <input type="text" class="myAccountSignIn__input" data-validation_rule="password" name="userpass">
-                                    </label>
-                                    <div class="checkboxWrap">
-                                        <label class="signUpForm__label">
-                                            <input type="checkbox" name="cookie" class="remember"> Remember
-                                        </label>
-                                    </div>
-                                    <button type="submit" id="submitSignIn" class="myAccountSignIn__submit" >Sign in</button>
-                                </form>
+                            <div class="myAccount">
+                                <span>My Account</span><i class="fas fa-sort-down"></i>
                             </div>
+                            <form class="myAccountSignIn registerForm">
+                                <div class="myAccountSignIn__triangle"></div>
+                                <span class="myAccountSignIn__close registerForm__close">&times;</span>
+                                <label class="myAccountSignIn__label registerForm__label">Username
+                                    <input type="text" class="myAccountSignIn__input registerForm__input" data-validation_rule="usercheck" name="username">
+                                </label>
+                                <label class="myAccountSignIn__label registerForm__label">Password
+                                    <input type="text" class="myAccountSignIn__input registerForm__input" data-validation_rule="usercheck" name="userpass">
+                                </label>
+                                <div class="myAccountSignIn__checkboxWrap">
+                                    <label class="myAccountSignIn__label registerForm__label">
+                                        <input type="checkbox" name="cookie" class="myAccountSignIn_remember remember"> Remember
+                                    </label>
+                                </div>
+                                <button type="submit" id="submitSignIn" class="myAccountSignIn__submit registerForm__submit" >Sign in</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -194,21 +195,20 @@
                                         <p class="pAfterH">Register with us for future convenience</p>
                                         <p class="registerPluses">Fast and easy checkout</p>
                                         <p class="registerPluses">Easy access to your order history and status</p>
-                                        <!-- <input class="inputSubmitLeft" type="submit" value="Continue"> -->
                                         <button class="inputSubmitLeft">Continue</button>
                                     </fieldset>
                                 </form>
                             </div>
                             <div class="spoilerCheckoutSummaryRight">
-                                <form>
-                                    <fieldset>
+                                <form >
+                                    <fieldset class="inputRightForm">
                                         <legend><h5>Already registed?</h5></legend>
                                         <p class="pAfterH">Please log in below</p>
                                         <div class="inputRightWrap">
                                             <label for="userEmail"><span class="inputLabel">EMAIL ADDRESS</span></label>
-                                            <input type="email" id="userEmail" placeholder="Enter your email" required>
+                                            <input type="email" name="email" id="userEmail" placeholder="Enter your email" class="inputRight__input" required>
                                             <label for="userPass"><span class="inputLabel">PASSWORD</span></label>
-                                            <input type="password" id="userPass" placeholder="Enter your password" required>
+                                            <input type="password" name="password" id="userPass" placeholder="Enter your password" class="inputRight__input" required>
                                         </div>
                                         <p class="requiredFileds">Required Fields</p>
                                         <div class="inputSubmitRightWrap">
@@ -394,41 +394,39 @@
             </div>
         </footer>
     </div>
-    <form class="signUpForm" name="signUpForm">
-        <span class="signUpForm__close">&times;</span>
-        <label class="signUpForm__label">Name 
-            <input type="text" class="signUpForm__input" data-validation_rule="name" name="name" placeholder="Enter a username">
+    <form class="signUpForm registerForm" name="signUpForm">
+        <span class="signUpForm__close registerForm__close">&times;</span>
+        <label class="signUpForm__label registerForm__label">Name 
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="name" placeholder="Enter a username">
         </label>
-        <label class="signUpForm__label">Surname
-            <input type="text" class="signUpForm__input" data-validation_rule="name" name="user_lastname" placeholder="Pick a lastname">
+        <label class="signUpForm__label registerForm__label">Surname
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_lastname" placeholder="Pick a lastname">
         </label>
-        <label class="signUpForm__label">Log in
-            <input type="text" class="signUpForm__input" data-validation_rule="name" name="user_login" placeholder="Pick a login name">
+        <label class="signUpForm__label registerForm__label">Log in
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_login" placeholder="Pick a login name">
         </label>
-        <label class="signUpForm__label">Password
-            <input type="text" class="signUpForm__input" data-validation_rule="password" name="password" placeholder="Create a password">
+        <label class="signUpForm__label registerForm__label">Password
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="password" name="password" placeholder="Create a password">
         </label>
-        <label class="signUpForm__label">Credit card number
-            <input type="text" class="signUpForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Credit card number 1234567-1234-123456-123">
+        <label class="signUpForm__label registerForm__label">Credit card number
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Credit card number 1234567-1234-123456-123">
         </label>
-        <label class="signUpForm__label">E-mail
-            <input type="text" class="signUpForm__input" data-validation_rule="email" name="email" placeholder="youmail@example.ru">
+        <label class="signUpForm__label registerForm__label">E-mail
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="email" name="email" placeholder="youmail@example.ru">
         </label>
-        <div class="innerWrap">
         <div class="selectWrap">
-            <label class="signUpForm__label" for="gender" >Gender</label>
-            <select class="signUpForm__gender" id="gender" name="gender">
-                <option id="empty" value=""></option>
+            <label class="signUpForm__label registerForm__label" for="gender" >Gender</label>
+            <select class="signUpForm__gender registerForm__gender" id="gender" name="gender">
+                <option id="empty">Choose</option>
                 <option value="m">male</option>
                 <option value="f">female</option>
             </select>
         </div>
-        </div>
-        <button type="submit" id="submit" class="signUpForm__submit" >Sign up</button>
+        <button type="submit" id="submit" class="signUpForm__submit registerForm__submit" >Sign up</button>
     </form>
     <div class="overlay"></div>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/slick-1.8.1/slick/slick.min.js"></script>
     <script src="script/checkout.js"></script>
     <script src="script/brand.js"></script>

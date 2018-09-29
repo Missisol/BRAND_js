@@ -8,10 +8,36 @@
       "credit_card": "1234567-1234-123456-123",
       "email": "ggg@bbb.hh",
       "gender": "f",
-      "id": 1
+      "id": 1,
+      "cookie": "on"
+    },
+    {
+      "name": "aa",
+      "user_lastname": "aaa",
+      "user_login": "aaaa",
+      "password": "dddddd",
+      "credit_card": "1234567-1234-123456-123",
+      "email": "aaa@mmm.aaa",
+      "gender": "m",
+      "id": 2
     }
   ],
-  "basket": [],
+  "basket": [
+    {
+      "id": 1,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_1_min.jpg",
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_2_min.jpg",
+      "quantity": 2
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -19,7 +45,7 @@
       "price": "52.00",
       "min_url": "images/product/man_product_1_min.jpg",
       "src": "images/product/man_product_1.jpg",
-      "quantity": 5
+      "quantity": 4
     },
     {
       "id": 2,
@@ -27,7 +53,7 @@
       "price": "52.00",
       "min_url": "images/product/man_product_2_min.jpg",
       "src": "images/product/man_product_2.jpg",
-      "quantity": 5
+      "quantity": 3
     },
     {
       "id": 3,
