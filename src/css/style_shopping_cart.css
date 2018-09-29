@@ -1211,6 +1211,11 @@ body {
           box-sizing: border-box;
   margin-bottom: 54px;
 }
+.proceedToCheckout .subtotalWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 .proceedToCheckout p {
   font-size: 11px;
   color: #4a4a4a;

@@ -2,7 +2,7 @@
  * Добавляет единицу товара в корзину
  * @param {Object} product - Объект купленного товара 
  */
-function addToBasket(product) {
+function addToBasket(product, q) {
   // Определяем id купленного товара
   var id = product.id;
   // Ищем товар в корзине
@@ -19,14 +19,14 @@ function addToBasket(product) {
             'content-type': 'application/json',
           },
           data: JSON.stringify({
-            quantity: data[0].quantity + 1,
+            quantity: data[0].quantity + q,
           }),
           success: function(product) {
             // Вызываем функцию счетчика товаров в корзине
             renderBasketProduct();
           },
           error: function() {
-            // getMessage ('Произошла ошибка');
+            console.log('error');
           }
         });
       } else {
@@ -42,6 +42,7 @@ function addToBasket(product) {
             name: product.name,
             price: product.price,
             min_url: product.min_url,
+            md_url: product.md_url,
             quantity: 1,
           }),
           success: function() {
@@ -49,13 +50,13 @@ function addToBasket(product) {
             renderBasketProduct();
           },
           error: function() {
-            // getMessage ('Произошла ошибка');
+            console.log('error');
           }
         });
       } 
     },
     error: function() {
-      // getMessage ('Произошла ошибка');
+      console.log('error');
     }
   });
 }
@@ -64,7 +65,7 @@ function addToBasket(product) {
  * Удаляет единицу товара из корзины
  * @param {Object} product - Объект удаляемого товара 
  */
-function removeFromBasket(product) {
+function removeFromBasket(product, q) {
    // Определяем id купленного товара
    var id = product.id;
    var quantity = product.quantity;
@@ -81,7 +82,7 @@ function removeFromBasket(product) {
             renderBasketProduct();
           },
           error: function() {
-            // getMessage ('Произошла ошибка');
+            console.log('error');
           }
         });
       } else {
@@ -92,20 +93,19 @@ function removeFromBasket(product) {
             'content-type': 'application/json',
           },
           data: JSON.stringify({
-            quantity: data.quantity - 1,
+            quantity: data.quantity - q,
           }),
           success: function() {
             renderBasketProduct();
           },
           error: function() {
-            // getMessage ('Произошла ошибка');
+            console.log('error');
           }
         });
       }
     }
   });
 }
-
 
 /**
  * Считает количество товаров в корзине и создает счетчик
@@ -130,7 +130,7 @@ function makeCounter() {
  * Уменьшает количество купленного товара на складе
  * @param {Object} $product - Oбъект купленного товара
  */
-function decreaseBase($product) {
+function decreaseBase($product, q) {
   // Определяем id купленного товара
   var id = +$($product).attr('id');
   // Находим товар на складе
@@ -147,11 +147,11 @@ function decreaseBase($product) {
             'content-type': 'application/json',
           },
           data: JSON.stringify({
-            quantity: data.quantity - 1,
+            quantity: data.quantity - q,
           }),
         });
         // Вызываем функцию добавления товара в корзину
-        addToBasket(data);
+        addToBasket(data, q);
       } else {
         // Сообщаем пользователю, что товар закончился
         var a = $('#' + id + '.oneProductWrap .textAddToCart').text('The goods ended');
@@ -164,7 +164,7 @@ function decreaseBase($product) {
  * Увеличивает количество товара на складе при отказе покупателя от покупки
  * @param {string} id - id товара
  */
-function increaseBase(id) {
+function increaseBase(id, q) {
   // Находим товар на складе
   $.ajax({
     url: 'http://localhost:3000/products/' + id,
@@ -177,11 +177,11 @@ function increaseBase(id) {
           'content-type': 'application/json',
         },
         data: JSON.stringify({
-          quantity: data.quantity + 1,
+          quantity: data.quantity + q,
         }),
       });
       // Вызываем функцию удаления товара из корзины
-      removeFromBasket(data);
+      removeFromBasket(data, q);
     }
   });
 }
@@ -199,21 +199,21 @@ function renderBasketProduct() {
         var totalSum = 0;
         var quantityAll = 0;
         result.forEach(function(goods) {
-          // Считаем общую сумму продуктов.
+          // Считаем общую сумму продуктов
           totalSum += +goods.price * +goods.quantity;
           quantityAll = quantityAll + goods.quantity; 
-          // Создаем div - обертку для карточки товара.
+          // Создаем div - обертку для карточки товара
           var $oneProduct = $('<div />').addClass('userBasketOneProduct');
-          // Создаем ссылку с вложенной картинкой товара.
+          // Создаем ссылку с вложенной картинкой товара
           var $aImg = $('<a />', {href: '#'}).addClass('userBasketOneProductImg');
           var $img = $('<img>', {
                       src: goods.min_url,
                       alt: goods.name,
                     });
           $aImg.append($img);
-          //Создаем ссылку для названия товара.
+          //Создаем ссылку для названия товара
           var $aNameProduct = $('<a />', {href: '#'}).addClass('userBasketOneProductText__nameProduct').text(goods.name);
-          // Создаем div для звездочек.
+          // Создаем div для звездочек
           var $stars = $('<div />').addClass('stars');
           var $aStars = $('<a />', {href: '#'});
           for (var i =0; i < 5; i++) {
@@ -221,11 +221,11 @@ function renderBasketProduct() {
             $aStars.append($iStar);
           }
           $stars.append($aStars);
-          // Создаем тег p для вывода количества товара и цены товара.
+          // Создаем тег p для вывода количества товара и цены товара
           var $p = $('<p />').html(goods.quantity + '<span> x </span>' + '$' + goods.price);
           //Создаем обертку для текста.
           var $userBasketOneProductText = $('<div />').addClass('userBasketOneProductText');
-          // Создаем кнопку для удаления товара.
+          // Создаем кнопку для удаления товара
           var $abutton = $('<a />', {
                             href: '#',
                             class: 'shoppingAction',
@@ -233,14 +233,13 @@ function renderBasketProduct() {
                           });
           var $iFont = $('<i />').addClass('fas fa-times-circle');
           $abutton.append($iFont);
-          // Создаем структуру карточки.
+          // Создаем структуру карточки
           $userBasketOneProductText.append($aNameProduct).append($stars).append($p);
           $oneProduct.append($aImg).append($userBasketOneProductText).append($abutton);
           $('.userBasketdropDown__userBasketProductsWrap').append($oneProduct);
         });
         $('#userBasketSum').text('$' + totalSum);
         $('#quantityProduct').addClass('active').text(quantityAll);
-        // makeCounter();
       } else {
         $('.userBasketdropDown__userBasketProductsWrap').text('Your cart is empty');
         $('#userBasketSum').text('$' + 0);
@@ -257,7 +256,8 @@ function renderBasketProduct() {
       var $product = $(event.target).parents('.addToCartWrap').parents('.oneProductWrap');
       if ($product.length !== 0) {
         // Вызываем функцию уменьшения количества продуктов на складе
-        decreaseBase($product);
+        var q = 1;
+        decreaseBase($product, q);
       }
     });
 
@@ -285,7 +285,8 @@ function renderBasketProduct() {
     $('.userBasketdropDown__userBasketProductsWrap').on('click', function() {
       var $shoppingAction = $(event.target).parent('.shoppingAction');
       if ($shoppingAction !== 0) {
-        increaseBase($shoppingAction.attr('id'));
+        var q = 1;
+        increaseBase($shoppingAction.attr('id'), q);
       }
     });
     
