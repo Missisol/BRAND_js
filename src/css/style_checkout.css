@@ -961,10 +961,10 @@ form .buttonSearch:focus {
   color: #4a4a4a;
   text-transform: uppercase;
   margin-top: 20px;
+  background-color: #f16d7f;
 }
 .registerForm__submit:hover {
-  color: #f16d7f;
-  border: solid 1px #f16d7f;
+  color: #ffffff;
 }
 .registerForm__close {
   -ms-flex-item-align: end;
@@ -1033,6 +1033,14 @@ form .buttonSearch:focus {
   top: 0;
   left: 0;
   cursor: pointer;
+}
+.myAccountSignIn__signUp {
+  width: 258px;
+  background-color: #ffffff;
+}
+.myAccountSignIn__signUp:hover {
+  color: #f16d7f;
+  border: solid 1px #f16d7f;
 }
 body {
   font-family: Lato, sans-serif;

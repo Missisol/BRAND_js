@@ -68,7 +68,26 @@
                                     <a class="userBasketGoToCart" href="shopping_cart.html">Go to cart</a>
                                 </div>
                             </div>
-                            <a class="myAccount" href="#"><span>My Account</span><i class="fas fa-sort-down"></i></a>
+                            <div class="myAccount" href="#">
+                                <span>My Account</span><i class="fas fa-sort-down"></i>
+                            </div>
+                            <form class="myAccountSignIn registerForm">
+                                <div class="myAccountSignIn__triangle"></div>
+                                <span class="myAccountSignIn__close registerForm__close">&times;</span>
+                                <label class="myAccountSignIn__label registerForm__label">Username
+                                    <input type="text" class="myAccountSignIn__input registerForm__input" data-validation_rule="usercheck" name="username">
+                                </label>
+                                <label class="myAccountSignIn__label registerForm__label">Password
+                                    <input type="text" class="myAccountSignIn__input registerForm__input" data-validation_rule="usercheck" name="userpass">
+                                </label>
+                                <div class="myAccountSignIn__checkboxWrap">
+                                    <label class="myAccountSignIn__label registerForm__label">
+                                        <input type="checkbox" name="cookie" class="myAccountSignIn_remember remember"> Remember
+                                    </label>
+                                </div>
+                                <button type="submit" id="submitSignIn" class="myAccountSignIn__submit registerForm__submit" >Sign in</button>
+                                <button id="goToSignUp" class="myAccountSignIn__signUp registerForm__submit" >Sign Up</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -355,9 +374,42 @@
             </div>
         </footer>
     </div>
+    <form class="signUpForm registerForm" name="signUpForm">
+        <span class="signUpForm__close registerForm__close">&times;</span>
+        <label class="signUpForm__label registerForm__label">Name 
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="name" placeholder="Enter a username">
+        </label>
+        <label class="signUpForm__label registerForm__label">Surname
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_lastname" placeholder="Pick a lastname">
+        </label>
+        <label class="signUpForm__label registerForm__label">Log in
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_login" placeholder="Pick a login name">
+        </label>
+        <label class="signUpForm__label registerForm__label">Password
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="password" name="password" placeholder="Create a password">
+        </label>
+        <label class="signUpForm__label registerForm__label">Credit card number
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Credit card number 1234567-1234-123456-123">
+        </label>
+        <label class="signUpForm__label registerForm__label">E-mail
+            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="email" name="email" placeholder="youmail@example.ru">
+        </label>
+        <div class="selectWrap">
+            <label class="signUpForm__label registerForm__label" for="gender" >Gender</label>
+            <select class="signUpForm__gender registerForm__gender" id="gender" name="gender">
+                <option id="empty">Choose</option>
+                <option value="m">male</option>
+                <option value="f">female</option>
+            </select>
+        </div>
+        <button type="submit" id="submit" class="signUpForm__submit registerForm__submit" >Sign up</button>
+    </form>
+    <div class="overlay"></div>
+    
     <script src="assets/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/slick-1.8.1/slick/slick.min.js"></script>
     <script src="script/single_page.js"></script>
     <script src="script/brand.js"></script>
+    <script src="script/signUp_signIn.js"></script>
 </body>
 </html>

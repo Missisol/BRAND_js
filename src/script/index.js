@@ -60,8 +60,8 @@ function renderProducts(url) {
       $('.products').empty();
       renderProducts('http://localhost:3000/products');
     });
-    
 
+    
     $(document).ajaxError(function() {
       $('.products').addClass('error').text('Произошла ошибка получения данных с сервера');
     });
