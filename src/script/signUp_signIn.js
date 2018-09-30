@@ -1,3 +1,10 @@
+// Опции для установления cookie
+options = {
+  expires:'',
+  path: '/',
+  domain: 'brand.com'
+};
+
 // Правила проверки данных в полях формы регистрации
 var rules = {
   name: /[a-zа-я]+/i,
@@ -16,6 +23,31 @@ var message = {
   gender: 'Заполните это поле',
   usercheck: 'Введен неверный логин или пароль'
 };
+
+// Устанавливаем cookie и записываем в базу данных
+function setCookie(name, value, options) {
+  options = options || {};
+  var expires = options.expires;
+  if (typeof expires == "number" && expires) {
+    var d = new Date();
+    d.setTime(d.getTime() + expires * 1000);
+    expires = options.expires = d;
+  }
+  if (expires && expires.toUTCString) {
+    options.expires = expires.toUTCString();
+  }
+  value = encodeURIComponent(value);
+  var updatedCookie = name + "=" + value;
+  for (var propName in options) {
+    updatedCookie += "; " + propName;
+    var propValue = options[propName];
+    if (propValue !== true) {
+      updatedCookie += "=" + propValue;
+    }
+  }
+  // document.cookie = updatedCookie;
+  return updatedCookie;
+}
 
 /**
  * В случае неуспешной валидации полей формы регистрации устанавливает класс 'invalid'
@@ -44,6 +76,7 @@ function sendValues() {
     success: function() {
       $('.signUpForm__input').val('');
       $('#empty').attr('selected', 'selected');
+      $('#submit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
       $('#submit').empty().text('Вы зарегистрированы');
     },
     error: function() {
@@ -59,6 +92,11 @@ function sendCheckValues() {
   var userpass = userData[1].value;
   var cookie = userData[2];
   var mess = message.usercheck;
+  var userCookie;
+  // Если пользователь поставил галочку "запомнить", записываем cookie
+  if(cookie) {
+    userCookie = setCookie(username, userpass, options);
+  }
   $.ajax({
     url: 'http://localhost:3000/reg?user_login=' + username + '&password=' + userpass,
     dataType: 'json',
@@ -66,6 +104,7 @@ function sendCheckValues() {
       if (result.length !== 0) {
         var id = result[0].id;
         if (!cookie) {
+          $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
           $('#submitSignIn').empty().text('Вы авторизованы');
           return;
          } else {
@@ -76,9 +115,10 @@ function sendCheckValues() {
               'content-type': 'application/json',
             },
             data: JSON.stringify({
-              cookie: cookie.value,
+              cookie: userCookie,
             }),
             success: function() {
+              $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
               $('#submitSignIn').empty().text('Вы авторизованы');
             },
             error: function() {
@@ -99,32 +139,6 @@ function sendCheckValues() {
   $('.myAccountSignIn__input').val('');
   $('.remember').attr('checked', 'checked');
 }
-
-// Авторизует пользователя по эл.почте и паролю
-function sendCheckValuesMail() {
-  var userData = $('.inputRightForm').serializeArray();
-  var usermail = userData[0].value;
-  var userpass = userData[1].value;
-  var mess = message.usercheck;
-  $.ajax({
-    url: 'http://localhost:3000/reg?password=' + userpass + '&email=' + usermail,
-    dataType: 'json',
-    success: function(result) {
-      if (result.length !== 0) {
-        $('.inputSubmitRight').empty().val('Вы авторизованы');
-      } else {
-        $('.inputRight__input').addClass('invalid');
-        var $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
-        $hintWrap.insertAfter('.inputRight__input').text(mess);
-      }
-    },
-    error: function() {
-      console.log('error');
-    }
-  });
-  $('.inputRight__input').val('');
-}
-
 
 (function($) {
   $(function() {
@@ -176,7 +190,7 @@ function sendCheckValuesMail() {
       }
     });
 
-    // Валидирует форму регистрации перед отправкой и передает данные для отправки через ajax
+    // Валидируем форму регистрации перед отправкой и передаем данные для отправки через ajax
     $('.signUpForm').on('click', '.signUpForm__submit', function(e) {
       var mess;
       var $el = $('#gender');
@@ -208,9 +222,10 @@ function sendCheckValuesMail() {
       } else console.log('error');
     });
 
-    // Валидирует форму входа и передает данные для сравнения с базой черех ajax
+    // Валидируем форму авторизации и передаем данные для сравнения с базой черех ajax
     $('.myAccountSignIn').on('click', '.myAccountSignIn__submit', function(e) {
       var $input = $('.myAccountSignIn__input');
+      console.log($('#remember').value);
       var mess;
       $input.each(function(key, field) {
         if (field.value === '') {
@@ -228,23 +243,23 @@ function sendCheckValuesMail() {
     });
 
     // По клику на кнопку "Log in"
-    $('.inputRightForm').on('click', '.inputSubmitRight', function(e) {
-      var $input = $('.inputRight__input');
-      var mess;
-      $input.each(function(key, field) {
-        if (field.value === '') {
-          mess = message.empty;
-          setInvalidField(mess, field);
-        } else {
-          $(field).removeClass('invalid');
-          $(field).next('.invalid-feedback').remove();
-        }
-      });
-      e.preventDefault();
-      if ($('.inputRightForm').find('.invalid').length === 0) {
-        sendCheckValuesMail();
-      } else console.log('error');
-    });
+    // $('.inputRightForm').on('click', '.inputSubmitRight', function(e) {
+    //   var $input = $('.inputRight__input');
+    //   var mess;
+    //   $input.each(function(key, field) {
+    //     if (field.value === '') {
+    //       mess = message.empty;
+    //       setInvalidField(mess, field);
+    //     } else {
+    //       $(field).removeClass('invalid');
+    //       $(field).next('.invalid-feedback').remove();
+    //     }
+    //   });
+    //   e.preventDefault();
+    //   if ($('.inputRightForm').find('.invalid').length === 0) {
+    //     sendCheckValuesMail();
+    //   } else console.log('error');
+    // });
 
   });
 })(jQuery);
