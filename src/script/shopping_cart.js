@@ -90,14 +90,14 @@ function renderShoppingCartProducts() {
       var newQuantity = $(e.target).val();
       var price = +$('#unitePrice' + id).text().slice(1);
       var newSum = price * newQuantity;
-
-      console.log(typeof(price));
       $('#subtotal' + id).text('$' + newSum);
-
-      var grandtotal = +$('.grandtotal').text().slice(1);
-      var newGrandtotal = grandtotal + price;
-      $('.subtotalAll').text('$' + newGrandtotal);
-      $('.grandtotal').text('$' + newGrandtotal);
+      var totalSum = 0;
+      var $subtotals = $('.subtotal');
+      $subtotals.each(function(key, item) {
+        totalSum += +$(item).text().slice(1);
+      });
+      $('.subtotalAll').text('$' + totalSum);
+      $('.grandtotal').text('$' + totalSum);
     });
 
     //1. При клике на крестик надо удалять товар: убрать товар на склад.

@@ -2,6 +2,14 @@
   "reg": [],
   "basket": [
     {
+      "id": 7,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_7_min.jpg",
+      "md_url": "images/shopping_cart/man_product_7_md.jpg",
+      "quantity": 1
+    },
+    {
       "id": 5,
       "name": "Mango  People  T-shir",
       "price": "52.00",
@@ -15,7 +23,7 @@
       "price": "52.00",
       "min_url": "images/product/man_product_6_min.jpg",
       "md_url": "images/shopping_cart/man_product_6_md.jpg",
-      "quantity": 2
+      "quantity": 1
     },
     {
       "id": 3,
@@ -239,7 +247,7 @@
       "min_url": "images/product/man_product_6_min.jpg",
       "md_url": "images/shopping_cart/man_product_6_md.jpg",
       "src": "images/product/man_product_6.jpg",
-      "quantity": 10,
+      "quantity": 11,
       "variants": [
         {
           "color": "red",
@@ -280,7 +288,7 @@
       "min_url": "images/product/man_product_7_min.jpg",
       "md_url": "images/shopping_cart/man_product_7_md.jpg",
       "src": "images/product/man_product_7.jpg",
-      "quantity": -2193,
+      "quantity": -2194,
       "variants": [
         {
           "color": "red",
