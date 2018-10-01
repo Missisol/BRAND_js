@@ -24,7 +24,12 @@ var message = {
   usercheck: 'Введен неверный логин или пароль'
 };
 
-// Устанавливаем cookie и записываем в базу данных
+/**
+ * Устанавливаем cookie и записываем в базу данных
+ * @param {string} name - Название cookie 
+ * @param {string} value - Значение cookie 
+ * @param {Object} options - Опции для установления cookie
+ */
 function setCookie(name, value, options) {
   options = options || {};
   var expires = options.expires;
@@ -45,6 +50,7 @@ function setCookie(name, value, options) {
       updatedCookie += "=" + propValue;
     }
   }
+  // Записываем cookie в браузер
   // document.cookie = updatedCookie;
   return updatedCookie;
 }
@@ -66,7 +72,9 @@ function setInvalidField(message, inputEl) {
   }
 }
 
-// Записывает данные формы регистрации в базу данных и очищает форму
+/**
+ * Записывает данные формы регистрации в базу данных и очищает форму
+ */
 function sendValues() {
   var signUpFields = $('.signUpForm').serialize();
   $.ajax({
@@ -85,7 +93,9 @@ function sendValues() {
   });
 }
 
-// Авторизует пользователя по логину и паролю
+/**
+ * Авторизует пользователя по логину и паролю
+ */
 function sendCheckValues() {
   var userData = $('.myAccountSignIn').serializeArray();
   var username = userData[0].value;
@@ -93,21 +103,23 @@ function sendCheckValues() {
   var cookie = userData[2];
   var mess = message.usercheck;
   var userCookie;
-  // Если пользователь поставил галочку "запомнить", записываем cookie
+  // Если пользователь поставил галочку "запомнить", формируем cookie
   if(cookie) {
     userCookie = setCookie(username, userpass, options);
   }
+  // Ищем пользователя по логину и паролю
   $.ajax({
     url: 'http://localhost:3000/reg?user_login=' + username + '&password=' + userpass,
     dataType: 'json',
     success: function(result) {
+      // Если пользователь найден в базе
       if (result.length !== 0) {
         var id = result[0].id;
+        // Смотрим, есть ли в базе cookie
+        var cookieReg = result[0].cookie;
+
+        // Если не поставлена галочка "запомнить" записываем в базу, что сессия открыта и сообщаем об авторизации
         if (!cookie) {
-          $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
-          $('#submitSignIn').empty().text('Вы авторизованы');
-          return;
-         } else {
           $.ajax({
             url: 'http://localhost:3000/reg/' + id,
             type: 'PATCH',
@@ -116,6 +128,7 @@ function sendCheckValues() {
             },
             data: JSON.stringify({
               cookie: userCookie,
+              session: 'on',
             }),
             success: function() {
               $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
@@ -125,8 +138,51 @@ function sendCheckValues() {
               console.log('error');
             }
           });
+         } else {
+           // Если поставлена галочка "запомнить", проверяем, были ли записаны cookie
+           if (!cookieReg) {
+             // Если cookie в базе нет записываем cookie и записываем, что сессия открыта
+            $.ajax({
+              url: 'http://localhost:3000/reg/' + id,
+              type: 'PATCH',
+              headers: {
+                'content-type': 'application/json',
+              },
+              data: JSON.stringify({
+                cookie: userCookie,
+                session: 'on',
+              }),
+              success: function() {
+                $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+                $('#submitSignIn').empty().text('Вы авторизованы');
+              },
+              error: function() {
+                console.log('error');
+              }
+            });
+           } else {
+             // Если cookie в базе есть просто записываем, что сессия открыта
+            $.ajax({
+              url: 'http://localhost:3000/reg/' + id,
+              type: 'PATCH',
+              headers: {
+                'content-type': 'application/json',
+              },
+              data: JSON.stringify({
+                session: 'on',
+              }),
+              success: function() {
+                $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+                $('#submitSignIn').empty().text('Вы авторизованы');
+              },
+              error: function() {
+                console.log('error');
+              }
+            });
+           }
          }
       } else {
+        // Если пользователь в базе не найден, выводим сообщение об ошибке
         $('.myAccountSignIn__input').addClass('invalid');
         var $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
         $hintWrap.insertAfter('.myAccountSignIn__input').text(mess);
@@ -136,9 +192,57 @@ function sendCheckValues() {
       console.log('error');
     } 
   });
+  // Приводим поля формы авторизации в первоначальное состояние
   $('.myAccountSignIn__input').val('');
   $('.remember').attr('checked', 'checked');
 }
+
+/**
+ *  Авторизует пользователя по эл.почте и паролю
+ */
+function sendCheckValuesMail() {
+  var userData = $('.inputRightForm').serializeArray();
+  var usermail = userData[0].value;
+  var userpass = userData[1].value;
+  var mess = message.usercheck;
+  $.ajax({
+    url: 'http://localhost:3000/reg?password=' + userpass + '&email=' + usermail,
+    dataType: 'json',
+    success: function(result) {
+      var id = result[0].id;
+      if (result.length !== 0) {
+        // Если пользователь найден, записываем, что сессия открыта
+        $.ajax({
+          url: 'http://localhost:3000/reg/' + id,
+          type: 'PATCH',
+          headers: {
+            'content-type': 'application/json',
+          },
+          data: JSON.stringify({
+            session: 'on',
+          }),
+          success: function() {
+            $('.inputSubmitRight').empty().val('Вы авторизованы');
+          },
+          error: function() {
+            console.log('error');
+          }
+        });
+      } else {
+        // Если пользователь не найден, выводим сообщение об ошибке
+        $('.inputRight__input').addClass('invalid');
+        var $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
+        $hintWrap.insertAfter('.inputRight__input').text(mess);
+      }
+    },
+    error: function() {
+      console.log('error');
+    }
+  });
+  // Очищаем поля формы
+  $('.inputRight__input').val('');
+}
+
 
 (function($) {
   $(function() {
@@ -162,7 +266,7 @@ function sendCheckValues() {
       $('.overlay, .signUpForm').css('display', 'none');
     });
 
-    // По клику на кнопку "My Account" вызываем форму регистрации
+    // По клику на кнопку "My Account" вызываем форму входа в личный кабинет
     $('.myAccount').on('click', function(e) {
       if ($('.myAccountSignIn').attr('class') !== 'active') {
         $('.myAccountSignIn').addClass('active');
@@ -173,7 +277,7 @@ function sendCheckValues() {
       e.preventDefault();
     });
 
-    // По клику на крестик или вне формы закрываем форму
+    // По клику на крестик или вне формы закрываем форму входа в личный кабинет
     $('body').on('click', function(e) {
       var $formElems = $(e.target).parents('.myAccountSignIn');
       var $button = $(e.target).parents('.myAccount');
@@ -186,7 +290,7 @@ function sendCheckValues() {
       } else if (close === true) {
         if ($('.myAccountSignIn.active')) {
           $('.myAccountSignIn').removeClass('active');
-      }
+        }
       }
     });
 
@@ -225,7 +329,6 @@ function sendCheckValues() {
     // Валидируем форму авторизации и передаем данные для сравнения с базой черех ajax
     $('.myAccountSignIn').on('click', '.myAccountSignIn__submit', function(e) {
       var $input = $('.myAccountSignIn__input');
-      console.log($('#remember').value);
       var mess;
       $input.each(function(key, field) {
         if (field.value === '') {
@@ -243,23 +346,23 @@ function sendCheckValues() {
     });
 
     // По клику на кнопку "Log in"
-    // $('.inputRightForm').on('click', '.inputSubmitRight', function(e) {
-    //   var $input = $('.inputRight__input');
-    //   var mess;
-    //   $input.each(function(key, field) {
-    //     if (field.value === '') {
-    //       mess = message.empty;
-    //       setInvalidField(mess, field);
-    //     } else {
-    //       $(field).removeClass('invalid');
-    //       $(field).next('.invalid-feedback').remove();
-    //     }
-    //   });
-    //   e.preventDefault();
-    //   if ($('.inputRightForm').find('.invalid').length === 0) {
-    //     sendCheckValuesMail();
-    //   } else console.log('error');
-    // });
+    $('.inputRightForm').on('click', '.inputSubmitRight', function(e) {
+      var $input = $('.inputRight__input');
+      var mess;
+      $input.each(function(key, field) {
+        if (field.value === '') {
+          mess = message.empty;
+          setInvalidField(mess, field);
+        } else {
+          $(field).removeClass('invalid');
+          $(field).next('.invalid-feedback').remove();
+        }
+      });
+      e.preventDefault();
+      if ($('.inputRightForm').find('.invalid').length === 0) {
+        sendCheckValuesMail();
+      } else console.log('error');
+    });
 
   });
 })(jQuery);

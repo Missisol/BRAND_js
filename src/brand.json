@@ -9,7 +9,20 @@
       "email": "aaa@aa.aa",
       "gender": "f",
       "id": 1,
-      "cookie": "a=aaaaaa; expires=; path=/; domain=brand.com"
+      "cookie": "a=aaaaaa; expires=; path=/; domain=brand.com",
+      "session": "on"
+    },
+    {
+      "name": "aaa",
+      "user_lastname": "rrrrr",
+      "user_login": "rrrrrr",
+      "password": "jjjjjj",
+      "credit_card": "9876541-3216-456789-258",
+      "email": "ddd@ooo.kk",
+      "gender": "f",
+      "id": 10,
+      "cookie": "a=aaaaaa; expires=; path=/; domain=brand.com",
+      "session": "off"
     },
     {
       "name": "bb",
@@ -34,35 +47,19 @@
   ],
   "basket": [
     {
-      "id": 7,
-      "name": "Mango  People  T-shir",
-      "price": "52.00",
-      "min_url": "images/product/man_product_7_min.jpg",
-      "md_url": "images/shopping_cart/man_product_7_md.jpg",
-      "quantity": 1
-    },
-    {
-      "id": 5,
-      "name": "Mango  People  T-shir",
-      "price": "52.00",
-      "min_url": "images/product/man_product_5_min.jpg",
-      "md_url": "images/shopping_cart/man_product_5_md.jpg",
-      "quantity": 1
-    },
-    {
-      "id": 6,
-      "name": "Mango  People  T-shir",
-      "price": "52.00",
-      "min_url": "images/product/man_product_6_min.jpg",
-      "md_url": "images/shopping_cart/man_product_6_md.jpg",
-      "quantity": 1
-    },
-    {
       "id": 3,
       "name": "Mango  People  T-shir",
       "price": "52.00",
       "min_url": "images/product/man_product_3_min.jpg",
       "md_url": "images/shopping_cart/man_product_3_md.jpg",
+      "quantity": 1
+    },
+    {
+      "id": 1,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_1_min.jpg",
+      "md_url": "images/shopping_cart/product_cart_1.jpg",
       "quantity": 1
     }
   ],
@@ -74,7 +71,7 @@
       "min_url": "images/product/man_product_1_min.jpg",
       "md_url": "images/shopping_cart/product_cart_1.jpg",
       "src": "images/product/man_product_1.jpg",
-      "quantity": 12,
+      "quantity": 10,
       "variants": [
         {
           "color": "red",
@@ -115,7 +112,7 @@
       "min_url": "images/product/man_product_2_min.jpg",
       "md_url": "images/shopping_cart/product_cart_2.jpg",
       "src": "images/product/man_product_2.jpg",
-      "quantity": 3,
+      "quantity": 5,
       "variants": [
         {
           "color": "red",
@@ -156,7 +153,7 @@
       "min_url": "images/product/man_product_3_min.jpg",
       "md_url": "images/shopping_cart/man_product_3_md.jpg",
       "src": "images/product/man_product_3.jpg",
-      "quantity": 11,
+      "quantity": 14,
       "variants": [
         {
           "color": "red",
@@ -238,7 +235,7 @@
       "min_url": "images/product/man_product_5_min.jpg",
       "md_url": "images/shopping_cart/man_product_5_md.jpg",
       "src": "images/product/man_product_5.jpg",
-      "quantity": 11,
+      "quantity": 12,
       "variants": [
         {
           "color": "red",
@@ -279,7 +276,7 @@
       "min_url": "images/product/man_product_6_min.jpg",
       "md_url": "images/shopping_cart/man_product_6_md.jpg",
       "src": "images/product/man_product_6.jpg",
-      "quantity": 11,
+      "quantity": 12,
       "variants": [
         {
           "color": "red",
@@ -320,7 +317,7 @@
       "min_url": "images/product/man_product_7_min.jpg",
       "md_url": "images/shopping_cart/man_product_7_md.jpg",
       "src": "images/product/man_product_7.jpg",
-      "quantity": -2194,
+      "quantity": -2193,
       "variants": [
         {
           "color": "red",

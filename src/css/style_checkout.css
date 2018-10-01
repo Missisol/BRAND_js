@@ -979,6 +979,7 @@ form .buttonSearch:focus {
   text-transform: uppercase;
   margin-top: 20px;
   background-color: #f16d7f;
+  opacity: 0.8;
 }
 .registerForm__close {
   -ms-flex-item-align: end;

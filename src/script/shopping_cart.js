@@ -1,4 +1,23 @@
-// Отображает товары в личном кабинете пользователя
+// Правила проверки данных в полях формы регистрации
+var rules = {
+  name: /[a-zа-я]+/i,
+  password: /[\wа-я]{6}/,
+  creditCard: /^\d{7}-\d{4}-\d{6}-\d{3}$/,
+  email: /^[a-z0-9]+[.-]?[a-z0-9]+@[a-z]+\.[a-z]+/i,
+};
+
+// Подсказки для пользователя при неуспешной валидации полей формы регистрации
+var message = {
+  empty: 'Поле не должно быть пустым',
+  name: 'Поле должно содержать только буквы',
+  password: 'Длина пароля должна быть не меньше 6 символов',
+  creditCard: 'Введите номер карты в формате 1234567-1234-123456-123',
+  email: 'Введите e-mail в формате mymail@mail.ru или my.mail@mail.ru или my_mail@mail.ru',
+};
+
+/**
+ *  Отображает товары в личном кабинете пользователя
+ */
 function renderShoppingCartProducts() {
   $('.shoppingCartProductWrap').empty();
   $.ajax({
@@ -69,8 +88,88 @@ function renderShoppingCartProducts() {
   });
 }
 
+/**
+ * Проставляет на кнопке "MyAccount" id пользователя, у которого открыта сессия, при открытии страницы его личного кабинета
+ */
+function setSession() {
+  $.ajax({
+    url: 'http://localhost:3000/reg',
+    dataType: 'json',
+    success: function(result) {
+      $.each(result, function(key, arr) {
+        if (arr.session === 'on') {
+          var id = arr.id;
+          $('.myAccount').attr({id: 'userid' + id});
+        }
+      });
+    }
+  });
+}
+
+/**
+ * В случае неуспешной валидации полей формы регистрации устанавливает класс 'invalid'
+ * и создает элемент с подсказкой для правильного заполнения полей
+ * @param {string} message - подсказка для пользователя
+ * @param {HTMLElement} inputEl - Поле, по которому валидация неуспешна 
+ */
+function setInvalidField(message, inputEl) {
+  $(inputEl).addClass('invalid');
+  var $hintWrap = $(inputEl).next('.invalid-feedback');
+  if ($hintWrap.length === 0) {
+    $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
+    $hintWrap.insertAfter(inputEl);
+  } else {
+    $hintWrap.text(message);
+  }
+}
+
+/**
+ * Записывает измененные пользователем данные в базу данных и очищает форму
+ */
+function sendEditValues() {
+  var editFields = $('.editForm').serializeArray();
+  var userid = $('.myAccount').attr('id').slice(6);
+  $.ajax({
+    url: 'http://localhost:3000/reg/' + userid,
+    dataType: 'json',
+    success: function(result) {
+      for (var i = 0; i < editFields.length; i++) {
+        if (editFields[i].value === '') {
+          for (var index in result) {
+            if (editFields[i].name === index) {
+              editFields[i].value = result[index];
+            }
+          }
+        }
+      }
+      $.ajax({
+        url: 'http://localhost:3000/reg/' + userid,
+        type: 'PATCH',
+        data: editFields,
+        success: function() {
+          $('.editUpForm__input').val('');
+          $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+          $('#submitEdit').empty().text('Данные успешно изменены');
+        },
+        error: function() {
+          $('#submitEdit').empty().text('Ошибка записи данных');
+        }
+      });
+    }
+  });
+}
+
 (function($) {
   $(function() {
+    // При открытии страницы скрываем форму изменения данных
+    $('.overlay').css('display', 'none');
+    $('.editForm').css('display', 'none');
+    
+    // При открытии страницы создаем счетчик товаров в корзине, рендерим товары в корзине в личном кабинете пользователя
+    setSession();
+    makeCounter();
+    renderShoppingCartProducts();
+    
     // Создаем карусель товаров в шапке.
     $('.carousel').slick({
       dots: true,
@@ -80,9 +179,6 @@ function renderShoppingCartProducts() {
       adaptiveHeight: true
     });
 
-    // Создаем счетчик товаров в корзине
-    makeCounter();
-    renderShoppingCartProducts();
 
     // При изменении количества товара в инпутах изменяем количество товара в корзине
     $('.shoppingCartProductWrap').on('change', '.quantity', function(e) {
@@ -100,8 +196,116 @@ function renderShoppingCartProducts() {
       $('.grandtotal').text('$' + totalSum);
     });
 
+    // По клику на кнопку "My Account" вызываем меню личного кабинета
+    $('.myAccount').on('click', function(e) {
+      if ($('.myAccountSignIn').attr('class') !== 'active') {
+        $('.myAccountSignIn').addClass('active');
+      }
+      e.preventDefault();
+    });
+
+    // По клику на крестик или вне формы закрываем форму входа в личный кабинет
+    $('body').on('click', function(e) {
+      var $formElems = $(e.target).parent('.myAccountSignIn');
+      var $button = $(e.target).parents('.myAccount');
+      var close = $(e.target).hasClass('myAccountSignIn__close');
+
+      if ($formElems.length === 0 && $button.length === 0) {
+        if ($('.myAccountSignIn.active')) {
+          $('.myAccountSignIn').removeClass('active');
+        } 
+      } else if (close === true) {
+        if ($('.myAccountSignIn.active')) {
+          $('.myAccountSignIn').removeClass('active');
+        }
+      }
+    });
+
+    // По клику на кнопку "Log out" удаляем на кнопке "MyAccount" id пользователя и удаляем товары в личном кабинете
+    $('#logout').on('click', function(e) {
+      var userid = $('.myAccount').attr('id').slice(6);
+      console.log(userid);
+      $.ajax({
+        url: 'http://localhost:3000/reg/' + userid,
+        type: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+        },
+        data: JSON.stringify({
+          session: 'off',
+        }),
+        success: function() {
+          $('.myAccount').removeAttr('id');
+          $('.shoppingCartProductWrap').empty();
+          $('#logout').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+          $('#logout').empty().text('Вы вышли из личного кабинета');
+        },
+        error: function() {
+          console.log('error');
+        }
+      });
+      e.preventDefault();
+    });
+
+    // При клике на кнопку "edit data" вызываем форму изменения данных
+    $('#editData').on('click', function(e) {
+      $('.overlay').css('display', 'block');
+      $('.editForm').css('display', 'flex');
+      $('.editForm__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
+      $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+      $('#submitEdit').empty().text('Save edit');
+      e.preventDefault();
+    });
+
+    // По клику на подложку или крестик закрываем форму изменения данных и убираем подложку
+    $('.editForm__close, .overlay').on('click', function() {
+      $('.overlay, .editForm').css('display', 'none');
+    });
+
+    var symbols = 0;
+
+
+    // Если пользователь начал заполнять одно из полей формы, делаем кнопку отправки активной
+    $('.editForm__input').on({
+      'focusin': function(e) {
+        var $target = $(e.target);
+        $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
+        e.preventDefault();
+      },
+      'keydown': function(e){
+        if (e.which !== 8) {
+          symbols++;
+        } else symbols--;
+        if (symbols < 0) {
+          symbols = 0;
+        }
+        symbols === 0 ? $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled') : $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
+      },
+    });
+
+    //Валидируем форму регистрации перед отправкой и передаем данные для отправки через ajax
+    $('.editForm').on('click', '#submitEdit', function(e) {
+      var mess;
+      $.each(rules, function(index, rule) {
+        var $fields = $('[data-validation_rule=' + index + ']');
+        $fields.each(function(key, field) {
+          if(rule.test(field.value)) {
+            $(field).removeClass('invalid');
+            $(field).next('.invalid-feedback').remove();
+          } else if (field.value !== '') {
+            mess = message[index];
+            setInvalidField(mess, field);
+          } 
+        });
+      });
+      e.preventDefault();
+      if ($('.editForm').find('.invalid').length === 0) {
+        sendEditValues();
+      } else console.log('error');
+    });
+    
+    
     //1. При клике на крестик надо удалять товар: убрать товар на склад.
-    // 2. Сделать недоступной открытие выпадающей корзины на стр. shopping_cart
     //   $.ajax({
     //     url: 'http://localhost:3000/basket/' + id,
     //     dataType: 'json',

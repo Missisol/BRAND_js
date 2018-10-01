@@ -104,10 +104,15 @@
                                     <a class="userBasketGoToCart" href="shopping_cart.html">Go to cart</a>
                                 </div>
                             </div>    
-                            <a class="myAccount" href="#">
-                                <span>My Account</span>
-                                <i class="fas fa-sort-down"></i>
-                            </a>
+                            <div class="myAccount">
+                                <span>My Account</span><i class="fas fa-sort-down"></i>
+                            </div>
+                            <div class="myAccountSignIn registerForm">
+                                <div class="myAccountSignIn__triangle"></div>
+                                <span class="myAccountSignIn__close registerForm__close">&times;</span>
+                                <button id="editData" class="myAccountSignIn__signUp registerForm__submit" >Edit data</button>
+                                <button id="logout" class="myAccountSignIn__submit registerForm__submit" >log out</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -348,7 +353,6 @@
                             </div>
                     </div>
                 </div>
-                
                 <div class="shoppingControl">
                     <a class="shoppingControlButton" href="#">cLEAR SHOPPING CART</a>
                     <a class="shoppingControlButton" href="#">cONTINUE sHOPPING</a>
@@ -387,10 +391,10 @@
                     <div class="proceedToCheckout">
                         <div class="subtotalWrap">
                             <p><span>Sub total</span></p>
-                            <p class="subtotalAll">$900</p>
+                            <p class="subtotalAll">$0</p>
                         </div>
                         <h4>GRAND TOTAL
-                            <span class="grandtotal">$900</span>
+                            <span class="grandtotal">$0</span>
                         </h4>
                         <a class="proceedToCheckoutButton" href="#">proceed to checkout</a>
                     </div>
@@ -522,6 +526,30 @@
             </div>
         </footer>
     </div>
+    <form class="signUpForm editForm registerForm" name="editForm">
+        <span class="editForm__close signUpForm__close registerForm__close">&times;</span>
+        <label class="signUpForm__label registerForm__label">Name 
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="name" placeholder="Enter new username">
+        </label>
+        <label class="signUpForm__label registerForm__label">Surname
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="user_lastname" placeholder="Enter new lastname">
+        </label>
+        <label class="signUpForm__label registerForm__label">Log in
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="user_login" placeholder="Pick new login name">
+        </label>
+        <label class="signUpForm__label registerForm__label">Password
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="password" name="password" placeholder="Create new password">
+        </label>
+        <label class="signUpForm__label registerForm__label">Credit card number
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Enter new credit card number 1234567-1234-123456-123">
+        </label>
+        <label class="signUpForm__label registerForm__label">E-mail
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="email" name="email" placeholder="Enter new email youmail@example.ru">
+        </label>
+        <button type="submit" name="submitEdit" id="submitEdit" class="editForm__submit signUpForm__submit registerForm__submit" >Save data</button>
+    </form>
+    <div class="overlay"></div>
+
     <script src="assets/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/slick-1.8.1/slick/slick.min.js"></script>
     <script src="script/shopping_cart.js"></script>
