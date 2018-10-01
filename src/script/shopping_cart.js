@@ -267,19 +267,19 @@ function sendEditValues() {
 
     // Если пользователь начал заполнять одно из полей формы, делаем кнопку отправки активной
     $('.editForm__input').on({
-      'focusin': function(e) {
-        var $target = $(e.target);
-        $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
-        e.preventDefault();
-      },
       'keydown': function(e){
+        $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
         if (e.which !== 8) {
           symbols++;
         } else symbols--;
         if (symbols < 0) {
           symbols = 0;
         }
-        symbols === 0 ? $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled') : $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
+        if (symbols === 0) {
+          $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+        } else  {
+          $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
+        } 
       },
     });
 
