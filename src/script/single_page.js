@@ -50,6 +50,24 @@ function renderProducts() {
   });
 }
 
+/**
+ * Проставляет на кнопке "MyAccount" id пользователя, у которого открыта сессия, при открытии страницы его личного кабинета
+ */
+function setSession() {
+  $.ajax({
+    url: 'http://localhost:3000/reg',
+    dataType: 'json',
+    success: function(result) {
+      $.each(result, function(key, arr) {
+        if (arr.session === 'on') {
+          var id = arr.id;
+          $('.myAccount').attr({id: 'userid' + id});
+        }
+      });
+    }
+  });
+}
+
 (function($) {
   $(function() {
     // Создаем карусель товаров в шапке.
@@ -63,6 +81,9 @@ function renderProducts() {
     
     // Выводим карточки товаров на странице
     renderProducts();
+
+    // При открытии страницы вызываем функцию проверки и установления сессии пользователя
+    setSession();
 
     // В случае неудачного завершения запроса к серверу выводим сообщение об ошибке
     $(document).ajaxError(function() {

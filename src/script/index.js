@@ -50,10 +50,31 @@ function renderProducts(url) {
   });
 }
 
+/**
+ * Проставляет на кнопке "MyAccount" id пользователя, у которого открыта сессия, при открытии страницы его личного кабинета
+ */
+function setSession() {
+  $.ajax({
+    url: 'http://localhost:3000/reg',
+    dataType: 'json',
+    success: function(result) {
+      $.each(result, function(key, arr) {
+        if (arr.session === 'on') {
+          var id = arr.id;
+          $('.myAccount').attr({id: 'userid' + id});
+        }
+      });
+    }
+  });
+}
+
 (function($) {
   $(function() {
     // Выводим карточки товаров на странице
     renderProducts('http://localhost:3000/products?_start=9&_limit=8');
+
+    // При открытии страницы вызываем функцию проверки и установления сессии пользователя
+    setSession();
 
     // При нажатии на кнопку "посмотреть все продукты" выводит на странице все продукты
     $('.buttonItem').on('click', function() {

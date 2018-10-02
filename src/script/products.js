@@ -97,6 +97,24 @@ function makePagination(a) {
   });
 }
 
+/**
+ * Проставляет на кнопке "MyAccount" id пользователя, у которого открыта сессия, при открытии страницы его личного кабинета
+ */
+function setSession() {
+  $.ajax({
+    url: 'http://localhost:3000/reg',
+    dataType: 'json',
+    success: function(result) {
+      $.each(result, function(key, arr) {
+        if (arr.session === 'on') {
+          var id = arr.id;
+          $('.myAccount').attr({id: 'userid' + id});
+        }
+      });
+    }
+  });
+}
+
 (function($) {
   $(function() {
      // Создаем карусель товаров в шапке.
@@ -130,6 +148,9 @@ function makePagination(a) {
     // Выводим элемент паджинации и карточки товаров на странице
     makePagination('1');
     renderProducts('http://localhost:3000/products?_page=1&_limit=9');
+
+    // При открытии страницы вызываем функцию проверки и установления сессии пользователя
+    setSession();
 
     // При клике на номер страницы определяе url и передает в функцию вывода карточек товаров
     $('.pagination').on('click', 'a', function() {

@@ -133,6 +133,7 @@ function sendCheckValues() {
             success: function() {
               $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
               $('#submitSignIn').empty().text('Вы авторизованы');
+              $('.myAccount').attr({id: 'userid' + id});
             },
             error: function() {
               console.log('error');
@@ -155,6 +156,7 @@ function sendCheckValues() {
               success: function() {
                 $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
                 $('#submitSignIn').empty().text('Вы авторизованы');
+                $('.myAccount').attr({id: 'userid' + id});
               },
               error: function() {
                 console.log('error');
@@ -174,6 +176,7 @@ function sendCheckValues() {
               success: function() {
                 $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
                 $('#submitSignIn').empty().text('Вы авторизованы');
+                $('.myAccount').attr({id: 'userid' + id});
               },
               error: function() {
                 console.log('error');

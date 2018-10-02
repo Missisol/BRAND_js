@@ -251,7 +251,7 @@ function renderBasketProduct() {
 
 (function($) {
   $(function() {
-    // При клике на кнопку купить на товаре проверяем, что нажата кнопка "добавить в корзину"
+    // При клике на товаре проверяем, что нажата кнопка "добавить в корзину"
     $('.products').on('click', function(event) {
       var $product = $(event.target).parents('.addToCartWrap').parents('.oneProductWrap');
       if ($product.length !== 0) {

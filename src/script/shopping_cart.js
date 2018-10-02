@@ -262,19 +262,18 @@ function sendEditValues() {
       $('.overlay, .editForm').css('display', 'none');
     });
 
-    var symbols = 0;
 
 
     // Если пользователь начал заполнять одно из полей формы, делаем кнопку отправки активной
-    $('.editForm__input').on({
-      'keydown': function(e){
+    var symbols = 0;
+    $('.editForm__input').on({'keydown': function(e){
         $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
         if (e.which !== 8) {
           symbols++;
-        } else symbols--;
-        if (symbols < 0) {
-          symbols = 0;
-        }
+        } else if (e.which ===8 && symbols > 0) {
+          symbols--;
+        } else symbols = 0;
+
         if (symbols === 0) {
           $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
         } else  {
