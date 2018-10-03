@@ -18,10 +18,11 @@ var message = {
 /**
  *  Отображает товары в личном кабинете пользователя
  */
-function renderShoppingCartProducts() {
+function renderShoppingCartProducts(url) {
   $('.shoppingCartProductWrap').empty();
   $.ajax({
-    url: 'http://localhost:3000/userBasket',
+    // url: 'http://localhost:3000/userBasket',
+    url: url,
     dataType: 'json',
     success: function(result) {
       if (result.length !== 0) {
@@ -71,10 +72,12 @@ function renderShoppingCartProducts() {
             class: 'subtotal', 
             id: 'subtotal' + goods.id})
             .text('$' + sum);
-          var $aAction =  $('<a />', {href: '#', class: 'shoppingAction'});
-          var $i = $('<i />', {
-            class: 'fas fa-times-circle', 
-            id: 'fas' + goods.id});
+          var $aAction =  $('<a />', {
+            href: '#', 
+            class: 'shoppingAction action',
+            id: goods.id,
+          });
+          var $i = $('<i />', {class: 'fas fa-times-circle'});
           $aAction.append($i);
           $divRight.append($pPrice).append($inputNum).append($pShipping).append($pSubtotal).append($aAction);
           // Соединяем части карточки
@@ -100,6 +103,9 @@ function setSession() {
         if (arr.session === 'on') {
           var id = arr.id;
           $('.myAccount').attr({id: 'userid' + id});
+          var url = 'http://localhost:3000/reg/' + id + '/userBasket';
+          makeCounter(url);
+          renderShoppingCartProducts(url);
         }
       });
     }
@@ -188,8 +194,10 @@ function makeCounter() {
     // у которого открыта сессия создаем счетчик товаров в корзине, 
     // рендерим товары в корзине в личном кабинете пользователя
     setSession();
-    makeCounter();
-    renderShoppingCartProducts();
+    // var userurl = 'http://localhost:3000/reg/' + userid + '/userBasket';
+
+    // makeCounter(userurl);
+    // renderShoppingCartProducts(userurl);
     
     // Создаем карусель товаров в шапке.
     $('.carousel').slick({
@@ -200,8 +208,7 @@ function makeCounter() {
       adaptiveHeight: true
     });
 
-
-    // При изменении количества товара в инпутах изменяем количество товара в корзине
+    // При изменении количества товара в поле "quantity" изменяем счетчик общей суммы товара
     $('.shoppingCartProductWrap').on('change', '.quantity', function(e) {
       var id = $(e.target).attr('id');
       var newQuantity = $(e.target).val();
@@ -283,8 +290,6 @@ function makeCounter() {
       $('.overlay, .editForm').css('display', 'none');
     });
 
-
-
     // Если пользователь начал заполнять одно из полей формы, делаем кнопку отправки активной
     var symbols = 0;
     $('.editForm__input').on({'keydown': function(e){
@@ -324,6 +329,17 @@ function makeCounter() {
       } else console.log('error');
     });
     
+
+    $('.shoppingCartProductWrap').on('click', function(e) {
+      var $action = $(event.target).parent('.action');
+      if ($action !== 0) {
+        var q = 1;
+        increaseBase($action.attr('id'), q);
+      }
+      console.log($(event.target));
+      console.log($('.shoppingCartProductRight'));
+
+    });
     
     //1. При клике на крестик надо удалять товар: убрать товар на склад.
     //   $.ajax({

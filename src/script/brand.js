@@ -146,6 +146,9 @@ function removeFromBasket(product, q) {
           type: 'DELETE',
           success: function() {
             renderBasketProduct(urlRender);
+            if ($('.myAccount').attr('id')) {
+              renderShoppingCartProducts(urlRender);
+            }
           },
           error: function() {
             console.log('error');
@@ -163,6 +166,9 @@ function removeFromBasket(product, q) {
           }),
           success: function() {
             renderBasketProduct(urlRender);
+            if ($('.myAccount').attr('id')) {
+              renderShoppingCartProducts(urlRender);
+            }
           },
           error: function() {
             console.log('error');

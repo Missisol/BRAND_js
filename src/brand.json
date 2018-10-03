@@ -48,18 +48,7 @@
       "id": 3
     }
   ],
-  "userBasket": [
-    {
-      "id": 3,
-      "name": "Mango  People  T-shir",
-      "price": "52.00",
-      "min_url": "images/product/man_product_3_min.jpg",
-      "md_url": "images/shopping_cart/man_product_3_md.jpg",
-      "src": "images/product/man_product_3.jpg",
-      "quantity": 2,
-      "regId": "2"
-    }
-  ],
+  "userBasket": [],
   "basket": [],
   "products": [
     {
@@ -87,7 +76,7 @@
       "min_url": "images/product/man_product_3_min.jpg",
       "md_url": "images/shopping_cart/man_product_3_md.jpg",
       "src": "images/product/man_product_3.jpg",
-      "quantity": 9
+      "quantity": 12
     },
     {
       "id": 4,
