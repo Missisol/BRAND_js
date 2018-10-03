@@ -358,11 +358,6 @@ function renderBasketProduct(url) {
       }
     });
     
-    // В случае неудачного завершения запроса к серверу выводим сообщение об ошибке
-    $(document).ajaxError(function() {
-      $('.products').addClass('error').text('Произошла ошибка получения данных с сервера');
-    });
-
   });
 })(jQuery);
 

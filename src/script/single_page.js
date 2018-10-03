@@ -70,6 +70,11 @@ function setSession() {
 
 (function($) {
   $(function() {
+    var baseSize = ['XS', 'S', 'M', 'L', 'Xl', 'XXL'];
+    var quantitySize ={};
+    var allSize = [];
+    var colorId;
+
     // Создаем карусель товаров в шапке.
     $('.carousel').slick({
       dots: true,
@@ -85,18 +90,17 @@ function setSession() {
     // При открытии страницы вызываем функцию проверки и установления сессии пользователя
     setSession();
 
-    // В случае неудачного завершения запроса к серверу выводим сообщение об ошибке
-    $(document).ajaxError(function() {
-      $('.products').addClass('error').text('Произошла ошибка получения данных с сервера');
-    });
-
     // По клику на поле выбора цветов создаем список цветов для выбора
     $('.chooseColor').on('click', function() {
       $('.chooseCategory__color').empty().addClass('active');
-      $.get({
+      $('.chooseCategory__size').empty().removeClass('active');
+      $('#detChooseSize').removeAttr('open');
+
+      $.ajax({
         url: 'http://localhost:3000/var_color',
         dataType: 'json',
         success: function(variants) {
+          console.log(variants);
           variants.forEach(function(variant) {
             var $li = $('<li />', {id: 'color' + variant.id}).text(variant.color);
             $('.chooseCategory__color').append($li);
@@ -105,25 +109,102 @@ function setSession() {
       });
     });
 
+    // При выборе цвета находим все размеры для продукта этого цвета
     $('.chooseCategory__color').on('click', 'li', function() {
+      allSize = [];
       var text = $(event.target).text();
       var id = $(event.target).attr('id');
       $('.chooseColor').empty().text(text).attr('id', id);
       $('.chooseCategory__color').empty().removeClass('active');
       $('#detChooseColor').removeAttr('open');
 
-      var colorId = id.slice(5);
+      colorId = id.slice(5);
+      console.log(colorId);
       $.ajax({
-        url: 'http://localhost:3000/var_color/' + colorId + '?_embed=var_size',
+        url: 'http://localhost:3000/var_color?id=' + colorId + '&_size',
        dataType: 'json',
        success: function(products) {
-         console.log(products.var_size);
+         quantitySize = products[0].size;
+         console.log(quantitySize);
+        for (var key in quantitySize) {
+          if (quantitySize[key] !== 0) {
+            allSize.push(key);
+          }
+        }
+         console.log(allSize);
        },
        error: function() {
          console.log('error');
        }
       });
     });
+
+    // Выбор размера
+    $('.chooseSize').on('click', function() {
+      $('.chooseCategory__size').empty().addClass('active');
+      $('.chooseCategory__color').empty().removeClass('active');
+
+      // Если не был выбран цвет, выводим перечень всех размеров
+      if (allSize.length === 0) {
+        baseSize.forEach(function(size) {
+          var $li = $('<li />').text(size);
+          $('.chooseCategory__size').append($li);
+        });
+      }
+      else {
+        // console.log(colorId);
+        // console.log(allSize);
+        // Если цвет был выбран и есть размеры, выводим размеры для этого цвета
+        if (allSize.length !== 0) {
+          allSize.forEach(function(item) {
+            var $li = $('<li />').text(item);
+            $('.chooseCategory__size').append($li);
+          });
+        } else {
+          $('.chooseCategory__size').empty().removeClass('active');
+          $('#detChooseSize').removeAttr('open');
+        }
+      }
+    });
+
+    $('.chooseCategory__size').on('click', 'li', function() {
+      var text = $(event.target).text();
+      var id = $(event.target).attr('id');
+      $('.chooseSize').empty().text(text).attr('id', id);
+      $('.chooseCategory__size').empty().removeClass('active');
+      $('#detChooseSize').removeAttr('open');
+    });
+
+    $('.addToCarCollectiontWrap').on('click', function() {
+      if ($('.chooseColor').attr('id')) {
+        var color = $('.chooseColor').text();
+        var size = $('.chooseSize').text();
+        var quantity = $('#chooseQuantity').val();
+        $('.addToCarCollection').remove();
+        $('.addToCarCollectiontWrap').text('Product color: ' + color + ', size: ' + size + ', quantity: ' + quantity + ' is in your cart');
+        }
+      event.preventDefault();
+    });
+
+    // $.ajax({
+    //   url: 'http://localhost:3000/var_size' + colorId,
+    //   dataType: 'json',
+    //   success: function(variants) {
+  //         allSize.forEach(function(item) {
+  //           var $li = $('<li />', {id: 'size' + item.id}).text(item.size);
+  //           $('.chooseCategory__size').append($li);
+  //         });
+  //     },
+  //     error: function() {
+  //       $('.chooseCategory__size').empty().removeClass('active');
+  //       $('#detChooseSize').removeAttr('open');
+  //     }
+  //   });
+  // }
+
+
+
+
 
   });
 })(jQuery);

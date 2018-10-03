@@ -241,110 +241,50 @@
       "quantity": 12
     }
   ],
-  "variants": [
-    {
-      "color": "red",
-      "size": "L",
-      "quantity": 2,
-      "prodictsId": 1
-    },
-    {
-      "color": "red",
-      "size": "M",
-      "quantity": 2,
-      "prodictsId": 2
-    },
-    {
-      "color": "red",
-      "size": "S",
-      "quantity": 2,
-      "prodictsId": 1
-    },
-    {
-      "color": "blue",
-      "size": "L",
-      "quantity": 2,
-      "prodictsId": 2
-    },
-    {
-      "color": "blue",
-      "size": "M",
-      "quantity": 2,
-      "prodictsId": 3
-    },
-    {
-      "color": "blue",
-      "size": "S",
-      "quantity": 2,
-      "prodictsId": 1
-    }
-  ],
   "var_color": [
     {
       "id": 1,
-      "color": "Red"
+      "color": "Red",
+      "size": {
+        "XS": 3,
+        "S": 1,
+        "M": 4,
+        "L": 0,
+        "XL": 5
+      }
     },
     {
       "id": 2,
-      "color": "Green"
+      "color": "Green",
+      "size": {
+        "XS": 0,
+        "S": 1,
+        "M": 4,
+        "L": 4,
+        "XL": 5
+      }
     },
     {
       "id": 3,
-      "color": "Yellow"
+      "color": "Yellow",
+      "size": {
+        "XS": 7,
+        "S": 1,
+        "M": 0,
+        "L": 4,
+        "XL": 0
+      }
     },
     {
       "id": 4,
-      "color": "Blue"
-    }
-  ],
-  "var_size": [
-    {
-      "id": 1,
-      "var_colorId": 1,
-      "size": "S",
-      "quantity": 2
-    },
-    {
-      "id": 2,
-      "var_colorId": 1,
-      "size": "M",
-      "quantity": 3
-    },
-    {
-      "id": 3,
-      "var_colorId": 1,
-      "size": "L",
-      "quantity": 5
-    },
-    {
-      "id": 4,
-      "var_colorId": 2,
-      "size": "S",
-      "quantity": 3
-    },
-    {
-      "id": 5,
-      "var_colorId": 2,
-      "size": "L",
-      "quantity": 4
-    },
-    {
-      "id": 6,
-      "var_colorId": 3,
-      "size": "S",
-      "quantity": 3
-    },
-    {
-      "id": 7,
-      "var_colorId": 2,
-      "size": "M",
-      "quantity": 5
-    },
-    {
-      "id": 8,
-      "var_colorId": 2,
-      "size": "M",
-      "quantity": 7
+      "color": "Blue",
+      "size": {
+        "XS": 1,
+        "S": 1,
+        "M": 2,
+        "L": 4,
+        "XL": 3
+      }
     }
   ]
 }
