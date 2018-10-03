@@ -1,6 +1,7 @@
 /**
  * Добавляет единицу товара в корзину
  * @param {Object} product - Объект купленного товара 
+ * @param {int} q - Количество купленного товара
  */
 function addToBasket(product, q) {
   // Определяем id купленного товара
@@ -23,7 +24,7 @@ function addToBasket(product, q) {
           }),
           success: function(product) {
             // Вызываем функцию счетчика товаров в корзине
-            renderBasketProduct();
+            renderBasketProduct('http://localhost:3000/basket');
           },
           error: function() {
             console.log('error');
@@ -47,7 +48,7 @@ function addToBasket(product, q) {
           }),
           success: function() {
             // Вызываем функцию счетчика товаров в корзине
-            renderBasketProduct();
+            renderBasketProduct('http://localhost:3000/basket');
           },
           error: function() {
             console.log('error');
@@ -62,41 +63,49 @@ function addToBasket(product, q) {
 }
 
 /**
- * Удаляет единицу товара из корзины
- * @param {Object} product - Объект удаляемого товара 
+ * Добавляет единицу товара в корзину авторизованного пользователя
+ * @param {Object} product - Объект купленного товара 
+ * @param {int} q - Количество купленного товара
+ * @param {string} userId - id авторизованного пользователя
  */
-function removeFromBasket(product, q) {
-   // Определяем id купленного товара
-   var id = product.id;
-   var quantity = product.quantity;
-   // Ищем товар в корзине
-   $.ajax({
-     url: 'http://localhost:3000/basket/' + id,
-     dataType: 'json',
+function addToUserBasket(product, q, userId) {
+  // Определяем id купленного товара
+  var id = product.id;
+  // Устанавливаем количество купленного товара
+  var oneProduct = product;
+  oneProduct.quantity = q;
+  // Ищем товар в корзине пользователя
+  $.ajax({
+    url: 'http://localhost:3000/reg/' + userId + '/userBasket?id=' + id,
+    dataType:'json',
     success: function(data) {
-      if (data.quantity === 1) {
+      // Если товар есть, увеличиваем его количество в корзине
+      if (data.length !== 0) {
         $.ajax({
-          url: 'http://localhost:3000/basket/' + id,
-          type: 'DELETE',
-          success: function() {
-            renderBasketProduct();
+          url: 'http://localhost:3000/userBasket/' + id,
+          type: 'PATCH',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            quantity: data[0].quantity + q,
+          }),
+          success: function(product) {
+            // Вызываем функцию счетчика товаров в корзине
+            renderBasketProduct('http://localhost:3000/reg/' + userId + '/userBasket');
           },
           error: function() {
             console.log('error');
           }
         });
       } else {
+        // Если товара нет, добавляем товар в корзину
         $.ajax({
-          url: 'http://localhost:3000/basket/' + id,
-          type: 'PATCH',
-          headers: {
-            'content-type': 'application/json',
-          },
-          data: JSON.stringify({
-            quantity: data.quantity - q,
-          }),
+          url: 'http://localhost:3000/reg/' + userId + '/userBasket',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(oneProduct),
           success: function() {
-            renderBasketProduct();
+            // Вызываем функцию счетчика товаров в корзине
+            renderBasketProduct('http://localhost:3000/reg/' + userId + '/userBasket');
           },
           error: function() {
             console.log('error');
@@ -108,27 +117,66 @@ function removeFromBasket(product, q) {
 }
 
 /**
- * Считает количество товаров в корзине и создает счетчик
+ * Удаляет единицу товара из корзины
+ * @param {Object} product - Объект удаляемого товара 
+ * @param {int} q - Количество товара
  */
-function makeCounter() {
-  $.ajax({
-    url: 'http://localhost:3000/basket',
-    dataType: 'json',
+function removeFromBasket(product, q) {
+   // Определяем id купленного товара
+   var id = product.id;
+   var quantity = product.quantity;
+   var url, urlRender;
+    if ($('.myAccount').attr('id')) {
+      var userId = $('.myAccount').attr('id').slice(6);
+      url = 'http://localhost:3000/userBasket/' + id;
+      urlRender = 'http://localhost:3000/reg/' + userId + '/userBasket';
+    } else {
+      url = 'http://localhost:3000/basket/' + id;
+      urlRender = 'http://localhost:3000/basket';
+    }
+
+   // Ищем товар в корзине
+   $.ajax({
+     url: url,
+     dataType: 'json',
     success: function(data) {
-      var quantityAll = 0;
-      data.forEach(function(item) {
-        quantityAll = quantityAll + item.quantity; 
+      if (data.quantity === 1) {
+        $.ajax({
+          url: url,
+          type: 'DELETE',
+          success: function() {
+            renderBasketProduct(urlRender);
+          },
+          error: function() {
+            console.log('error');
+          }
         });
-      if (quantityAll !== 0) {
-      $('#quantityProduct').addClass('active').text(quantityAll);
+      } else {
+        $.ajax({
+          url: url,
+          type: 'PATCH',
+          headers: {
+            'content-type': 'application/json',
+          },
+          data: JSON.stringify({
+            quantity: data.quantity - q,
+          }),
+          success: function() {
+            renderBasketProduct(urlRender);
+          },
+          error: function() {
+            console.log('error');
+          }
+        });
       }
-    },
+    }
   });
 }
 
 /**
  * Уменьшает количество купленного товара на складе
  * @param {Object} $product - Oбъект купленного товара
+ * @param {int} q - Количество товара
  */
 function decreaseBase($product, q) {
   // Определяем id купленного товара
@@ -149,11 +197,16 @@ function decreaseBase($product, q) {
           data: JSON.stringify({
             quantity: data.quantity - q,
           }),
+          success: function(data) {
+            // Вызываем функцию добавления товара в корзину
+            if ($('.myAccount').attr('id')) {
+              var userId = $('.myAccount').attr('id').slice(6);
+              addToUserBasket(data, q, userId);
+            } else addToBasket(data, q);
+          }
         });
-        // Вызываем функцию добавления товара в корзину
-        addToBasket(data, q);
       } else {
-        // Сообщаем пользователю, что товар закончился
+        // Если количество товара = 0, сообщаем пользователю, что товар закончился
         var a = $('#' + id + '.oneProductWrap .textAddToCart').text('The goods ended');
       }
     },
@@ -163,8 +216,10 @@ function decreaseBase($product, q) {
 /**
  * Увеличивает количество товара на складе при отказе покупателя от покупки
  * @param {string} id - id товара
+ * @param {int} q - Количество купленного товара
  */
 function increaseBase(id, q) {
+  
   // Находим товар на складе
   $.ajax({
     url: 'http://localhost:3000/products/' + id,
@@ -189,10 +244,10 @@ function increaseBase(id, q) {
 /**
  * Создает выпадающую корзину
  */
-function renderBasketProduct() {
+function renderBasketProduct(url) {
   $('.userBasketdropDown__userBasketProductsWrap').empty();
   $.ajax({
-    url: 'http://localhost:3000/basket',
+    url: url,
     dataType: 'json',
     success: function(result) {
       if (result.length !== 0) {
@@ -263,7 +318,14 @@ function renderBasketProduct() {
 
      // При клике на картинку корзины рисуем корзину и ставим ей класс active
     $('.userBasket > a').on('click', function(event) {
-      renderBasketProduct();
+      var url;
+      if ($('.myAccount').attr('id')) {
+        var userId = $('.myAccount').attr('id').slice(6);
+        url = 'http://localhost:3000/reg/' + userId + '/userBasket';
+      } else {
+        url = 'http://localhost:3000/basket';
+      }
+      renderBasketProduct(url);
 
       if ($('.userBasket').attr('class') !== 'active') {
         $('.userBasket').addClass('active');

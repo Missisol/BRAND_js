@@ -21,7 +21,7 @@ var message = {
 function renderShoppingCartProducts() {
   $('.shoppingCartProductWrap').empty();
   $.ajax({
-    url: 'http://localhost:3000/basket',
+    url: 'http://localhost:3000/userBasket',
     dataType: 'json',
     success: function(result) {
       if (result.length !== 0) {
@@ -159,13 +159,34 @@ function sendEditValues() {
   });
 }
 
+/**
+ * Считает количество товаров в корзине и создает счетчик
+ */
+function makeCounter() {
+  $.ajax({
+    url: 'http://localhost:3000/basket',
+    dataType: 'json',
+    success: function(data) {
+      var quantityAll = 0;
+      data.forEach(function(item) {
+        quantityAll = quantityAll + item.quantity; 
+        });
+      if (quantityAll !== 0) {
+      $('#quantityProduct').addClass('active').text(quantityAll);
+      }
+    },
+  });
+}
+
 (function($) {
   $(function() {
     // При открытии страницы скрываем форму изменения данных
     $('.overlay').css('display', 'none');
     $('.editForm').css('display', 'none');
     
-    // При открытии страницы создаем счетчик товаров в корзине, рендерим товары в корзине в личном кабинете пользователя
+    // При открытии страницы устанавливаем на кнопке "MyAccount" id пользователя, 
+    // у которого открыта сессия создаем счетчик товаров в корзине, 
+    // рендерим товары в корзине в личном кабинете пользователя
     setSession();
     makeCounter();
     renderShoppingCartProducts();
