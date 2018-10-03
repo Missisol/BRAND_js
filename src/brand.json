@@ -9,7 +9,7 @@
       "email": "aaa@aa.aa",
       "gender": "f",
       "id": 1,
-      "cookie": "a=aaaaaa; expires=; path=/; domain=brand.com",
+      "cookie": "a=mmmmmmmm; expires=; path=/; domain=",
       "session": "off"
     },
     {
@@ -33,11 +33,22 @@
       "email": "ccc@cc.cc",
       "gender": "m",
       "id": 3,
-      "cookie": "c=cccccc; expires=; path=/; domain=brand.com",
+      "cookie": "c=cccccc; expires=; path=/; domain=",
       "session": "on"
     }
   ],
-  "userBasket": [],
+  "userBasket": [
+    {
+      "id": 1,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_1_min.jpg",
+      "md_url": "images/shopping_cart/product_cart_1.jpg",
+      "src": "images/product/man_product_1.jpg",
+      "quantity": 1,
+      "regId": "3"
+    }
+  ],
   "basket": [],
   "products": [
     {
@@ -47,7 +58,7 @@
       "min_url": "images/product/man_product_1_min.jpg",
       "md_url": "images/shopping_cart/product_cart_1.jpg",
       "src": "images/product/man_product_1.jpg",
-      "quantity": 13
+      "quantity": 12
     },
     {
       "id": 2,
@@ -128,39 +139,7 @@
       "min_url": "images/index/feturedItems/product_1_min.jpg",
       "md_url": "images/index/feturedItems/product_1_md.jpg",
       "src": "images/index/feturedItems/product_1.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 11,
@@ -169,39 +148,7 @@
       "min_url": "images/index/feturedItems/product_2_min.jpg",
       "md_url": "images/index/feturedItems/product_2_md.jpg",
       "src": "images/index/feturedItems/product_2.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 12,
@@ -210,39 +157,7 @@
       "min_url": "images/index/feturedItems/product_3_min.jpg",
       "md_url": "images/shopping_cart/man_product_3_md.jpg",
       "src": "images/index/feturedItems/product_3.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 13,
@@ -251,39 +166,7 @@
       "min_url": "images/index/feturedItems/product_4_min.jpg",
       "md_url": "images/index/feturedItems/product_4_md.jpg",
       "src": "images/index/feturedItems/product_4.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 14,
@@ -292,39 +175,7 @@
       "min_url": "images/index/feturedItems/product_5_min.jpg",
       "md_url": "images/index/feturedItems/product_5_md.jpg",
       "src": "images/index/feturedItems/product_5.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 15,
@@ -333,39 +184,7 @@
       "min_url": "images/index/feturedItems/product_6_min.jpg",
       "md_url": "images/shopping_cart/man_product_7_md.jpg",
       "src": "images/index/feturedItems/product_6.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 16,
@@ -374,39 +193,7 @@
       "min_url": "images/index/feturedItems/product_7_min.jpg",
       "md_url": "images/index/feturedItems/product_7_md.jpg",
       "src": "images/index/feturedItems/product_7.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 17,
@@ -415,39 +202,7 @@
       "min_url": "images/index/feturedItems/product_8_min.jpg",
       "md_url": "images/shopping_cart/man_product_5_md.jpg",
       "src": "images/index/feturedItems/product_8.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 18,
@@ -456,39 +211,7 @@
       "min_url": "images/single_page/product_sp_1_min.jpg",
       "md_url": "images/shopping_cart/product_sp_1_md.jpg",
       "src": "images/single_page/product_sp_1.jpg",
-      "quantity": 11,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 19,
@@ -497,39 +220,7 @@
       "min_url": "images/single_page/product_sp_2_min.jpg",
       "md_url": "images/shopping_cart/product_sp_2_md.jpg",
       "src": "images/single_page/product_sp_2.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
     },
     {
       "id": 20,
@@ -538,39 +229,7 @@
       "min_url": "images/single_page/product_sp_3_min.jpg",
       "md_url": "images/shopping_cart/product_sp_3_md.jpg",
       "src": "images/single_page/product_sp_3.jpg",
-      "quantity": 11,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 11
     },
     {
       "id": 21,
@@ -579,39 +238,113 @@
       "min_url": "images/single_page/product_sp_4_min.jpg",
       "md_url": "images/shopping_cart/product_sp_4_md.jpg",
       "src": "images/single_page/product_sp_4.jpg",
-      "quantity": 12,
-      "variants": [
-        {
-          "color": "red",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "red",
-          "size": "S",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "L",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "M",
-          "quantity": 2
-        },
-        {
-          "color": "blue",
-          "size": "S",
-          "quantity": 2
-        }
-      ]
+      "quantity": 12
+    }
+  ],
+  "variants": [
+    {
+      "color": "red",
+      "size": "L",
+      "quantity": 2,
+      "prodictsId": 1
+    },
+    {
+      "color": "red",
+      "size": "M",
+      "quantity": 2,
+      "prodictsId": 2
+    },
+    {
+      "color": "red",
+      "size": "S",
+      "quantity": 2,
+      "prodictsId": 1
+    },
+    {
+      "color": "blue",
+      "size": "L",
+      "quantity": 2,
+      "prodictsId": 2
+    },
+    {
+      "color": "blue",
+      "size": "M",
+      "quantity": 2,
+      "prodictsId": 3
+    },
+    {
+      "color": "blue",
+      "size": "S",
+      "quantity": 2,
+      "prodictsId": 1
+    }
+  ],
+  "var_color": [
+    {
+      "id": 1,
+      "color": "Red"
+    },
+    {
+      "id": 2,
+      "color": "Green"
+    },
+    {
+      "id": 3,
+      "color": "Yellow"
+    },
+    {
+      "id": 4,
+      "color": "Blue"
+    }
+  ],
+  "var_size": [
+    {
+      "id": 1,
+      "var_colorId": 1,
+      "size": "S",
+      "quantity": 2
+    },
+    {
+      "id": 2,
+      "var_colorId": 1,
+      "size": "M",
+      "quantity": 3
+    },
+    {
+      "id": 3,
+      "var_colorId": 1,
+      "size": "L",
+      "quantity": 5
+    },
+    {
+      "id": 4,
+      "var_colorId": 2,
+      "size": "S",
+      "quantity": 3
+    },
+    {
+      "id": 5,
+      "var_colorId": 2,
+      "size": "L",
+      "quantity": 4
+    },
+    {
+      "id": 6,
+      "var_colorId": 3,
+      "size": "S",
+      "quantity": 3
+    },
+    {
+      "id": 7,
+      "var_colorId": 2,
+      "size": "M",
+      "quantity": 5
+    },
+    {
+      "id": 8,
+      "var_colorId": 2,
+      "size": "M",
+      "quantity": 7
     }
   ]
 }

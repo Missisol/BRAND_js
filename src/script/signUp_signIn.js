@@ -2,7 +2,7 @@
 options = {
   expires:'',
   path: '/',
-  domain: 'brand.com'
+  domain: ''
 };
 
 // Правила проверки данных в полях формы регистрации
@@ -50,8 +50,7 @@ function setCookie(name, value, options) {
       updatedCookie += "=" + propValue;
     }
   }
-  // Записываем cookie в браузер
-  // document.cookie = updatedCookie;
+  document.cookie = updatedCookie;
   return updatedCookie;
 }
 
@@ -116,7 +115,7 @@ function sendCheckValues() {
       if (result.length !== 0) {
         var id = result[0].id;
         // Смотрим, есть ли в базе cookie
-        var cookieReg = result[0].cookie;
+        // var cookieReg = result[0].cookie;
 
         // Если не поставлена галочка "запомнить" записываем в базу, что сессия открыта и сообщаем об авторизации
         if (!cookie) {
@@ -134,15 +133,14 @@ function sendCheckValues() {
               $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
               $('#submitSignIn').empty().text('Вы авторизованы');
               $('.myAccount').attr({id: 'userid' + id});
+              $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
             },
             error: function() {
               console.log('error');
             }
           });
          } else {
-           // Если поставлена галочка "запомнить", проверяем, были ли записаны cookie
-           if (!cookieReg) {
-             // Если cookie в базе нет записываем cookie и записываем, что сессия открыта
+           // Если поставлена галочка "запомнить", записываем cookie и записываем, что сессия открыта
             $.ajax({
               url: 'http://localhost:3000/reg/' + id,
               type: 'PATCH',
@@ -157,32 +155,12 @@ function sendCheckValues() {
                 $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
                 $('#submitSignIn').empty().text('Вы авторизованы');
                 $('.myAccount').attr({id: 'userid' + id});
+                $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
               },
               error: function() {
                 console.log('error');
               }
             });
-           } else {
-             // Если cookie в базе есть просто записываем, что сессия открыта
-            $.ajax({
-              url: 'http://localhost:3000/reg/' + id,
-              type: 'PATCH',
-              headers: {
-                'content-type': 'application/json',
-              },
-              data: JSON.stringify({
-                session: 'on',
-              }),
-              success: function() {
-                $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
-                $('#submitSignIn').empty().text('Вы авторизованы');
-                $('.myAccount').attr({id: 'userid' + id});
-              },
-              error: function() {
-                console.log('error');
-              }
-            });
-           }
          }
       } else {
         // Если пользователь в базе не найден, выводим сообщение об ошибке
@@ -271,12 +249,16 @@ function sendCheckValuesMail() {
 
     // По клику на кнопку "My Account" вызываем форму входа в личный кабинет
     $('.myAccount').on('click', function(e) {
-      if ($('.myAccountSignIn').attr('class') !== 'active') {
-        $('.myAccountSignIn').addClass('active');
+      if ($('.myAccount').attr('id')) {
+        $(location).attr('href', 'http://127.0.0.1:8080/shopping_cart.html');
+      } else {
+        if ($('.myAccountSignIn').attr('class') !== 'active') {
+          $('.myAccountSignIn').addClass('active');
+        }
+        $('.myAccountSignIn__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
+        $('.remember').attr('checked', 'checked');
+        $('#submitSignIn').empty().text('Sign in');
       }
-      $('.myAccountSignIn__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
-      $('.remember').attr('checked', 'checked');
-      $('#submitSignIn').empty().text('Sign in');
       e.preventDefault();
     });
 
@@ -365,6 +347,10 @@ function sendCheckValuesMail() {
       if ($('.inputRightForm').find('.invalid').length === 0) {
         sendCheckValuesMail();
       } else console.log('error');
+    });
+
+    $('#goToSignUp').on('click', function() {
+     $(location).attr('href', 'http://127.0.0.1:8080/shopping_cart.html');
     });
 
   });

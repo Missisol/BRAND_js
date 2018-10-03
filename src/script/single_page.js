@@ -89,5 +89,41 @@ function setSession() {
     $(document).ajaxError(function() {
       $('.products').addClass('error').text('Произошла ошибка получения данных с сервера');
     });
+
+    // По клику на поле выбора цветов создаем список цветов для выбора
+    $('.chooseColor').on('click', function() {
+      $('.chooseCategory__color').empty().addClass('active');
+      $.get({
+        url: 'http://localhost:3000/var_color',
+        dataType: 'json',
+        success: function(variants) {
+          variants.forEach(function(variant) {
+            var $li = $('<li />', {id: 'color' + variant.id}).text(variant.color);
+            $('.chooseCategory__color').append($li);
+          });
+        }
+      });
+    });
+
+    $('.chooseCategory__color').on('click', 'li', function() {
+      var text = $(event.target).text();
+      var id = $(event.target).attr('id');
+      $('.chooseColor').empty().text(text).attr('id', id);
+      $('.chooseCategory__color').empty().removeClass('active');
+      $('#detChooseColor').removeAttr('open');
+
+      var colorId = id.slice(5);
+      $.ajax({
+        url: 'http://localhost:3000/var_color/' + colorId + '?_embed=var_size',
+       dataType: 'json',
+       success: function(products) {
+         console.log(products.var_size);
+       },
+       error: function() {
+         console.log('error');
+       }
+      });
+    });
+
   });
 })(jQuery);

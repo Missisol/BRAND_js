@@ -251,7 +251,6 @@ function makeCounter() {
     // По клику на кнопку "Log out" удаляем на кнопке "MyAccount" id пользователя и удаляем товары в личном кабинете
     $('#logout').on('click', function(e) {
       var userid = $('.myAccount').attr('id').slice(6);
-      console.log(userid);
       $.ajax({
         url: 'http://localhost:3000/reg/' + userid,
         type: 'PATCH',
@@ -266,6 +265,7 @@ function makeCounter() {
           $('.shoppingCartProductWrap').empty();
           $('#logout').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
           $('#logout').empty().text('Вы вышли из личного кабинета');
+          $('#editData, #writeReview, #backToShopping').attr('disabled', 'disabled').removeClass('registerForm__submit').text('').addClass('editData__logout');
         },
         error: function() {
           console.log('error');

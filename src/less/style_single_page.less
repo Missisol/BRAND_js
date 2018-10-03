@@ -220,6 +220,65 @@ body {
     }
 }
 
+.chooseCategory.active {
+    padding-left: 16px;
+    position: absolute;
+    z-index: 10;
+    background-color: #ffffff;
+    width: 144px;
+    border-left: 1px solid #eaeaea; 
+    border-bottom: 1px solid #eaeaea; 
+    border-right: 1px solid #eaeaea; 
+    box-sizing: border-box;
+}
+
+.chooseCategory.active > li {
+    margin-right: 11px;
+    color:  #bcbcbc;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 35px;
+
+    &:hover {
+        color: #000;
+        cursor: pointer;
+    }
+}
+
+#color1:before {
+    content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #da1d1d;
+        margin-right: 13px;
+}
+#color2:before {
+    content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #1dda82;
+        margin-right: 13px;
+}
+#color3:before {
+    content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #f3e353;
+        margin-right: 13px;
+}
+#color4:before {
+    content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #2b66e4;
+        margin-right: 13px;
+}
+
+
 .addToCarCollectiontWrap {
     margin-top: 28px;
 }

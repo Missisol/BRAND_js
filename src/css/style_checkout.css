@@ -973,7 +973,6 @@ form .buttonSearch:focus {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-size: 14px;
-  background-color: #ffffff;
   font-weight: bold;
   color: #ffffff;
   text-transform: uppercase;
@@ -994,6 +993,18 @@ form .buttonSearch:focus {
   font-size: 12px;
   font-family: Lato, sans-serif;
   margin-bottom: 16px;
+}
+.editData__logout {
+  height: 45px;
+  border: solid 1px #eaeaea;
+  padding: 0 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #ffffff;
+  margin-top: 20px;
+  opacity: 0.8;
 }
 .signUpForm {
   width: 490px;
