@@ -25,19 +25,6 @@
       "session": "off"
     },
     {
-      "name": "bb",
-      "user_lastname": "bb",
-      "user_login": "bbb",
-      "password": "bbbbbb",
-      "credit_card": "1234567-1234-123456-123",
-      "email": "bbb@bbb.bb",
-      "gender": "m",
-      "id": 2,
-      "session": "on",
-      "cookie": "bbb=bbbbbb; expires=; path=/; domain=brand.com",
-      "quantity": -2
-    },
-    {
       "name": "c",
       "user_lastname": "c",
       "user_login": "c",
@@ -45,7 +32,9 @@
       "credit_card": "1234567-1234-123456-123",
       "email": "ccc@cc.cc",
       "gender": "m",
-      "id": 3
+      "id": 3,
+      "cookie": "c=cccccc; expires=; path=/; domain=brand.com",
+      "session": "on"
     }
   ],
   "userBasket": [],
@@ -94,7 +83,7 @@
       "min_url": "images/product/man_product_5_min.jpg",
       "md_url": "images/shopping_cart/man_product_5_md.jpg",
       "src": "images/product/man_product_5.jpg",
-      "quantity": 12
+      "quantity": 15
     },
     {
       "id": 6,

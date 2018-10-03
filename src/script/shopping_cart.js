@@ -20,6 +20,9 @@ var message = {
  */
 function renderShoppingCartProducts(url) {
   $('.shoppingCartProductWrap').empty();
+  $('.subtotalAll').text('$' + 0);
+  $('.grandtotal').text('$' + 0);
+
   $.ajax({
     // url: 'http://localhost:3000/userBasket',
     url: url,
@@ -194,10 +197,6 @@ function makeCounter() {
     // у которого открыта сессия создаем счетчик товаров в корзине, 
     // рендерим товары в корзине в личном кабинете пользователя
     setSession();
-    // var userurl = 'http://localhost:3000/reg/' + userid + '/userBasket';
-
-    // makeCounter(userurl);
-    // renderShoppingCartProducts(userurl);
     
     // Создаем карусель товаров в шапке.
     $('.carousel').slick({
@@ -336,8 +335,6 @@ function makeCounter() {
         var q = 1;
         increaseBase($action.attr('id'), q);
       }
-      console.log($(event.target));
-      console.log($('.shoppingCartProductRight'));
 
     });
     
