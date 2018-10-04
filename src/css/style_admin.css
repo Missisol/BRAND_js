@@ -501,54 +501,6 @@ form .buttonSearch:focus {
 .myAccount span {
   padding-right: 16px;
 }
-.myAccountSignIn {
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e9e9e9;
-  border-radius: 5px;
-  background-color: #ffffff;
-  position: absolute;
-  color: #000000;
-  padding: 0 20px 20px;
-  top: 80px;
-  width: 290px;
-  display: none;
-}
-.myAccountSignIn__triangle {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  position: absolute;
-  top: -6px;
-  -webkit-transform: rotate(45deg) skew(-8deg, -8deg);
-          transform: rotate(45deg) skew(-8deg, -8deg);
-  border-top: 1px solid #e9e9e9;
-  border-left: 1px solid #e9e9e9;
-  left: 145px;
-}
-.myAccountSignIn__input,
-.myAccountSignIn__submit {
-  width: 258px;
-}
-.myAccountSignIn__input.invalid {
-  border: solid 1px #e94b4b;
-}
-.myAccountSignIn__checkboxWrap {
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-}
-.myAccountSignIn.active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  z-index: 10;
-}
-.invalid-feedback {
-  text-transform: none;
-  font-style: italic;
-  font-size: 12px;
-  color: #e94b4b;
-}
 .mainMenu {
   height: 51px;
 }
@@ -931,6 +883,12 @@ form .buttonSearch:focus {
   background-color: #eeeeee;
   color: #d6d6d6;
 }
+a {
+  text-decoration: none;
+}
+input:focus {
+  outline: none;
+}
 .registerForm {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -942,6 +900,40 @@ form .buttonSearch:focus {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   outline: none;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+  background-color: #ffffff;
+  position: absolute;
+  color: #000000;
+  padding: 0 20px 20px;
+  top: 80px;
+  width: 290px;
+  display: none;
+}
+.registerForm__triangle {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  position: absolute;
+  top: -6px;
+  -webkit-transform: rotate(45deg) skew(-8deg, -8deg);
+          transform: rotate(45deg) skew(-8deg, -8deg);
+  border-top: 1px solid #e9e9e9;
+  border-left: 1px solid #e9e9e9;
+  left: 145px;
+}
+.registerForm__input,
+.registerForm__submit {
+  width: 258px;
+}
+.registerForm__input.invalid {
+  border: solid 1px #e94b4b;
+}
+.registerForm__checkboxWrap {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 .registerForm__input,
 .registerForm__gender,
@@ -969,6 +961,7 @@ form .buttonSearch:focus {
   color: #ffffff;
 }
 .registerForm__disabled {
+  width: 258px;
   height: 45px;
   border: solid 1px #eaeaea;
   padding: 0 15px;
@@ -996,6 +989,32 @@ form .buttonSearch:focus {
   font-size: 12px;
   font-family: Lato, sans-serif;
   margin-bottom: 16px;
+}
+.registerForm__signUp {
+  width: 258px;
+  background-color: #ffffff;
+  line-height: 45px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.registerForm__signUp:hover {
+  color: #f16d7f;
+  border: solid 1px #f16d7f;
+}
+.myAccountOut.active,
+.myAccountIn.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 10;
+}
+.invalid-feedback {
+  text-transform: none;
+  font-style: italic;
+  font-size: 12px;
+  color: #e94b4b;
 }
 .editData__logout {
   height: 45px;
@@ -1062,14 +1081,6 @@ form .buttonSearch:focus {
   top: 0;
   left: 0;
   cursor: pointer;
-}
-.myAccountSignIn__signUp {
-  width: 258px;
-  background-color: #ffffff;
-}
-.myAccountSignIn__signUp:hover {
-  color: #f16d7f;
-  border: solid 1px #f16d7f;
 }
 #goToAdminPanel {
   text-decoration: none;

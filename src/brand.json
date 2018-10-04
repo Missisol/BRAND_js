@@ -13,8 +13,8 @@
       "session": "off"
     },
     {
-      "name": "mmmmm",
-      "user_lastname": "a",
+      "name": "aaa",
+      "user_lastname": "nnn",
       "user_login": "a",
       "password": "mmmmmmmm",
       "credit_card": "1234567-1234-123456-123",
@@ -46,6 +46,30 @@
       "gender": "m",
       "id": 3,
       "cookie": "c=cccccc; expires=; path=/; domain=",
+      "session": "off"
+    },
+    {
+      "name": "n",
+      "user_lastname": "n",
+      "user_login": "nn",
+      "password": "nnnnnn",
+      "credit_card": "7418529-7418-741852-963",
+      "email": "nn@mm.nn",
+      "gender": "m",
+      "id": 12,
+      "cookie": "nn=nnnnnn; expires=; path=/; domain=",
+      "session": "off"
+    },
+    {
+      "name": "ss",
+      "user_lastname": "ss",
+      "user_login": "sss",
+      "password": "ssssss",
+      "credit_card": "7412589-1236-789654-147",
+      "email": "ss@ss.ss",
+      "gender": "f",
+      "id": 13,
+      "cookie": "sss=ssssss; expires=; path=/; domain=",
       "session": "off"
     }
   ],

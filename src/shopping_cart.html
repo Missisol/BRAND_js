@@ -107,13 +107,31 @@
                             <div class="myAccount">
                                 <span>My Account</span><i class="fas fa-sort-down"></i>
                             </div>
-                            <div class="myAccountSignIn registerForm">
-                                <div class="myAccountSignIn__triangle"></div>
-                                <span class="myAccountSignIn__close registerForm__close">&times;</span>
-                                <button id="backToShopping" class="myAccountSignIn__signUp registerForm__submit" >continue shopping</button>
-                                <button id="writeReview" class="myAccountSignIn__signUp registerForm__submit" >write a review</button>
-                                <button id="editData" class="myAccountSignIn__signUp registerForm__submit" >Edit data</button>
-                                <button id="logout" class="myAccountSignIn__submit registerForm__submit" >log out</button>
+                            <form class="registerForm myAccountOut">
+                                <div class="registerForm__triangle"></div>
+                                <span class="registerForm__close">&times;</span>
+                                <label class="myAccountOut__label registerForm__label">Username
+                                    <input type="text" class="myAccountOut__input registerForm__input" data-validation_rule="usercheck" name="username">
+                                </label>
+                                <label class="myAccountOut__label registerForm__label">Password
+                                    <input type="text" class="myAccountOut__input registerForm__input" data-validation_rule="usercheck" name="userpass">
+                                </label>
+                                <div class="myAccountOut__checkboxWrap registerForm__checkboxWrap">
+                                    <label class="myAccountOut__label registerForm__label">
+                                        <input type="checkbox" name="cookie" class="myAccountOut_remember remember"> Remember
+                                    </label>
+                                </div>
+                                <button type="submit" name="submitSignIn" id="submitSignIn" class="myAccountOut__submit registerForm__submit" >Sign in</button>
+                                <button id="goToSignUp" class="registerForm__signUp registerForm__submit" >Sign Up</button>
+                                <a id="goToYourCart" class="registerForm__signUp registerForm__submit" href="shopping_cart.html">Go to your cart</a>
+                            </form>
+                                <div class="registerForm myAccountIn">
+                                <div class="registerForm__triangle"></div>
+                                <span class="myAccountIn__close registerForm__close">&times;</span>
+                                <a id="backToShopping" class="registerForm__signUp registerForm__submit" href="products.html">continue shopping</a>
+                                <button id="writeReview" class="registerForm__signUp registerForm__submit" >write a review</button>
+                                <button id="editData" class="registerForm__signUp registerForm__submit" >Edit data</button>
+                                <button id="logout" class="myAccountIn__submit registerForm__submit" >log out</button>
                             </div>
                         </div>
                     </div>
@@ -457,7 +475,7 @@
             </div>
         </footer>
     </div>
-    <form class="signUpForm editForm registerForm" name="editForm">
+    <form class="signUpForm editForm registerForm formIn" name="editForm">
         <span class="editForm__close signUpForm__close registerForm__close">&times;</span>
         <label class="signUpForm__label registerForm__label">Name 
             <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="name" placeholder="Enter new username">
@@ -472,7 +490,7 @@
             <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="password" name="password" placeholder="Create new password">
         </label>
         <label class="signUpForm__label registerForm__label">Credit card number
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Enter new credit card number 1234567-1234-123456-123">
+            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Enter credit card number 1234567-1234-123456-123">
         </label>
         <label class="signUpForm__label registerForm__label">E-mail
             <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="email" name="email" placeholder="Enter new email youmail@example.ru">
@@ -485,5 +503,6 @@
     <script type="text/javascript" src="assets/slick-1.8.1/slick/slick.min.js"></script>
     <script src="script/shopping_cart.js"></script>
     <script src="script/brand.js"></script>
+    <script src="script/signUp_signIn.js"></script>
 </body>
 </html>

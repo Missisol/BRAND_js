@@ -316,5 +316,36 @@ function setSession() {
           }
       });
     });
+
+    // По клику на кнопку "My Account" вызываем форму выхода из личного кабинета
+    $('.myAccount').on('click', function(e) {
+        $('.myAccountIn').addClass('active');
+
+      e.preventDefault();
+    });
+
+    // По клику на кнопку "Log out" удаляем на кнопке "MyAccount" id пользователя
+    $('#logout').on('click', function(e) {
+      var userid = $('.myAccount').attr('id').slice(6);
+      $.ajax({
+        url: 'http://localhost:3000/reg/' + userid,
+        type: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+        },
+        data: JSON.stringify({
+          session: 'off',
+        }),
+        success: function() {
+          $(location).attr('href', "index.html");
+        },
+        error: function() {
+          console.log('error');
+        }
+      });
+      e.preventDefault();
+    });
+
+
   });
 })(jQuery);

@@ -75,7 +75,7 @@ function setInvalidField(message, inputEl) {
  * Записывает данные формы регистрации в базу данных и очищает форму
  */
 function sendValues() {
-  var signUpFields = $('.signUpForm').serialize();
+  var signUpFields = $('.formOut').serialize();
   $.ajax({
     url: 'http://localhost:3000/reg',
     type: 'POST',
@@ -96,7 +96,7 @@ function sendValues() {
  * Авторизует пользователя по логину и паролю
  */
 function sendCheckValues() {
-  var userData = $('.myAccountSignIn').serializeArray();
+  var userData = $('.myAccountOut').serializeArray();
   var username = userData[0].value;
   var userpass = userData[1].value;
   var cookie = userData[2];
@@ -134,7 +134,8 @@ function sendCheckValues() {
               $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
               $('#submitSignIn').empty().text('Вы авторизованы');
               $('.myAccount').attr({id: 'userid' + id});
-              $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
+              $('#goToSignUp').css('display', 'none');
+              $('#goToYourCart').css('display', 'block');
             },
             error: function() {
               console.log('error');
@@ -156,7 +157,8 @@ function sendCheckValues() {
                 $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
                 $('#submitSignIn').empty().text('Вы авторизованы');
                 $('.myAccount').attr({id: 'userid' + id});
-                $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
+                $('#goToSignUp').css('display', 'none');
+                $('#goToYourCart').css('display', 'flex');
               },
               error: function() {
                 console.log('error');
@@ -165,9 +167,9 @@ function sendCheckValues() {
          }
       } else {
         // Если пользователь в базе не найден, выводим сообщение об ошибке
-        $('.myAccountSignIn__input').addClass('invalid');
+        $('.myAccountOut__input').addClass('invalid');
         var $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
-        $hintWrap.insertAfter('.myAccountSignIn__input').text(mess);
+        $hintWrap.insertAfter('.myAccountOut__input').text(mess);
       }
     },
     error: function() {
@@ -175,7 +177,7 @@ function sendCheckValues() {
     } 
   });
   // Приводим поля формы авторизации в первоначальное состояние
-  $('.myAccountSignIn__input').val('');
+  $('.myAccountOut__input').val('');
   $('.remember').attr('checked', 'checked');
 }
 
@@ -185,6 +187,8 @@ function sendCheckValues() {
  * @param {string} userpass - пароль администратора
  */
 function checkAdmin(username, userpass) {
+  var mess = message.usercheck;
+
   $.ajax({
     url: 'http://localhost:3000/reg?user_login=' + username + '&password=' + userpass,
     dataType: 'json',
@@ -206,13 +210,14 @@ function checkAdmin(username, userpass) {
               $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
               $('#submitSignIn').empty().text('Вы авторизованы');
               $('.myAccount').attr({id: 'userid' + id});
-              $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
+              $('#goToYourCart').remove();
+              // $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
               var $button = $('<a />', {
                 id: 'goToAdminPanel',
                 class: 'myAccountSignIn__signUp registerForm__submit',
-                href: 'http://127.0.0.1:8080/admin.html',
+                href: 'admin.html',
               }).text('go to admin panel');
-              $('.myAccountSignIn').append($button);
+              $('.myAccountOut').append($button);
             },
             error: function() {
               console.log('error');
@@ -220,9 +225,9 @@ function checkAdmin(username, userpass) {
           });
       } else {
         // Если пользователь в базе не найден, выводим сообщение об ошибке
-        $('.myAccountSignIn__input').addClass('invalid');
-        var $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
-        $hintWrap.insertAfter('.myAccountSignIn__input').text(mess);
+        $('.myAccountOut__input').addClass('invalid');
+        var $hintWrap = $('<div />', {class:'invalid-feedback'});
+        $hintWrap.insertAfter('.myAccountOut__input');
       }
     },
     error: function() {
@@ -230,7 +235,7 @@ function checkAdmin(username, userpass) {
     } 
   });
   // Приводим поля формы авторизации в первоначальное состояние
-  $('.myAccountSignIn__input').val('');
+  $('.myAccountOut__input').val('');
   $('.remember').attr('checked', 'checked');
 }
 
@@ -280,19 +285,60 @@ function sendCheckValuesMail() {
   $('.inputRight__input').val('');
 }
 
+/**
+ * Записывает измененные пользователем данные в базу данных и очищает форму
+ */
+function sendEditValues() {
+  var editFields = $('.editForm').serializeArray();
+  var userid = $('.myAccount').attr('id').slice(6);
+  $.ajax({
+    url: 'http://localhost:3000/reg/' + userid,
+    dataType: 'json',
+    success: function(result) {
+      for (var i = 0; i < editFields.length; i++) {
+        if (editFields[i].value === '') {
+          for (var index in result) {
+            if (editFields[i].name === index) {
+              editFields[i].value = result[index];
+            }
+          }
+        }
+      }
+      $.ajax({
+        url: 'http://localhost:3000/reg/' + userid,
+        type: 'PATCH',
+        data: editFields,
+        success: function() {
+          $('.editForm__input').val('');
+          $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+          $('#submitEdit').empty().text('Данные успешно изменены');
+        },
+        error: function() {
+          $('#submitEdit').empty().text('Ошибка записи данных');
+        }
+      });
+    }
+  });
+}
 
 (function($) {
   $(function() {
     // При открытии страницы скрываем форму регистрации
     $('.overlay').css('display', 'none');
-    $('.signUpForm').css('display', 'none');
+    $('.editForm').css('display', 'none');
+    $('.formOut').css('display', 'none');
+    $('.myAccountOut').removeClass('active');
+    $('.myAccountIn').removeClass('active');
 
-    // По клику на кнопку "continue" вызываем форму регистрации
+    // По клику на кнопку "continue" на странице checkout или на кнопку "sign up" вызываем форму регистрации
     $('.inputSubmitLeft, #goToSignUp').on('click', function(e) {
+      $('.myAccountOut').removeClass('active');
+      $('.myAccountIn').removeClass('active');
+  
       $('.overlay').css('display', 'block');
-      $('.signUpForm').css('display', 'flex');
+      $('.formOut').css('display', 'flex');
       $('.signUpForm__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
-      $('#gender').next('.invalid-feedback').remove();
+      $('#gender').removeClass('invalid').next('.invalid-feedback').remove();
       $('#empty').attr('selected', 'selected');
       $('#submit').empty().text('Sign up');
       e.preventDefault();
@@ -303,40 +349,43 @@ function sendCheckValuesMail() {
       $('.overlay, .signUpForm').css('display', 'none');
     });
 
-    // По клику на кнопку "My Account" вызываем форму входа в личный кабинет
+    // По клику на кнопку "My Account" вызываем форму входа.выхода в/из личного кабинета
     $('.myAccount').on('click', function(e) {
       if ($('.myAccount').attr('id')) {
-        $(location).attr('href', 'http://127.0.0.1:8080/shopping_cart.html');
+        $('.myAccountIn').addClass('active');
+        $('.myAccountOut').removeClass('active');
+        $('#goToYourCart').css('display', 'none');
+
       } else {
-        if ($('.myAccountSignIn').attr('class') !== 'active') {
-          $('.myAccountSignIn').addClass('active');
-        }
-        $('.myAccountSignIn__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
+        $('.myAccountIn').removeClass('active');
+        $('.myAccountOut').addClass('active');
+        $('.myAccountOut__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
         $('.remember').attr('checked', 'checked');
         $('#submitSignIn').empty().text('Sign in');
+        $('#goToYourCart').css('display', 'none');
       }
       e.preventDefault();
     });
 
     // По клику на крестик или вне формы закрываем форму входа в личный кабинет
     $('body').on('click', function(e) {
-      var $formElems = $(e.target).parents('.myAccountSignIn');
+      var $formElems = $(e.target).parents('.registerForm');
       var $button = $(e.target).parents('.myAccount');
-      var close = $(e.target).hasClass('myAccountSignIn__close');
+      var close = $(e.target).hasClass('registerForm__close');
 
       if ($formElems.length === 0 && $button.length === 0) {
-        if ($('.myAccountSignIn.active')) {
-          $('.myAccountSignIn').removeClass('active');
+        if ($('.registerForm.active')) {
+          $('.registerForm').removeClass('active');
         } 
       } else if (close === true) {
-        if ($('.myAccountSignIn.active')) {
-          $('.myAccountSignIn').removeClass('active');
+        if ($('.registerForm.active')) {
+          $('.registerForm').removeClass('active');
         }
       }
     });
 
     // Валидируем форму регистрации перед отправкой и передаем данные для отправки через ajax
-    $('.signUpForm').on('click', '.signUpForm__submit', function(e) {
+    $('.formOut').on('click', '.signUpForm__submit', function(e) {
       var mess;
       var $el = $('#gender');
       if ($el.val() === 'Choose') {
@@ -362,14 +411,14 @@ function sendCheckValuesMail() {
         });
       });
       e.preventDefault();
-      if ($('.signUpForm').find('.invalid').length === 0 && $('#gender').val() !== '') {
+      if ($('.formOut').find('.invalid').length === 0 && $('#gender').val() !== '') {
         sendValues();
       } else console.log('error');
     });
 
     // Валидируем форму авторизации и передаем данные для сравнения с базой черех ajax
-    $('.myAccountSignIn').on('click', '.myAccountSignIn__submit', function(e) {
-      var $input = $('.myAccountSignIn__input');
+    $('.myAccountOut').on('click', '.myAccountOut__submit', function(e) {
+      var $input = $('.myAccountOut__input');
       var mess;
       $input.each(function(key, field) {
         if (field.value === '') {
@@ -381,7 +430,7 @@ function sendCheckValuesMail() {
         }
       });
       e.preventDefault();
-      if ($('.myAccountSignIn').find('.invalid').length === 0) {
+      if ($('.myAccountOut').find('.invalid').length === 0) {
         sendCheckValues();
       } else console.log('error');
     });
@@ -405,9 +454,88 @@ function sendCheckValuesMail() {
       } else console.log('error');
     });
 
-    $('#goToSignUp').on('click', function() {
-     $(location).attr('href', 'http://127.0.0.1:8080/shopping_cart.html');
+    // По клику на кнопку "Log out" удаляем на кнопке "MyAccount" id пользователя и удаляем товары в личном кабинете
+    $('#logout').on('click', function(e) {
+      var userid = $('.myAccount').attr('id').slice(6);
+      $.ajax({
+        url: 'http://localhost:3000/reg/' + userid,
+        type: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+        },
+        data: JSON.stringify({
+          session: 'off',
+        }),
+        success: function() {
+          $('.myAccount').removeAttr('id');
+          $('#logout').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+          $('#logout').empty().text('Вы вышли из личного кабинета');
+          $('#editData, #goToYourCartIn, #writeReview, #backToShopping').attr('disabled', 'disabled').removeClass('registerForm__submit').text('').addClass('editData__logout');
+        },
+        error: function() {
+          console.log('error');
+        }
+      });
+      e.preventDefault();
     });
+    
+      // При клике на кнопку "edit data" вызываем форму изменения данных
+      $('#editData').on('click', function(e) {
+        $('.overlay').css('display', 'block');
+        $('.editForm').css('display', 'flex');
+        $('.editForm__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
+        $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+        $('#submitEdit').empty().text('Save edit');
+        $('.myAccountOut').removeClass('active');
+        $('.myAccountIn').removeClass('active');
+            e.preventDefault();
+      });
+
+    // По клику на подложку или крестик закрываем форму изменения данных и убираем подложку
+    $('.editForm__close, .overlay').on('click', function() {
+      $('.overlay, .editForm').css('display', 'none');
+    });
+
+    // Если пользователь начал заполнять одно из полей формы, делаем кнопку отправки активной
+    var symbols = 0;
+    $('.editForm__input').on({'keydown': function(e){
+        $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
+        if (e.which !== 8) {
+          symbols++;
+        } else if (e.which ===8 && symbols > 0) {
+          symbols--;
+        } else symbols = 0;
+
+        if (symbols === 0) {
+          $('#submitEdit').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+        } else  {
+          $('#submitEdit').removeAttr('disabled').removeClass('registerForm__disabled').addClass('registerForm__submit');
+        } 
+      },
+    });
+
+    //Валидируем форму регистрации перед отправкой и передаем данные для отправки через ajax
+    $('.editForm').on('click', '#submitEdit', function(e) {
+      var mess;
+      $.each(rules, function(index, rule) {
+        var $fields = $('[data-validation_rule=' + index + ']');
+        $fields.each(function(key, field) {
+          if(rule.test(field.value)) {
+            $(field).removeClass('invalid');
+            $(field).next('.invalid-feedback').remove();
+          } else if (field.value !== '') {
+            mess = message[index];
+            setInvalidField(mess, field);
+          } 
+        });
+      });
+      e.preventDefault();
+      if ($('.editForm').find('.invalid').length === 0) {
+        sendEditValues();
+      } else console.log('error');
+    });
+
+    
 
   });
 })(jQuery);
