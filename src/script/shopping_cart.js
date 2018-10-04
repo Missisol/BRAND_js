@@ -187,11 +187,39 @@ function makeCounter() {
   });
 }
 
+/**
+ * Добавляет отзыв, введенный пользователем в базу данных.
+ * @param {string} text - Текст, введенный пользователем.
+ */
+function addReview(text) {
+  $.ajax({
+    url: 'http://localhost:3000/add',
+    type: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    data: JSON.stringify({
+      text: text,
+      status: 'add',
+    }),
+    success: function() {
+      console.log('ok');
+      $('#textReview').val('');
+      $('#message').text('Ваш отзыв передан на модерацию');
+      
+    },
+    error: function() {
+      $('#buttonMessage').text('Произошла ошибка');
+    }
+  });
+  }
+
 (function($) {
   $(function() {
     // При открытии страницы скрываем форму изменения данных
     $('.overlay').css('display', 'none');
     $('.editForm').css('display', 'none');
+    // $('#review').css('display', 'none');
     
     // При открытии страницы устанавливаем на кнопке "MyAccount" id пользователя, 
     // у которого открыта сессия создаем счетчик товаров в корзине, 
@@ -328,35 +356,41 @@ function makeCounter() {
       } else console.log('error');
     });
     
-
+    // Удаляем товары из личного кабинета по клику на крестик
     $('.shoppingCartProductWrap').on('click', function(e) {
       var $action = $(event.target).parent('.action');
       if ($action !== 0) {
         var q = 1;
         increaseBase($action.attr('id'), q);
       }
-
     });
     
-    //1. При клике на крестик надо удалять товар: убрать товар на склад.
-    //   $.ajax({
-    //     url: 'http://localhost:3000/basket/' + id,
-    //     dataType: 'json',
-    //     success: function(data) {
-    //       var oldQuantity = data.quantity;
-    //       var delta = newQuantity - oldQuantity;
-    //       if (delta > 0) {
-    //         decreaseBase(data, delta);
-    //       } else increaseBase(id, delta);
-    //     },
-    //     error: function() {
-    //       console.log('error');
-    //     }
-    //   });
-    //   renderShoppingCartProducts();
+    // При нажатии на кнопку "continue shopping" переходим на страницу "products"
+    $('#backToShopping').on('click', function() {
+      $(location).attr('href', 'http://127.0.0.1:8080/products.html');
+     });
 
-    //   e.preventDefault();
-    // });
+     // При клике на кнопку "write a review" вызываем форму для отзыва
+     $('#writeReview').on('click', function() {
+      $('#review').css('display', 'flex');
+      $('.buttonReviewWrap').css('display', 'flex');
+      $('.myAccountSignIn').removeClass('active');
+     });
+
+     // При клике на кнопку отправки отзыва вызываем функцию сохранения отзыва в базе
+     $('#submitReview').on('click', function(){
+      var textReview = $('#textReview').val();
+      console.log(textReview);
+      if (textReview !== '') {
+        addReview(textReview);
+      }
+      event.preventDefault();
+    });
+
+    $('.review__close').on('click', function() {
+      $('#review').css('display', 'none');
+      $('.buttonReviewWrap').css('display', 'none');
+    })
 
   });
 })(jQuery);

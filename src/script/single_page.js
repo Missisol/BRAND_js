@@ -100,7 +100,6 @@ function setSession() {
         url: 'http://localhost:3000/var_color',
         dataType: 'json',
         success: function(variants) {
-          console.log(variants);
           variants.forEach(function(variant) {
             var $li = $('<li />', {id: 'color' + variant.id}).text(variant.color);
             $('.chooseCategory__color').append($li);
@@ -119,19 +118,16 @@ function setSession() {
       $('#detChooseColor').removeAttr('open');
 
       colorId = id.slice(5);
-      console.log(colorId);
       $.ajax({
         url: 'http://localhost:3000/var_color?id=' + colorId + '&_size',
        dataType: 'json',
        success: function(products) {
          quantitySize = products[0].size;
-         console.log(quantitySize);
         for (var key in quantitySize) {
           if (quantitySize[key] !== 0) {
             allSize.push(key);
           }
         }
-         console.log(allSize);
        },
        error: function() {
          console.log('error');
@@ -152,8 +148,6 @@ function setSession() {
         });
       }
       else {
-        // console.log(colorId);
-        // console.log(allSize);
         // Если цвет был выбран и есть размеры, выводим размеры для этого цвета
         if (allSize.length !== 0) {
           allSize.forEach(function(item) {
@@ -185,26 +179,6 @@ function setSession() {
         }
       event.preventDefault();
     });
-
-    // $.ajax({
-    //   url: 'http://localhost:3000/var_size' + colorId,
-    //   dataType: 'json',
-    //   success: function(variants) {
-  //         allSize.forEach(function(item) {
-  //           var $li = $('<li />', {id: 'size' + item.id}).text(item.size);
-  //           $('.chooseCategory__size').append($li);
-  //         });
-  //     },
-  //     error: function() {
-  //       $('.chooseCategory__size').empty().removeClass('active');
-  //       $('#detChooseSize').removeAttr('open');
-  //     }
-  //   });
-  // }
-
-
-
-
 
   });
 })(jQuery);

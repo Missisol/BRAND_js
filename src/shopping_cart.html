@@ -110,7 +110,7 @@
                             <div class="myAccountSignIn registerForm">
                                 <div class="myAccountSignIn__triangle"></div>
                                 <span class="myAccountSignIn__close registerForm__close">&times;</span>
-                                <button id="backToShopping" class="myAccountSignIn__signUp registerForm__submit" >Back to shopping</button>
+                                <button id="backToShopping" class="myAccountSignIn__signUp registerForm__submit" >continue shopping</button>
                                 <button id="writeReview" class="myAccountSignIn__signUp registerForm__submit" >write a review</button>
                                 <button id="editData" class="myAccountSignIn__signUp registerForm__submit" >Edit data</button>
                                 <button id="logout" class="myAccountSignIn__submit registerForm__submit" >log out</button>
@@ -262,6 +262,15 @@
                 </div>
             </div>
             <div class="container shoppingCart">
+                <form id="review">
+                    <span class="review__close registerForm__close">&times;</span>
+                    <textarea name="review" id="textReview" cols="100" rows="10"></textarea>
+                    <button type="submit" id="submitReview" class="buttonReview">send review</button>
+                </form>
+                <div class="buttonReviewWrap">
+                    <button id="allReview" class="buttonReview">read all reviews</button>
+                    <div id="message"></div>
+                </div>
                 <div class="shoppingCartHeader">
                     <div class="shoppingCartHeaderLeft">
                         <h5>Product Details</h5>
@@ -274,87 +283,7 @@
                         <h5 class="shoppingCartHeaderRight__unit"> ACTION</h5>
                     </div>
                 </div>
-                <div class="shoppingCartProductWrap">
-                    <div class="shoppingCartProduct">
-                        <div class="shoppingCartProductLeft">
-                            <a class="shoppingCartProductLeft_img" href="#">
-                                <img src="images/shopping_cart/product_cart_1.jpg" alt="product">
-                            </a>
-                            <div class="shoppingCartProductLeft__description">
-                                <a href="#">
-                                    <h5>Mango People T-shirt</h5>
-                                </a>
-                                <p>Color:
-                                    <span>Red</span>
-                                    <br> Size:
-                                    <span>Xll</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="shoppingCartProductRight">
-                            <p class="unitePrice">$150</p>
-                            <input type="number" class="quantity" min="0" value="2">
-                            <p class="shipping">FREE</p>
-                            <p class="subtotal">$300</p>
-                            <a class="shoppingAction" href="#">
-                                <i class="fas fa-times-circle"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="shoppingCartProduct">
-                        <div class="shoppingCartProductLeft">
-                            <a class="shoppingCartProductLeft_img" href="#">
-                                <img src="images/shopping_cart/product_cart_2.jpg" alt="product">
-                            </a>
-                            <div class="shoppingCartProductLeft__description">
-                                <a href="#">
-                                    <h5>Mango People T-shirt</h5>
-                                </a>
-                                <p>Color:
-                                    <span>Red</span>
-                                    <br> Size:
-                                    <span>Xll</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="shoppingCartProductRight">
-                            <p class="unitePrice">$150</p>
-                            <input type="number" class="quantity" min="0" value="2">
-                            <p class="shipping">FREE</p>
-                            <p class="subtotal">$300</p>
-                            <a class="shoppingAction" href="">
-                                <i class="fas fa-times-circle"></i>
-                            </a>
-                        </div>
-            
-                    </div>
-                    <div class="shoppingCartProduct">
-                            <div class="shoppingCartProductLeft">
-                                <a class="shoppingCartProductLeft_img" href="#">
-                                    <img src="images/shopping_cart/product_cart_8.jpg" alt="product">
-                                </a>
-                                <div class="shoppingCartProductLeft__description">
-                                    <a href="#">
-                                        <h5>Mango People T-shirt</h5>
-                                    </a>
-                                    <p>Color:
-                                        <span>Red</span>
-                                        <br> Size:
-                                        <span>Xll</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="shoppingCartProductRight">
-                                <p class="unitePrice">$150</p>
-                                <input type="number" class="quantity" min="0" value="2">
-                                <p class="shipping">FREE</p>
-                                <p class="subtotal">$300</p>
-                                <a class="shoppingAction" href="">
-                                    <i class="fas fa-times-circle"></i>
-                                </a>
-                            </div>
-                    </div>
-                </div>
+                <div class="shoppingCartProductWrap"></div>
                 <div class="shoppingControl">
                     <a class="shoppingControlButton" href="#">cLEAR SHOPPING CART</a>
                     <a class="shoppingControlButton" href="#">cONTINUE sHOPPING</a>

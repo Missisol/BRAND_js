@@ -10,7 +10,7 @@
       "gender": "f",
       "id": 1,
       "cookie": "a=mmmmmmmm; expires=; path=/; domain=",
-      "session": "off"
+      "session": "on"
     },
     {
       "name": "aaa",
@@ -34,7 +34,7 @@
       "gender": "m",
       "id": 3,
       "cookie": "c=cccccc; expires=; path=/; domain=",
-      "session": "on"
+      "session": "off"
     }
   ],
   "userBasket": [
@@ -286,5 +286,38 @@
         "XL": 3
       }
     }
-  ]
+  ],
+  "add": [
+    {
+      "text": "aaaaaaaaaaaaaaaaaaaaa",
+      "status": "add",
+      "id": 1
+    },
+    {
+      "text": "aaaaaaaaaaaaaaaaaaaaa",
+      "status": "add",
+      "id": 2
+    },
+    {
+      "text": "aaaaaaaaaaaaaaaaaaaaa",
+      "status": "add",
+      "id": 3
+    },
+    {
+      "text": "hhhhhhhhhhhhhhhhh",
+      "status": "add",
+      "id": 4
+    },
+    {
+      "text": "dddddddddddddddddddd",
+      "status": "add",
+      "id": 5
+    },
+    {
+      "text": "ssssssssssssssssssssss",
+      "status": "add",
+      "id": 6
+    }
+  ],
+  "appruve": []
 }

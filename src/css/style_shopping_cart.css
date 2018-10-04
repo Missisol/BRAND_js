@@ -1396,3 +1396,76 @@ body {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
+#review {
+  margin-bottom: 20px;
+  width: 900px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #ffffff;
+  z-index: 110;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#review__close {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  font-size: 30px;
+  color: #a3a1a1;
+  cursor: pointer;
+}
+#textReview {
+  width: 100%;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.17);
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.17);
+  border-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#submitReview {
+  margin-top: 20px;
+}
+.buttonReviewWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 30px;
+}
+.buttonReview {
+  width: 258px;
+  height: 45px;
+  border: solid 1px #eaeaea;
+  padding: 0 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px;
+  background-color: #ffffff;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  font-weight: bold;
+  color: #4a4a4a;
+  text-transform: uppercase;
+  background-color: #f16d7f;
+  outline: none;
+}
+.buttonReview:hover {
+  color: #ffffff;
+}
+#message {
+  margin-left: 100px;
+  margin-top: -48px;
+}
