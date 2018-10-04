@@ -941,6 +941,7 @@ form .buttonSearch:focus {
           align-items: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: none;
 }
 .registerForm__input,
 .registerForm__gender,
@@ -953,6 +954,7 @@ form .buttonSearch:focus {
   margin-top: 10px;
   font-size: 14px;
   background-color: #ffffff;
+  font-family: Lato, sans-serif;
 }
 .registerForm__submit {
   -webkit-transition-duration: 0.5s;
@@ -979,6 +981,7 @@ form .buttonSearch:focus {
   margin-top: 20px;
   background-color: #f16d7f;
   opacity: 0.8;
+  font-family: Lato, sans-serif;
 }
 .registerForm__close {
   -ms-flex-item-align: end;
@@ -1067,6 +1070,11 @@ form .buttonSearch:focus {
 .myAccountSignIn__signUp:hover {
   color: #f16d7f;
   border: solid 1px #f16d7f;
+}
+#goToAdminPanel {
+  text-decoration: none;
+  text-align: center;
+  line-height: 45px;
 }
 body {
   font-family: Lato, sans-serif;

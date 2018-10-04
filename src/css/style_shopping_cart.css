@@ -941,6 +941,7 @@ form .buttonSearch:focus {
           align-items: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: none;
 }
 .registerForm__input,
 .registerForm__gender,
@@ -953,6 +954,7 @@ form .buttonSearch:focus {
   margin-top: 10px;
   font-size: 14px;
   background-color: #ffffff;
+  font-family: Lato, sans-serif;
 }
 .registerForm__submit {
   -webkit-transition-duration: 0.5s;
@@ -979,6 +981,7 @@ form .buttonSearch:focus {
   margin-top: 20px;
   background-color: #f16d7f;
   opacity: 0.8;
+  font-family: Lato, sans-serif;
 }
 .registerForm__close {
   -ms-flex-item-align: end;
@@ -1067,6 +1070,11 @@ form .buttonSearch:focus {
 .myAccountSignIn__signUp:hover {
   color: #f16d7f;
   border: solid 1px #f16d7f;
+}
+#goToAdminPanel {
+  text-decoration: none;
+  text-align: center;
+  line-height: 45px;
 }
 body {
   font-family: Lato, sans-serif;
@@ -1442,8 +1450,12 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 1px solid #eaeaea;
   padding-bottom: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 30px;
 }
 .buttonReview {
   width: 258px;
@@ -1461,11 +1473,54 @@ body {
   text-transform: uppercase;
   background-color: #f16d7f;
   outline: none;
+  font-family: Lato, sans-serif;
 }
 .buttonReview:hover {
   color: #ffffff;
 }
+#allReview {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-top: -65px;
+  margin-right: 236px;
+}
 #message {
-  margin-left: 100px;
-  margin-top: -48px;
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+  margin-left: 300px;
+  margin-top: -30px;
+}
+.listWrap {
+  width: 1000px;
+  background-color: #ffffff;
+  padding: 0 30px 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.oneReview {
+  list-style: none;
+  width: 90%;
+  min-height: 40px;
+  line-height: 40px;
+  border: 1px solid #cccccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: -1px;
+}
+.idReview {
+  width: 40px;
+}
+.textReview {
+  margin: 0;
+  width: 70%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }

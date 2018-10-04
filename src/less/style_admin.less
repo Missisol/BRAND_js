@@ -1,0 +1,205 @@
+@import "_reset_css";
+@import "_variables";
+@import "_style_header";
+@import "_style_sub_footer";
+@import "_sign_up";
+
+body {
+    font-family: Lato, sans-serif;
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.newArrivals {
+    margin-bottom: 59px;
+    .newArrivalsMixin();
+}
+
+.contentPageProduct {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerLeftNav {
+    width: 238px;
+
+    summary {
+        width: 100%;
+        border-left: 5px solid @colorBrand;
+        border-bottom: 1px solid #ebebeb;
+        box-sizing: border-box;
+        color:  #6f6e6e;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 37px;
+        outline: none;
+        text-transform: uppercase;
+        padding-left: 12px;
+        display: block;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::after {
+            content: '\25BC';
+            font-size: 12px;
+            float: right;
+        }
+    }
+
+    details[open] summary {
+        color: @colorBrand;
+    }
+
+    details[open] summary::after {
+        content: '\25B2';
+        color: @colorBrand;
+    }
+}
+
+.category {
+    margin-left: 18px;
+    margin-top: 10px;
+    margin-bottom: 28px;
+
+    a {
+        text-decoration: none;
+        color:  #6f6e6e;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 33px;
+
+        &:hover {
+            color: @colorBrand;
+        }
+    }
+}
+
+.adminWrap {
+  min-height: 300px;
+}
+
+#reviewModul {
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: @colorBrand;
+}
+
+.button {
+  width: 260px;
+  margin-right: 60px;
+  height: 45px;
+  border: solid 1px #eaeaea;
+  padding: 0 15px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  font-size: 12px;
+  background-color: #ffffff;
+  font-family: Lato, sans-serif;
+  .transDuration();
+    font-weight: bold;
+    color: #4a4a4a;
+    text-transform: uppercase;
+    margin-top: 20px;
+
+    &:hover {
+      color: @colorBrand;
+      border: solid 1px @colorBrand;
+    }
+}
+
+button:focus {
+  outline: none;
+}
+
+.button.active {
+  background-color: @colorBrand;
+  color: #ffffff;
+}
+
+.reviewWrap {
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.listWrap {
+  margin-bottom: 100px;
+  margin-top: 20px;
+}
+
+.appruve:hover,
+.delete:hover {
+    filter: brightness(80%);
+}
+
+.oneReview {
+    list-style: none;
+    width: 90%;
+    min-height: 40px;
+    line-height: 40px;
+    border: 1px solid #cccccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -1px;
+}
+
+.idReview {
+    width: 40px;
+}
+
+.textReview {
+    margin: 0;
+    width: 70%;
+    flex: 1;
+}
+
+.buttonWrap {
+    display: flex;
+    align-items: center;
+}
+
+.appruve,
+.delete {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #a5a3a3;
+}
+
+.appruveLi,
+.appruve {
+    background-color: #91e7b9;
+}
+
+.deleteLi,
+.delete {
+    background-color: #e29d9d;
+}
+
+.desabledButton {
+    background-color: #cccccc;
+    color: #a7a6a6;
+}
+
+.desabledButton:hover {
+    filter: none;
+}
+
+.message {
+  margin-top: 30px;
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #4a4a4a;
+}
+
+
+

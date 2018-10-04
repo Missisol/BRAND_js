@@ -102,6 +102,11 @@ function sendCheckValues() {
   var cookie = userData[2];
   var mess = message.usercheck;
   var userCookie;
+
+  // Если пользователь входит с логином администратора вызываем функцию проверки прав администратора
+  if (username === 'admin') {
+    checkAdmin(username, userpass);
+  }
   // Если пользователь поставил галочку "запомнить", формируем cookie
   if(cookie) {
     userCookie = setCookie(username, userpass, options);
@@ -114,9 +119,6 @@ function sendCheckValues() {
       // Если пользователь найден в базе
       if (result.length !== 0) {
         var id = result[0].id;
-        // Смотрим, есть ли в базе cookie
-        // var cookieReg = result[0].cookie;
-
         // Если не поставлена галочка "запомнить" записываем в базу, что сессия открыта и сообщаем об авторизации
         if (!cookie) {
           $.ajax({
@@ -126,7 +128,6 @@ function sendCheckValues() {
               'content-type': 'application/json',
             },
             data: JSON.stringify({
-              cookie: userCookie,
               session: 'on',
             }),
             success: function() {
@@ -162,6 +163,61 @@ function sendCheckValues() {
               }
             });
          }
+      } else {
+        // Если пользователь в базе не найден, выводим сообщение об ошибке
+        $('.myAccountSignIn__input').addClass('invalid');
+        var $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
+        $hintWrap.insertAfter('.myAccountSignIn__input').text(mess);
+      }
+    },
+    error: function() {
+      console.log('error');
+    } 
+  });
+  // Приводим поля формы авторизации в первоначальное состояние
+  $('.myAccountSignIn__input').val('');
+  $('.remember').attr('checked', 'checked');
+}
+
+/**
+ * Проверяет права администратора
+ * @param {string} username - логин администратора
+ * @param {string} userpass - пароль администратора
+ */
+function checkAdmin(username, userpass) {
+  $.ajax({
+    url: 'http://localhost:3000/reg?user_login=' + username + '&password=' + userpass,
+    dataType: 'json',
+    success: function(result) {
+      // Если пользователь найден в базе
+      if (result.length !== 0) {
+        var id = result[0].id;
+        // Если не поставлена галочка "запомнить" записываем в базу, что сессия открыта и сообщаем об авторизации
+          $.ajax({
+            url: 'http://localhost:3000/reg/' + id,
+            type: 'PATCH',
+            headers: {
+              'content-type': 'application/json',
+            },
+            data: JSON.stringify({
+              session: 'on',
+            }),
+            success: function() {
+              $('#submitSignIn').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
+              $('#submitSignIn').empty().text('Вы авторизованы');
+              $('.myAccount').attr({id: 'userid' + id});
+              $('#goToSignUp').removeAttr('id').attr({id: 'goToUserCart'}).empty().text('Go to your cart');
+              var $button = $('<a />', {
+                id: 'goToAdminPanel',
+                class: 'myAccountSignIn__signUp registerForm__submit',
+                href: 'http://127.0.0.1:8080/admin.html',
+              }).text('go to admin panel');
+              $('.myAccountSignIn').append($button);
+            },
+            error: function() {
+              console.log('error');
+            }
+          });
       } else {
         // Если пользователь в базе не найден, выводим сообщение об ошибке
         $('.myAccountSignIn__input').addClass('invalid');

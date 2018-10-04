@@ -190,8 +190,14 @@ function makeCounter() {
 /**
  * Добавляет отзыв, введенный пользователем в базу данных.
  * @param {string} text - Текст, введенный пользователем.
+ * @param {int} id - id авторизованного пользователя
  */
-function addReview(text) {
+function addReview(text, id) {
+  if ($('#message')) {
+    $('#message').remove();
+  }
+  var $message = $('<div />', {id: 'message'});
+  $('.buttonReviewWrap').append($message);
   $.ajax({
     url: 'http://localhost:3000/add',
     type: 'POST',
@@ -201,25 +207,59 @@ function addReview(text) {
     data: JSON.stringify({
       text: text,
       status: 'add',
+      userId: id,
     }),
     success: function() {
       console.log('ok');
       $('#textReview').val('');
-      $('#message').text('Ваш отзыв передан на модерацию');
-      
-    },
+      $('#message').text('Your review has been moderated.');
+      $('#message').fadeOut(4000);
+          },
     error: function() {
-      $('#buttonMessage').text('Произошла ошибка');
+      $('#message').text('Communication error');
+      $('#message').fadeOut(4000);
     }
   });
-  }
+}
+
+  /**
+ * Ввыводит список одобренных отзывов.
+ */
+function makeAppruveList() {
+  $('#message').remove();
+  $('.listWrap').remove();
+  $.ajax({
+    url: 'http://localhost:3000/appruve',
+    dataType: 'json',
+    success: function (add) {
+      var $ul = $('<ul />');
+      add.forEach(function (review) {
+          var $li = $('<li />', {class: 'oneReview'});
+          var $id = $('<div />', {class: 'idReview', text: "#" + review.id});
+          var $p = $('<p />', {class: 'textReview', text: review.text});
+          $li.append($id).append($p);
+          $ul.append($li);
+      });
+      var $listWrap = $('<div />').addClass('listWrap');
+      $listWrap.insertBefore('.shoppingCartHeader');
+      $('.listWrap').append($ul);
+    },
+    error: function() {
+      var $message = $('<div />', {id: 'message'});
+      $('.buttonReviewWrap').append($message);
+      $('#message').text('Communication error');
+      $('#message').fadeOut(4000);
+    }
+  });
+}
 
 (function($) {
   $(function() {
     // При открытии страницы скрываем форму изменения данных
     $('.overlay').css('display', 'none');
     $('.editForm').css('display', 'none');
-    // $('#review').css('display', 'none');
+    $('#review').css('display', 'none');
+    $('.buttonReviewWrap').css('display', 'none');
     
     // При открытии страницы устанавливаем на кнопке "MyAccount" id пользователя, 
     // у которого открыта сессия создаем счетчик товаров в корзине, 
@@ -380,17 +420,26 @@ function addReview(text) {
      // При клике на кнопку отправки отзыва вызываем функцию сохранения отзыва в базе
      $('#submitReview').on('click', function(){
       var textReview = $('#textReview').val();
+      var userId = $('.myAccount').attr('id').slice(6);
       console.log(textReview);
       if (textReview !== '') {
-        addReview(textReview);
+        addReview(textReview, userId);
       }
       event.preventDefault();
     });
 
+    // По клику на крестик закрываем модуль отправки отзывов
     $('.review__close').on('click', function() {
       $('#review').css('display', 'none');
       $('.buttonReviewWrap').css('display', 'none');
-    })
+      $('.listWrap').remove();
+    });
 
+    // По клику на кнопку "Показать все отзывы" вызываем функцию формирования списка одобренных отзывов.
+    $('#allReview').on('click', function() {
+      makeAppruveList();
+    });
+ 
+   
   });
 })(jQuery);
