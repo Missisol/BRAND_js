@@ -360,9 +360,10 @@ function sendEditValues() {
         $('.myAccountIn').removeClass('active');
         $('.myAccountOut').addClass('active');
         $('.myAccountOut__input').val('').removeClass('invalid').next('.invalid-feedback').remove();
+        $('#submitSignIn').removeClass('registerForm__disabled').addClass('registerForm__submit').removeAttr('disabled').empty().text('Sign in');
         $('.remember').attr('checked', 'checked');
-        $('#submitSignIn').empty().text('Sign in');
         $('#goToYourCart').css('display', 'none');
+        $('#goToSignUp').css('display', 'block');
       }
       e.preventDefault();
     });
@@ -376,6 +377,7 @@ function sendEditValues() {
       if ($formElems.length === 0 && $button.length === 0) {
         if ($('.registerForm.active')) {
           $('.registerForm').removeClass('active');
+
         } 
       } else if (close === true) {
         if ($('.registerForm.active')) {
@@ -471,6 +473,7 @@ function sendEditValues() {
           $('#logout').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
           $('#logout').empty().text('Вы вышли из личного кабинета');
           $('#editData, #goToYourCartIn, #writeReview, #backToShopping').attr('disabled', 'disabled').removeClass('registerForm__submit').text('').addClass('editData__logout');
+          $('.shoppingCartProductWrap').empty();
         },
         error: function() {
           console.log('error');

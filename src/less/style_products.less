@@ -250,20 +250,45 @@ body {
     .name,
     .number {
         padding-right: 9px;
+    }
+}
 
-        a {
-            text-decoration: none;
-            color:  #6f6e6e;
-            font-size: 14px;
-            font-weight: 400;
-            display: block;
+.aSort {
+    color:  #6f6e6e;
+    font-size: 14px;
+    font-weight: 400;
 
-            &:after {
-                content: '\25BC';
-                font-size: 12px;
-                float: right;
-            }
-        }
+    &:after {
+        content: '\25BC';
+        font-size: 12px;
+        float: right;
+    }
+}
+
+#ulSortCat,
+#ulSortPage {
+    position: relative;
+    z-index: 100;
+    background-color: #ffffff;
+    left: -10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#ulSortCat {
+    width: 82px;
+}
+
+#ulSortPage {
+    width: 59px;
+}
+
+.liSortCat,
+.liSortPage {
+
+    &:hover {
+        color: @colorBrand;
+        cursor: pointer;
     }
 }
 

@@ -278,18 +278,22 @@
                     </div>
                     <div class="sort">
                         <div class="sortBlock sortBy">Sort By</div>
-                        <div class="sortBlock name"><a href="#">Name</a> </div>
+                        <div id="sortByCategory" class="sortBlock name">
+                            <a id="aSortCat" class="aSort" href="#">Name</a>
+                         </div>
                         <div class="sortBlock show">Show</div>
-                        <div class="sortBlock number"><a href="#">09</a></div>
+                        <div id="sortByPage" class="sortBlock number">
+                            <a id="aSortPage" class="aSort" href="#">09</a>
+                        </div>
                     </div>
                     <div class="products"></div>
                     <div class="bottomNav">
                         <nav>
-                            <div class="pagination">
-                                <a class="prev" href="#">&lt;</a>
+                            <div class="pagination" id="pagination">
+                                <a id="prev" class="prev" href="#">&lt;</a>
                                 <a id="1" href="#">1</a>
                                 <a class="last" href="#"></a>
-                                <a class="next" href="#">&gt;</a>
+                                <a id="next" class="next" href="#">&gt;</a>
                             </div>
                         </nav>
                         <a class="buttonViewAll" href="#">View All</a>
@@ -520,7 +524,6 @@
         </label>
         <button type="submit" name="submitEdit" id="submitEdit" class="editForm__submit signUpForm__submit registerForm__submit" >Save data</button>
     </form>
-    
     <div class="overlay"></div>
 
     <script src="assets/jquery-3.3.1.min.js"></script>

@@ -1372,19 +1372,36 @@ body {
 .sort .number {
   padding-right: 9px;
 }
-.sort .name a,
-.sort .number a {
-  text-decoration: none;
+.aSort {
   color: #6f6e6e;
   font-size: 14px;
   font-weight: 400;
-  display: block;
 }
-.sort .name a:after,
-.sort .number a:after {
+.aSort:after {
   content: '\25BC';
   font-size: 12px;
   float: right;
+}
+#ulSortCat,
+#ulSortPage {
+  position: relative;
+  z-index: 100;
+  background-color: #ffffff;
+  left: -10px;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#ulSortCat {
+  width: 82px;
+}
+#ulSortPage {
+  width: 59px;
+}
+.liSortCat:hover,
+.liSortPage:hover {
+  color: #f16d7f;
+  cursor: pointer;
 }
 .products {
   width: 100%;

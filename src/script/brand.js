@@ -134,7 +134,6 @@ function removeFromBasket(product, q) {
       url = 'http://localhost:3000/basket/' + id;
       urlRender = 'http://localhost:3000/basket';
     }
-
    // Ищем товар в корзине
    $.ajax({
      url: url,
@@ -146,8 +145,10 @@ function removeFromBasket(product, q) {
           type: 'DELETE',
           success: function() {
             renderBasketProduct(urlRender);
-            if ($('.myAccount').attr('id')) {
-              renderShoppingCartProducts(urlRender);
+            if ($('.shoppingCartProductWrap').length !== 0) {
+              if ($('.myAccount').attr('id')) {
+                renderShoppingCartProducts(urlRender);
+              }
             }
           },
           error: function() {
@@ -166,8 +167,10 @@ function removeFromBasket(product, q) {
           }),
           success: function() {
             renderBasketProduct(urlRender);
-            if ($('.myAccount').attr('id')) {
-              renderShoppingCartProducts(urlRender);
+            if ($('.shoppingCartProductWrap').length !== 0) {
+              if ($('.myAccount').attr('id')) {
+                renderShoppingCartProducts(urlRender);
+              }
             }
           },
           error: function() {
@@ -225,7 +228,6 @@ function decreaseBase($product, q) {
  * @param {int} q - Количество купленного товара
  */
 function increaseBase(id, q) {
-  
   // Находим товар на складе
   $.ajax({
     url: 'http://localhost:3000/products/' + id,
@@ -306,6 +308,9 @@ function renderBasketProduct(url) {
         $('#userBasketSum').text('$' + 0);
         $('#quantityProduct').addClass('active').text(0);
       }
+      if (!$('.myAccount').attr('id')) {
+        $('.userBasketGoToCart').css('display', 'none');
+      }
     },
   });
 }
@@ -357,6 +362,7 @@ function renderBasketProduct(url) {
         increaseBase($shoppingAction.attr('id'), q);
       }
     });
+
     
   });
 })(jQuery);
