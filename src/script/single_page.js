@@ -135,7 +135,7 @@ function setSession() {
       });
     });
 
-    // Выбор размера
+    // Выводим перечень размеров 
     $('.chooseSize').on('click', function() {
       $('.chooseCategory__size').empty().addClass('active');
       $('.chooseCategory__color').empty().removeClass('active');
@@ -161,6 +161,7 @@ function setSession() {
       }
     });
 
+    // Выбиаем размер из перечняразмеров
     $('.chooseCategory__size').on('click', 'li', function() {
       var text = $(event.target).text();
       var id = $(event.target).attr('id');
@@ -169,16 +170,20 @@ function setSession() {
       $('#detChooseSize').removeAttr('open');
     });
 
-    $('.addToCarCollectionWrap').on('click', function() {
+    // После выбора вариантов товара (если выбран хотя бы цвет) при нажатии на кнопку "Add to Cart" выводим сообщение о параметрах выбранного товара
+    $('.addToCarCollectiontWrap').on('click', function() {
       if ($('.chooseColor').attr('id')) {
         var color = $('.chooseColor').text();
         var size = $('.chooseSize').text();
         var quantity = $('#chooseQuantity').val();
-        $('.addToCarCollection').remove();
-        $('.addToCarCollectionWrap').text('Product color: ' + color + ', size: ' + size + ', quantity: ' + quantity + ' is in your cart');
+        var $block = $('<div />', {id: 'addToCartCollectionText'}).text('Product color: ' + color + ', size: ' + size + ', quantity: ' + quantity + ' is in your cart');
+        $('.addToCarCollectiontWrap').append($block);
+        $block.fadeOut(5000);
+
         }
       event.preventDefault();
     });
+
 
   });
 })(jQuery);

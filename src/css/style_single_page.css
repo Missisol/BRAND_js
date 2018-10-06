@@ -1410,7 +1410,7 @@ body {
   background-color: #2b66e4;
   margin-right: 13px;
 }
-.addToCarCollectionWrap {
+.addToCarCollectiontWrap {
   margin-top: 28px;
 }
 .addToCartCollection {
@@ -1444,6 +1444,12 @@ body {
           box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.16);
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+#addToCartCollectionText {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4a4a4a;
 }
 .youMayLikeAlso {
   padding-top: 119px;
