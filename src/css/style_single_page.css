@@ -1445,6 +1445,12 @@ body {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
+#addToCartCollectionText {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4a4a4a;
+}
 .youMayLikeAlso {
   padding-top: 119px;
   padding-bottom: 34px;

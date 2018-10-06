@@ -70,7 +70,7 @@
       "gender": "f",
       "id": 13,
       "cookie": "sss=ssssss; expires=; path=/; domain=",
-      "session": "on"
+      "session": "off"
     }
   ],
   "userBasket": [
@@ -126,7 +126,7 @@
       "min_url": "images/product/man_product_3_min.jpg",
       "md_url": "images/shopping_cart/man_product_3_md.jpg",
       "src": "images/product/man_product_3.jpg",
-      "quantity": 12,
+      "quantity": 14,
       "brand": "Burberry",
       "color": "red"
     },
