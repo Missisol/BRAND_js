@@ -171,14 +171,14 @@ function setSession() {
     });
 
     // После выбора вариантов товара (если выбран хотя бы цвет) при нажатии на кнопку "Add to Cart" выводим сообщение о параметрах выбранного товара
-    $('.addToCarCollectiontWrap').on('click', function() {
+    $('.addToCarCollectionWrap').on('click', function() {
       if ($('.chooseColor').attr('id')) {
         var color = $('.chooseColor').text();
         var size = $('.chooseSize').text();
         var quantity = $('#chooseQuantity').val();
         var $block = $('<div />', {id: 'addToCartCollectionText'}).text('Product color: ' + color + ', size: ' + size + ', quantity: ' + quantity + ' is in your cart');
-        $('.addToCarCollectiontWrap').append($block);
-        $block.fadeOut(5000);
+        $('.addToCarCollectionWrap').append($block);
+        $block.fadeOut(4000);
 
         }
       event.preventDefault();
