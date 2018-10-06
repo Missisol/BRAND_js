@@ -255,6 +255,13 @@ function setSession() {
       event.preventDefault();
     });
 
+    $('.categoryDetails').on('click', function() {
+      var $target = $(event.target).parents('.categoryDetails');
+      if ($($target).attr('open')) {
+        $($target).removeAttr('open');
+      } else $($target).attr('open', 'open');
+    });
+
   });
 })(jQuery);
 
