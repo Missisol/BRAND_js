@@ -10,7 +10,7 @@
       "gender": "m",
       "id": 1,
       "cookie": "admin=adminus; expires=; path=/; domain=",
-      "session": "off"
+      "session": "on"
     },
     {
       "name": "aaa",
