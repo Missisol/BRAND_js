@@ -1,8 +1,13 @@
 {
-  "name": "BRAND_js",
+  "name": "brand",
   "version": "1.0.0",
-  "description": "",
+  "description": "online store",
   "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,15 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/Missisol/BRAND_js.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Missisol/BRAND_js/issues"
   },
-  "homepage": "https://github.com/Missisol/BRAND_js#readme",
-  "dependencies": {
-    "jquery": "^3.3.1",
-    "slick-carousel": "^1.8.1"
-  }
+  "homepage": "https://github.com/Missisol/BRAND_js#readme"
 }
