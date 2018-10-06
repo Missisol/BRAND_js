@@ -169,13 +169,13 @@ function setSession() {
       $('#detChooseSize').removeAttr('open');
     });
 
-    $('.addToCarCollectiontWrap').on('click', function() {
+    $('.addToCarCollectionWrap').on('click', function() {
       if ($('.chooseColor').attr('id')) {
         var color = $('.chooseColor').text();
         var size = $('.chooseSize').text();
         var quantity = $('#chooseQuantity').val();
         $('.addToCarCollection').remove();
-        $('.addToCarCollectiontWrap').text('Product color: ' + color + ', size: ' + size + ', quantity: ' + quantity + ' is in your cart');
+        $('.addToCarCollectionWrap').text('Product color: ' + color + ', size: ' + size + ', quantity: ' + quantity + ' is in your cart');
         }
       event.preventDefault();
     });
