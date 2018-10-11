@@ -10,8 +10,6 @@ var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
-var watch = require('gulp-watch');
-
 
 // Компилируем less в css
 gulp.task('less', function() {
