@@ -1,20 +1,3 @@
-// Правила проверки данных в полях формы регистрации
-// var rules = {
-//   name: /[a-zа-я]+/i,
-//   password: /[\wа-я]{6}/,
-//   creditCard: /^\d{7}-\d{4}-\d{6}-\d{3}$/,
-//   email: /^[a-z0-9]+[.-]?[a-z0-9]+@[a-z]+\.[a-z]+/i,
-// };
-
-// Подсказки для пользователя при неуспешной валидации полей формы регистрации
-// var message = {
-//   empty: 'Поле не должно быть пустым',
-//   name: 'Поле должно содержать только буквы',
-//   password: 'Длина пароля должна быть не меньше 6 символов',
-//   creditCard: 'Введите номер карты в формате 1234567-1234-123456-123',
-//   email: 'Введите e-mail в формате mymail@mail.ru или my.mail@mail.ru или my_mail@mail.ru',
-// };
-
 /**
  *  Отображает товары в личном кабинете пользователя
  */
@@ -114,24 +97,6 @@ function setSession() {
     }
   });
 }
-
-/**
- * В случае неуспешной валидации полей формы регистрации устанавливает класс 'invalid'
- * и создает элемент с подсказкой для правильного заполнения полей
- * @param {string} message - подсказка для пользователя
- * @param {HTMLElement} inputEl - Поле, по которому валидация неуспешна 
- */
-// function setInvalidField(message, inputEl) {
-//   $(inputEl).addClass('invalid');
-//   var $hintWrap = $(inputEl).next('.invalid-feedback');
-//   if ($hintWrap.length === 0) {
-//     $hintWrap = $('<div />', {class:'invalid-feedback'}).text(message);
-//     $hintWrap.insertAfter(inputEl);
-//   } else {
-//     $hintWrap.text(message);
-//   }
-// }
-
 
 /**
  * Считает количество товаров в корзине и создает счетчик
@@ -256,58 +221,6 @@ function makeAppruveList() {
       $('.grandtotal').text('$' + totalSum);
     });
 
-    // По клику на кнопку "My Account" вызываем меню личного кабинета
-    // $('.myAccount').on('click', function(e) {
-    //   if ($('.myAccountSignIn').attr('class') !== 'active') {
-    //     $('.myAccountSignIn').addClass('active');
-    //   }
-    //   e.preventDefault();
-    // });
-
-    // По клику на крестик или вне формы закрываем форму входа в личный кабинет
-    // $('body').on('click', function(e) {
-    //   var $formElems = $(e.target).parent('.myAccountSignIn');
-    //   var $button = $(e.target).parents('.myAccount');
-    //   var close = $(e.target).hasClass('myAccountSignIn__close');
-
-    //   if ($formElems.length === 0 && $button.length === 0) {
-    //     if ($('.myAccountSignIn.active')) {
-    //       $('.myAccountSignIn').removeClass('active');
-    //     } 
-    //   } else if (close === true) {
-    //     if ($('.myAccountSignIn.active')) {
-    //       $('.myAccountSignIn').removeClass('active');
-    //     }
-    //   }
-    // });
-
-    // По клику на кнопку "Log out" удаляем на кнопке "MyAccount" id пользователя и удаляем товары в личном кабинете
-    // $('#logout').on('click', function(e) {
-    //   var userid = $('.myAccount').attr('id').slice(6);
-    //   $.ajax({
-    //     url: 'http://localhost:3000/reg/' + userid,
-    //     type: 'PATCH',
-    //     headers: {
-    //       'content-type': 'application/json',
-    //     },
-    //     data: JSON.stringify({
-    //       session: 'off',
-    //     }),
-    //     success: function() {
-    //       $('.myAccount').removeAttr('id');
-    //       $('.shoppingCartProductWrap').empty();
-    //       $('#logout').attr('disabled', 'disabled').removeClass('registerForm__submit').addClass('registerForm__disabled');
-    //       $('#logout').empty().text('Вы вышли из личного кабинета');
-    //       $('#editData, #writeReview, #backToShopping').attr('disabled', 'disabled').removeClass('registerForm__submit').text('').addClass('editData__logout');
-    //     },
-    //     error: function() {
-    //       console.log('error');
-    //     }
-    //   });
-    //   e.preventDefault();
-    // });
-
-   
     // Удаляем товары из личного кабинета по клику на крестик
     $('.shoppingCartProductWrap').on('click', function(e) {
       var $action = $(event.target).parent('.action');
