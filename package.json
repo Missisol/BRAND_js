@@ -1,0 +1,38 @@
+{
+  "name": "brand",
+  "version": "1.0.0",
+  "description": "online store",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-less": "^4.0.1",
+    "gulp-uglify": "^3.0.1",
+    "gulp-useref": "^3.1.5",
+    "gulp-watch": "^5.0.1",
+    "imagemin-pngquant": "^6.0.0"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Missisol/BRAND_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Missisol/BRAND_js/issues"
+  },
+  "homepage": "https://github.com/Missisol/BRAND_js#readme"
+}

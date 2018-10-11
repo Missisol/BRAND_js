@@ -95,7 +95,16 @@
       "regId": "13"
     }
   ],
-  "basket": [],
+  "basket": [
+    {
+      "id": 1,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/product/man_product_1_min.jpg",
+      "md_url": "images/shopping_cart/product_cart_1.jpg",
+      "quantity": 1
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -104,7 +113,7 @@
       "min_url": "images/product/man_product_1_min.jpg",
       "md_url": "images/shopping_cart/product_cart_1.jpg",
       "src": "images/product/man_product_1.jpg",
-      "quantity": 10,
+      "quantity": 9,
       "brand": "Gucci",
       "color": "red"
     },
