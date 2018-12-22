@@ -1,89 +1,101 @@
-var gulp = require('gulp');
-var less = require('gulp-less');
-var path = require('path');
-var autoprefixer = require('gulp-autoprefixer');
-var gulpIf = require('gulp-if');
-var del = require('del');
-var browserSync = require('browser-sync');
-var useref = require('gulp-useref');
-var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-clean-css');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
+'use strict';
 
-// Компилируем less в css
-gulp.task('less', function() {
-  return gulp.src('src/less/*.less')
-  .pipe(less({
-    paths: [path.join('src/less/_*.less', 'less', 'includes')]
-  }))
-  .pipe(gulp.dest('src/css'))
-  .pipe(browserSync.reload({stream: true}));
-});
+const gulp = require('gulp');
+const {watch, series, parallel} = require('gulp');
+const less = require('gulp-less');
+const path = require('path');
+const gulpIf = require('gulp-if');
+const del = require('del');
+const browserSync = require('browser-sync').create();
+const useref = require('gulp-useref');
+const uglify = require('gulp-uglify');
+const minifyCss = require('gulp-clean-css');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
+const newer = require('gulp-newer');
 
-// Добавляем браузерные префиксы
-gulp.task('autoprefix', function() {
-  return gulp.src('src/less/*.less')
-  .pipe(autoprefixer({
-    browsers: ['last 2 version'],
-    cascade: false
-  }))
-  .pipe(gulp.dest('src/css'));
+const LessAutoprefix = require('less-plugin-autoprefix');
+const autoprefix = new LessAutoprefix({browser: ['last 2 version']});
+
+// Транспилируем less в css
+gulp.task('less', function () {
+  return gulp.src('src/less/*.less', {since: gulp.lastRun('less')})
+    .pipe(less({
+        paths: [path.join('src/less/_*.less', 'less', 'includes')]
+      },
+      {
+        plugins: [autoprefix]
+      }))
+    .pipe(gulp.dest('src/css'))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 // Обновляем страницу браузера при изменениях
-gulp.task('browserSync', function() {
-  browserSync({
-    server: {
-      baseDir: 'src',
-    }
+gulp.task('serve', function () {
+  browserSync.init({
+    server: 'dist',
   });
-});
 
-// Следим за изменениями в файлах html, js и less
-gulp.task('watch:src', ['browserSync'], function() {
-  gulp.watch('src/less/*.less', ['less']);
-  gulp.watch('src/*.html', browserSync.reload);
-  gulp.watch('src/script/*.js', browserSync.reload);
+  // Автоперезагрузк
+  browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
 });
 
 // Очищаем директорию dist
-gulp.task('clean', function() {
-return del('dist');
+gulp.task('clean', function () {
+  return del('dist');
 });
 
 // Оптимизируем файлы (объединяем и сжимаем)
-gulp.task('minify', function() {
-  return gulp.src('src/*.html')
-  .pipe(useref())
-  .pipe(gulpIf('*.js', uglify()))
-  .pipe(gulpIf('*.css', minifyCss()))
-  .pipe(gulp.dest('dist'));
+gulp.task('minify', function () {
+  return gulp.src('src/*.html', {since: gulp.lastRun('minify')})
+    .pipe(newer('dist'))
+    .pipe(useref())
+    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulpIf('*.css', minifyCss()))
+    .pipe(gulp.dest('dist'));
 });
 
-// Собираем картинки
-gulp.task('images:build', function() {
-  gulp.src('src/images/**/*.*')
-  .pipe(imagemin({
-    progressive: true,
-    svgoPlugins: [{removeViewBox: false}],
-    use: [pngquant()],
-    interlaced: true
-  }))
-  .pipe(gulp.dest('dist/images/'));
+// Собираем и минимизируем изображения
+gulp.task('images:build', function () {
+  return gulp.src('src/images/**/*.*', {since: gulp.lastRun('images:build')})
+    .pipe(newer('dist/images'))
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()],
+      interlaced: true
+    }))
+    .pipe(gulp.dest('dist/images'));
 });
 
-// Собираем шрифты
-gulp.task('fonts:build', function() {
-  gulp.src('src/fonts')
-  .pipe(gulp.dest('dist/fonts'));
+// Переносим шрифты
+gulp.task('fonts:build', function () {
+  return gulp.src('src/fonts', {since: gulp.lastRun('fonts:build')})
+    .pipe(newer('dist/fonts'))
+    .pipe(gulp.dest('dist/fonts'));
+});
+
+// Переносим директорию assets
+gulp.task('assets', function () {
+  return gulp.src('src/assets/**', {since: gulp.lastRun('assets')})
+    .pipe(newer('dist/assets'))
+    .pipe(gulp.dest('dist/assets'))
+});
+
+gulp.task('watch', function () {
+  watch('src/less/*.less', series('less'));
+
+  watch('src/*.html', series('minify'));
+
+  watch('src/assets/**', series('assets'));
+
+  watch('src/images/**/*.*', series('images:build'));
+
+  watch('src/fonts', series('fonts:build'));
 });
 
 // Собираем файлы проекта в папку dist
-gulp.task('build', [
-  'minify',
-  'images:build',
-  'fonts:build',
-]);
-
+exports.default = series('clean', 'less',
+  parallel('minify', 'images:build', 'fonts:build', 'assets'),
+  parallel('watch', 'serve'));
 
