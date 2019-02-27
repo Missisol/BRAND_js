@@ -10,7 +10,7 @@
       "gender": "m",
       "id": 1,
       "cookie": "admin=adminus; expires=; path=/; domain=",
-      "session": "off"
+      "session": "on"
     },
     {
       "name": "aaa",
@@ -93,6 +93,16 @@
       "src": "images/product/man_product_1.jpg",
       "quantity": 2,
       "regId": "13"
+    },
+    {
+      "id": 16,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_7_min.jpg",
+      "md_url": "images/shopping_cart/product_7_md.jpg",
+      "src": "images/index/feturedItems/product_7.jpg",
+      "quantity": 1,
+      "regId": "1"
     }
   ],
   "basket": [
@@ -102,6 +112,14 @@
       "price": "52.00",
       "min_url": "images/product/man_product_1_min.jpg",
       "md_url": "images/shopping_cart/product_cart_1.jpg",
+      "quantity": 1
+    },
+    {
+      "id": 15,
+      "name": "Mango  People  T-shir",
+      "price": "52.00",
+      "min_url": "images/index/feturedItems/product_6_min.jpg",
+      "md_url": "images/shopping_cart/man_product_7_md.jpg",
       "quantity": 1
     }
   ],
@@ -248,7 +266,7 @@
       "min_url": "images/index/feturedItems/product_6_min.jpg",
       "md_url": "images/shopping_cart/man_product_7_md.jpg",
       "src": "images/index/feturedItems/product_6.jpg",
-      "quantity": 12
+      "quantity": 11
     },
     {
       "id": 16,
@@ -257,7 +275,7 @@
       "min_url": "images/index/feturedItems/product_7_min.jpg",
       "md_url": "images/shopping_cart/product_7_md.jpg",
       "src": "images/index/feturedItems/product_7.jpg",
-      "quantity": 12
+      "quantity": 11
     },
     {
       "id": 17,

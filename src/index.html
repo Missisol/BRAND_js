@@ -4,28 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home BRAND</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <!-- build:css css/index.css-->
     <link rel="stylesheet" href="css/style_index.css">
     <!-- endbuild -->
 </head>
 <body>
-    <div class="bigWrap">
-        <div class="containerContent">
-            <header>
-                <div class="header">
-                    <div class="container headerWrap">
-                        <div class="headerLeft">
-                            <a class="logo" href="index.html">
-                                <img src="images/index/logo_brand.png" alt="logo">
-                                <span>BRAN</span>
-                            </a>
-                            <div class="browse">
-                                <details>
-                                    <summary class="browseSummary">Browse</summary>
-                                    <ul class="browseList">
-                                        <li><div class="browseList__triangle"></div></li>    
-                                        <li><h3>Women</h3></li>
+<div class="bigWrap">
+    <div class="containerContent">
+        <header>
+            <div class="header">
+                <div class="container headerWrap">
+                    <div class="headerLeft">
+                        <a class="logo" href="index.html">
+                            <img src="images/index/logo_brand.png" alt="logo">
+                            <span>BRAN</span>
+                        </a>
+                        <div class="browse">
+                            <details>
+                                <summary class="browseSummary">Browse</summary>
+                                <ul class="browseList">
+                                    <li>
+                                        <div class="browseList__triangle"></div>
+                                    </li>
+                                    <li><h3>Women</h3></li>
+                                    <li><a href="#">Dresses</a></li>
+                                    <li><a href="#">Tops</a></li>
+                                    <li><a href="#">Sweaters/Knits</a></li>
+                                    <li><a href="#">Jackets/Coats</a></li>
+                                    <li><a href="#">Blazers</a></li>
+                                    <li><a href="#">Denim</a></li>
+                                    <li><a href="#">Leggings/Pants</a></li>
+                                    <li><a href="#">Skirts/Shorts</a></li>
+                                    <li><a href="#">Accessories</a></li>
+                                    <li><h3>Men</h3></li>
+                                    <li><a href="#">Tees/Tank tops</a></li>
+                                    <li><a href="#">Shirts/Polos</a></li>
+                                    <li><a href="#">Sweaters</a></li>
+                                    <li><a href="#">Sweatshirts/Hoodies</a></li>
+                                    <li><a href="#">Blazers</a></li>
+                                    <li><a href="#">Jackets/vests</a></li>
+                                </ul>
+                            </details>
+                        </div>
+                        <form action="#">
+                            <input type="search" name="searchHeader" placeholder="Search for Item...">
+                            <button type="submit" class="buttonSearch">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="headerRight">
+                        <div class="userBasket">
+                            <a href="#"><img src="images/index/basket_black.svg" alt="basket"></a>
+                            <div id="quantityProduct" class="userBasket__quantityProduct">2</div>
+                            <div class="userBasketdropDown">
+                                <div class="userBasketdropDown__triangle"></div>
+                                <div class="userBasketdropDown__userBasketProductsWrap">
+                                </div>
+                                <div class="totalSum">
+                                    <p>TOTAL</p>
+                                    <p id="userBasketSum">$500.00</p>
+                                </div>
+                                <a class="userBasketCheckout" href="checkout.html">Checkout</a>
+                                <a class="userBasketGoToCart" href="shopping_cart.html">Go to cart</a>
+                            </div>
+                        </div>
+                        <div class="myAccount">
+                            <span>My Account</span><i class="fas fa-sort-down"></i>
+                        </div>
+                        <form class="registerForm myAccountOut">
+                            <div class="registerForm__triangle"></div>
+                            <span class="registerForm__close">&times;</span>
+                            <label class="myAccountOut__label registerForm__label">Username
+                                <input type="text" class="myAccountOut__input registerForm__input"
+                                       data-validation_rule="usercheck" name="username">
+                            </label>
+                            <label class="myAccountOut__label registerForm__label">Password
+                                <input type="text" class="myAccountOut__input registerForm__input"
+                                       data-validation_rule="usercheck" name="userpass">
+                            </label>
+                            <div class="myAccountOut__checkboxWrap registerForm__checkboxWrap">
+                                <label class="myAccountOut__label registerForm__label">
+                                    <input type="checkbox" name="cookie" class="myAccountOut_remember remember">
+                                    Remember
+                                </label>
+                            </div>
+                            <button type="submit" name="submitSignIn" id="submitSignIn"
+                                    class="myAccountOut__submit registerForm__submit">Sign in
+                            </button>
+                            <button id="goToSignUp" class="registerForm__signUp registerForm__submit">Sign Up</button>
+                            <a id="goToYourCart" class="registerForm__signUp registerForm__submit"
+                               href="shopping_cart.html">Go to your cart</a>
+                        </form>
+                        <div class="registerForm myAccountIn">
+                            <div class="registerForm__triangle"></div>
+                            <span class="myAccountIn__close registerForm__close">&times;</span>
+                            <a id="goToYourCartIn" class="registerForm__signUp registerForm__submit"
+                               href="shopping_cart.html">Go to your cart</a>
+                            <button id="editData" class="registerForm__signUp registerForm__submit">Edit data</button>
+                            <button id="logout" class="myAccountIn__submit registerForm__submit">log out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <div class="container mainMenu">
+                    <ul class="menu">
+                        <li><a class="activePage" href="#">Home</a></li>
+                        <li><a href="products.html">Man</a>
+                            <div class="megaMenu">
+                                <div class="megaMenu__triangle"></div>
+                                <div class="megaMenuColumn">
+                                    <h3>Women</h3>
+                                    <ul>
                                         <li><a href="#">Dresses</a></li>
                                         <li><a href="#">Tops</a></li>
                                         <li><a href="#">Sweaters/Knits</a></li>
@@ -35,429 +128,362 @@
                                         <li><a href="#">Leggings/Pants</a></li>
                                         <li><a href="#">Skirts/Shorts</a></li>
                                         <li><a href="#">Accessories</a></li>
-                                        <li><h3>Men</h3></li>
-                                        <li><a href="#">Tees/Tank tops</a></li>
-                                        <li><a href="#">Shirts/Polos</a></li>
-                                        <li><a href="#">Sweaters</a></li>
-                                        <li><a href="#">Sweatshirts/Hoodies</a></li>
-                                        <li><a href="#">Blazers</a></li>
-                                        <li><a href="#">Jackets/vests</a></li>
                                     </ul>
-                                </details>
-                            </div>
-                            <form action="#">
-                                <input type="search" name="searchHeader" placeholder="Search for Item...">
-                                <button type="submit" class="buttonSearch">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
-                        </div>
-                        <div class="headerRight">
-                            <div class="userBasket">
-                                <a href="#"><img src="images/index/basket_black.svg" alt="basket"></a>
-                                <div id="quantityProduct" class="userBasket__quantityProduct">2</div>
-                                <div class="userBasketdropDown">
-                                    <div class="userBasketdropDown__triangle"></div>
-                                    <div class="userBasketdropDown__userBasketProductsWrap">
-                                    </div>
-                                    <div class="totalSum">
-                                        <p>TOTAL</p>
-                                        <p id="userBasketSum">$500.00</p>
-                                    </div>
-                                    <a class="userBasketCheckout" href="checkout.html">Checkout</a>
-                                    <a class="userBasketGoToCart" href="shopping_cart.html">Go to cart</a>
+                                </div>
+                                <div class="megaMenuColumn">
+                                    <h3>Women</h3>
+                                    <ul>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Tops</a></li>
+                                        <li><a href="#">Sweaters/Knits</a></li>
+                                        <li><a href="#">Jackets/Coats</a></li>
+                                    </ul>
+                                    <h3>Women</h3>
+                                    <ul>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Tops</a></li>
+                                        <li><a href="#">Sweaters/Knits</a></li>
+                                    </ul>
+                                </div>
+                                <div class="megaMenuColumn">
+                                    <h3>Women</h3>
+                                    <ul>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Tops</a></li>
+                                        <li><a href="#">Sweaters/Knits</a></li>
+                                        <li><a href="#">Jackets/Coats</a></li>
+                                    </ul>
+                                    <a class="promoPhoto" href="#">
+                                        <img src="images/index/promo_megamenu.jpg" alt="promo">
+                                    </a>
                                 </div>
                             </div>
-                            <div class="myAccount">
-                                <span>My Account</span><i class="fas fa-sort-down"></i>
-                            </div>
-                            <form class="registerForm myAccountOut">
-                                <div class="registerForm__triangle"></div>
-                                <span class="registerForm__close">&times;</span>
-                                <label class="myAccountOut__label registerForm__label">Username
-                                    <input type="text" class="myAccountOut__input registerForm__input" data-validation_rule="usercheck" name="username">
-                                </label>
-                                <label class="myAccountOut__label registerForm__label">Password
-                                    <input type="text" class="myAccountOut__input registerForm__input" data-validation_rule="usercheck" name="userpass">
-                                </label>
-                                <div class="myAccountOut__checkboxWrap registerForm__checkboxWrap">
-                                    <label class="myAccountOut__label registerForm__label">
-                                        <input type="checkbox" name="cookie" class="myAccountOut_remember remember"> Remember
-                                    </label>
-                                </div>
-                                <button type="submit" name="submitSignIn" id="submitSignIn" class="myAccountOut__submit registerForm__submit" >Sign in</button>
-                                <button id="goToSignUp" class="registerForm__signUp registerForm__submit" >Sign Up</button>
-                                <a id="goToYourCart" class="registerForm__signUp registerForm__submit" href="shopping_cart.html">Go to your cart</a>
-                            </form>
-                            <div class="registerForm myAccountIn">
-                                <div class="registerForm__triangle"></div>
-                                <span class="myAccountIn__close registerForm__close">&times;</span>
-                                <a id="goToYourCartIn" class="registerForm__signUp registerForm__submit" href="shopping_cart.html">Go to your cart</a>
-                                <button id="editData" class="registerForm__signUp registerForm__submit" >Edit data</button>
-                                <button id="logout" class="myAccountIn__submit registerForm__submit" >log out</button>
-                            </div>
-                        </div>
+                        </li>
+                        <li><a href="single_page.html">Women</a></li>
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">Accoseriese</a></li>
+                        <li><a href="#">Featured</a></li>
+                        <li><a href="#">Hot Deals</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <section>
+            <div class="theBrand">
+                <div class="container imageBrand">
+                    <div class="textBrand">
+                        <h2>THE BRAND</h2>
+                        <h3>OF LUXERIOUS <span>FASHION</span></h3>
                     </div>
                 </div>
-                <nav>
-                    <div class="container mainMenu">
-                        <ul class="menu">
-                            <li><a class="activePage" href="#">Home</a></li>
-                            <li><a href="products.html">Man</a>
-                                <div class="megaMenu">
-                                    <div class="megaMenu__triangle"></div>
-                                    <div class="megaMenuColumn">
-                                        <h3>Women</h3>
-                                        <ul>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Tops</a></li>
-                                            <li><a href="#">Sweaters/Knits</a></li>
-                                            <li><a href="#">Jackets/Coats</a></li>
-                                            <li><a href="#">Blazers</a></li>
-                                            <li><a href="#">Denim</a></li>
-                                            <li><a href="#">Leggings/Pants</a></li>
-                                            <li><a href="#">Skirts/Shorts</a></li>
-                                            <li><a href="#">Accessories</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="megaMenuColumn">
-                                        <h3>Women</h3>
-                                        <ul>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Tops</a></li>
-                                            <li><a href="#">Sweaters/Knits</a></li>
-                                            <li><a href="#">Jackets/Coats</a></li>
-                                        </ul>
-                                        <h3>Women</h3>
-                                        <ul>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Tops</a></li>
-                                            <li><a href="#">Sweaters/Knits</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="megaMenuColumn">
-                                        <h3>Women</h3>
-                                        <ul>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Tops</a></li>
-                                            <li><a href="#">Sweaters/Knits</a></li>
-                                            <li><a href="#">Jackets/Coats</a></li>
-                                        </ul>
-                                        <a class="promoPhoto" href="#">
-                                            <img src="images/index/promo_megamenu.jpg" alt="promo">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="single_page.html">Women</a></li>
-                            <li><a href="#">Kids</a></li>
-                            <li><a href="#">Accoseriese</a></li>
-                            <li><a href="#">Featured</a></li>
-                            <li><a href="#">Hot Deals</a></li>
-                        </ul>
+            </div>
+        </section>
+        <div class="category">
+            <div class="container categoryImage">
+                <div class="ctgItem forMen">
+                    <a href="#">
+                        <img src="images/index/category/for_men.jpg" alt="for men">
+                        <div class="ctgText">
+                            hOT dEAL<br><span>FOR MEN</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="ctgItem accesories">
+                    <a href="#">
+                        <img src="images/index/category/accesories.jpg" alt="accesories">
+                        <div class="ctgText">
+                            LUXIROUS & trendy<br><span>ACCESORIES</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="ctgItem women">
+                    <a href="#">
+                        <img src="images/index/category/women.jpg" alt="women">
+                        <div class="ctgText">
+                            30% offer<br><span>women</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="ctgItem for_kids">
+                    <a href="#">
+                        <img src="images/index/category/for_kids.jpg" alt="for kids">
+                        <div class="ctgText">
+                            new arrivals<br><span>FOR kids</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="feturedItems">
+                <div class=" container feturedItemsWrap">
+                    <div class="headFeturedItems">
+                        <h3>Fetured Items</h3>
+                        <p>Shop for items based on what we featured in this week</p>
+                    </div>
+                    <div class="products">
+                    </div>
+                    <a class="buttonItem" href="#">
+                        <span>Browse All Product</span>
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <div class="offer">
+            <div class="container offerWrap">
+                <div class="imageOffer">
+                    <a href="#">
+                        <h2>30%<span>OFFER</span></h2>
+                        <h3>FOR WOMEN</h3>
+                    </a>
+                </div>
+                <div class="plusesOffer">
+                    <div class="iconPluses">
+                        <a href="#">
+                            <img src="images/index/offer/delivery.svg" alt="delivery">
+                        </a>
+                        <a href="#">
+                            <img src="images/index/offer/sales.svg" alt="sales">
+                        </a>
+                        <a href="#">
+                            <img src="images/index/offer/quality.svg" alt="quality">
+                        </a>
+                    </div>
+                    <div class="textPluses">
+                        <article>
+                            <div class="oneTextPluses">
+                                <a href="#">
+                                    <h4>Free Delivery</h4>
+                                </a>
+                                <p>
+                                    Worldwide delivery on all.
+                                    Authorit tively morph next-generation
+                                    innov tion with extensive models.
+                                </p>
+                            </div>
+                        </article>
+                        <article>
+                            <div class="oneTextPluses">
+                                <a href="#">
+                                    <h4>Sales & discounts</h4>
+                                </a>
+                                <p>
+                                    Worldwide delivery on all.
+                                    Authorit tively morph next-generation
+                                    innov tion with extensive models.
+                                </p>
+                            </div>
+                        </article>
+                        <article>
+                            <div class="oneTextPluses">
+                                <a href="#">
+                                    <h4>Quality assurance</h4>
+                                </a>
+                                <p>
+                                    Worldwide delivery on all.
+                                    Authorit tively morph next-generation
+                                    innov tion with extensive models.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subscribe">
+            <div class="subscribeImgBackground">
+                <div class="container subscribeWrap">
+                    <div class="subscribeLeft">
+                        <div class="imagesubscribeLeft">
+                            <img src="images/index/photo.png" alt="photo">
+                        </div>
+                        <div class="textsubscribeLeft">
+                            <p class="comment">
+                                “Vestibulum quis porttitor dui! Quisque viverra nunc mi,
+                                a pulvinar purus condimentum a.
+                                Aliquam condimentum mattis neque sed pretium”
+                            </p>
+                            <p class="author">
+                                Bin Burhan<br>
+                                <span>Dhaka, Bd</span>
+                            </p>
+                            <div class="line"><a href="#"></a></div>
+                            <div class="line colorBrand"><a href="#"></a></div>
+                            <div class="line"><a href="#"></a></div>
+                        </div>
+                    </div>
+                    <div class="subscribeRight">
+                        <h2>Subscribe</h2>
+                        <h3>FOR OUR NEWLETTER AND PROMOTION</h3>
+                        <form action="#">
+                            <input type="email" name="userEmail" placeholder="Enter Your Email" required>
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer">
+            <div class="container footerWrap">
+                <div class="logoFooter">
+                    <a class="logo" href="index.html">
+                        <img src="images/index/logo_brand.png" alt="logo">
+                        <span>BRAN</span>
+                    </a>
+                    <div class="textLogoFooter">
+                        <p>
+                            Objectively transition extensive data rather than cross
+                            functional solutions. Monotonectally syndicate multidisciplinary
+                            materials before go forward benefits. Intrinsicly syndicate an
+                            expanded array of processes and cross-unit partnerships.
+                        </p>
+                        <p>
+                            Efficiently plagiarize 24/365 action items and focused infomediaries.
+                            Distinctively seize superior initiatives for wireless technologies.
+                            Dynamically optimize.<br>
+
+                            Objectively strategize seamless relationships via resource
+                            sucking testing procedures. Proactively cultivate next-generation
+                            results for value-added methodologies. Dynamically plagiarize
+                            unique methodologies after performance based methodologies.
+                            Monotonectally empower stand-alone mindshare rather than ubiquitous
+                            opportunities. Dynamically orchestrate resource sucking scenarios
+                            after alternative synergy.
+
+                            Compellingly envisioneer corporate methods of empowerment before
+                            standards compliant technologies. Objectively facilitate progressive.
+                        </p>
+                    </div>
+                </div>
+                <nav class="menuFooter">
+                    <div class="menuFooterColumn">
+                        <h3>COMPANY</h3>
+                        <div class="menuItems">
+                            <a href="#">Home </a>
+                            <a href="#">Shop</a>
+                            <a href="#">About</a>
+                            <a href="#">How It Works</a>
+                            <a href="#">Contact</a>
+                        </div>
+                    </div>
+                    <div class="menuFooterColumn">
+                        <h3>INFORMATION</h3>
+                        <div class="menuItems">
+                            <a href="#">Tearms & Condition</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">How to Buy</a>
+                            <a href="#">How to Sell</a>
+                            <a href="#">Promotion</a>
+                        </div>
+                    </div>
+                    <div class="menuFooterColumn">
+                        <h3>SHOP CATEGORY</h3>
+                        <div class="menuItems">
+                            <a href="#">Men</a>
+                            <a href="#">Women</a>
+                            <a href="#">Child</a>
+                            <a href="#">Apparel</a>
+                            <a href="#">Brows All</a>
+                        </div>
                     </div>
                 </nav>
-            </header>
-            <section>
-                <div class="theBrand">
-                    <div class="container imageBrand">
-                        <div class="textBrand">
-                            <h2>THE BRAND</h2>
-                            <h3>OF LUXERIOUS <span>FASHION</span></h3>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="category">
-                <div class="container categoryImage">
-                    <div class="ctgItem forMen">
-                        <a href="#">
-                            <img src="images/index/category/for_men.jpg" alt="for men">
-                            <div class="ctgText">
-                                hOT dEAL<br><span>FOR MEN</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="ctgItem accesories">
-                        <a href="#">
-                            <img src="images/index/category/accesories.jpg" alt="accesories">
-                            <div class="ctgText">
-                                LUXIROUS & trendy<br><span>ACCESORIES</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="ctgItem women">
-                        <a href="#">
-                            <img src="images/index/category/women.jpg" alt="women">
-                            <div class="ctgText">
-                                30% offer<br><span>women</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="ctgItem for_kids">
-                        <a href="#">
-                            <img src="images/index/category/for_kids.jpg" alt="for kids">
-                            <div class="ctgText">
-                                new arrivals<br><span>FOR kids</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
-            <section>
-                <div class="feturedItems">
-                    <div class=" container feturedItemsWrap">
-                        <div class="headFeturedItems">
-                            <h3>Fetured Items</h3>
-                            <p>Shop for items based on what we featured in this week</p>
-                        </div>
-                        <div class="products">
-                        </div>
-                        <a class="buttonItem" href="#">
-                            <span>Browse All Product</span>
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
-                    </div>
+        </div>
+        <div class="footerBottom">
+            <div class="container footerBottomWrap">
+                <div class="footerBottomLeft">
+                    <p>&copy; 2017 Brand All Rights Reserved.</p>
                 </div>
-            </section>
-            <div class="offer">
-                <div class="container offerWrap">
-                    <div class="imageOffer">
-                        <a href="#">
-                            <h2>30%<span>OFFER</span></h2> 
-                            <h3>FOR WOMEN</h3>
-                        </a>
-                    </div>
-                    <div class="plusesOffer">
-                        <div class="iconPluses">
-                            <a href="#">
-                                <img src="images/index/offer/delivery.svg" alt="delivery">
-                            </a>
-                            <a href="#">
-                                <img src="images/index/offer/sales.svg" alt="sales">
-                            </a>
-                            <a href="#">
-                                <img src="images/index/offer/quality.svg" alt="quality">
-                            </a>
-                        </div>
-                        <div class="textPluses">
-                            <article>
-                                <div class="oneTextPluses">
-                                    <a href="#">
-                                        <h4>Free Delivery</h4>
-                                    </a>
-                                    <p>
-                                        Worldwide delivery on all. 
-                                        Authorit tively morph next-generation 
-                                        innov tion with extensive models.
-                                    </p>
-                                </div>
-                            </article>
-                            <article>
-                                <div class="oneTextPluses">
-                                    <a href="#">
-                                        <h4>Sales & discounts</h4>
-                                    </a>
-                                    <p>
-                                        Worldwide delivery on all. 
-                                        Authorit tively morph next-generation 
-                                        innov tion with extensive models.
-                                    </p>
-                                </div>
-                            </article>
-                            <article>
-                                <div class="oneTextPluses">
-                                    <a href="#">
-                                        <h4>Quality assurance</h4>
-                                    </a>
-                                    <p>
-                                        Worldwide delivery on all. 
-                                        Authorit tively morph next-generation 
-                                        innov tion with extensive models.
-                                    </p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="subscribe">
-                <div class="subscribeImgBackground">
-                    <div class="container subscribeWrap">
-                        <div class="subscribeLeft">
-                            <div class="imagesubscribeLeft">
-                                <img src="images/index/photo.png" alt="photo">
-                            </div>
-                            <div class="textsubscribeLeft">
-                                <p class="comment">
-                                    “Vestibulum quis porttitor dui! Quisque viverra nunc mi, 
-                                    a pulvinar purus condimentum a. 
-                                    Aliquam condimentum mattis neque sed pretium”  
-                                </p>
-                                <p class="author">
-                                    Bin Burhan<br>
-                                    <span>Dhaka, Bd</span>
-                                </p>
-                                <div class="line"><a href="#"></a></div>
-                                <div class="line colorBrand"><a href="#"></a></div>
-                                <div class="line"><a href="#"></a></div>
-                            </div>
-                        </div>
-                        <div class="subscribeRight">
-                            <h2>Subscribe</h2>
-                            <h3>FOR OUR NEWLETTER AND PROMOTION</h3>
-                            <form action="#">
-                                <input type="email" name="userEmail" placeholder="Enter Your Email" required>
-                                <input type="submit" value="Subscribe">
-                            </form>
-                        </div>
-                    </div>
+                <div class="footerBottomRight">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="footer">
-                <div class="container footerWrap">
-                        <div class="logoFooter">
-                            <a class="logo" href="index.html">
-                                <img src="images/index/logo_brand.png" alt="logo">
-                                <span>BRAN</span>
-                            </a>
-                            <div class="textLogoFooter">
-                                <p>
-                                    Objectively transition extensive data rather than cross 
-                                    functional solutions. Monotonectally syndicate multidisciplinary 
-                                    materials before go forward benefits. Intrinsicly syndicate an 
-                                    expanded array of processes and cross-unit partnerships.
-                                </p>
-                                <p>
-                                    Efficiently plagiarize 24/365 action items and focused infomediaries.
-                                    Distinctively seize superior initiatives for wireless technologies. 
-                                    Dynamically optimize.<br>
-                                    
-                                    Objectively strategize seamless relationships via resource 
-                                    sucking testing procedures. Proactively cultivate next-generation 
-                                    results for value-added methodologies. Dynamically plagiarize 
-                                    unique methodologies after performance based methodologies. 
-                                    Monotonectally empower stand-alone mindshare rather than ubiquitous 
-                                    opportunities. Dynamically orchestrate resource sucking scenarios 
-                                    after alternative synergy.
-                                    
-                                    Compellingly envisioneer corporate methods of empowerment before 
-                                    standards compliant technologies. Objectively facilitate progressive.  
-                                </p>
-                            </div>
-                        </div>
-                        <nav class="menuFooter">
-                            <div class="menuFooterColumn">
-                                <h3>COMPANY</h3>
-                                <div class="menuItems">
-                                    <a href="#">Home </a>
-                                    <a href="#">Shop</a>
-                                    <a href="#">About</a>
-                                    <a href="#">How It Works</a>
-                                    <a href="#">Contact</a>
-                                </div>
-                            </div>
-                            <div class="menuFooterColumn">
-                                <h3>INFORMATION</h3>
-                                <div class="menuItems">
-                                    <a href="#">Tearms & Condition</a>
-                                    <a href="#">Privacy Policy</a>
-                                    <a href="#">How to Buy</a>
-                                    <a href="#">How to Sell</a>
-                                    <a href="#">Promotion</a>
-                                </div>
-                            </div>
-                            <div class="menuFooterColumn">
-                                <h3>SHOP CATEGORY</h3>
-                                <div class="menuItems">
-                                    <a href="#">Men</a>
-                                    <a href="#">Women</a>
-                                    <a href="#">Child</a>
-                                    <a href="#">Apparel</a>
-                                    <a href="#">Brows All</a>
-                                </div>
-                            </div>
-                        </nav>
-                </div>
-            </div>
-            <div class="footerBottom">
-                <div class="container footerBottomWrap">
-                    <div class="footerBottomLeft">
-                        <p>&copy; 2017  Brand  All Rights Reserved.</p>
-                    </div>
-                    <div class="footerBottomRight">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    </footer>
+</div>
+<form class="signUpForm registerForm formOut" name="signUpForm">
+    <span class="signUpForm__close registerForm__close">&times;</span>
+    <label class="signUpForm__label registerForm__label">Name
+        <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="name"
+               placeholder="Enter a username">
+    </label>
+    <label class="signUpForm__label registerForm__label">Surname
+        <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name"
+               name="user_lastname" placeholder="Enter a lastname">
+    </label>
+    <label class="signUpForm__label registerForm__label">Log in
+        <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_login"
+               placeholder="Pick a login name">
+    </label>
+    <label class="signUpForm__label registerForm__label">Password
+        <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="password" name="password"
+               placeholder="Create a password">
+    </label>
+    <label class="signUpForm__label registerForm__label">Credit card number
+        <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="creditCard"
+               name="credit_card" placeholder="Credit card number 1234567-1234-123456-123">
+    </label>
+    <label class="signUpForm__label registerForm__label">E-mail
+        <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="email" name="email"
+               placeholder="youmail@example.ru">
+    </label>
+    <div class="selectWrap">
+        <label class="signUpForm__label registerForm__label" for="gender">Gender</label>
+        <select class="signUpForm__gender registerForm__gender" id="gender" name="gender">
+            <option id="empty">Choose</option>
+            <option value="m">male</option>
+            <option value="f">female</option>
+        </select>
     </div>
-    <form class="signUpForm registerForm formOut" name="signUpForm">
-        <span class="signUpForm__close registerForm__close">&times;</span>
-        <label class="signUpForm__label registerForm__label">Name 
-            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="name" placeholder="Enter a username">
-        </label>
-        <label class="signUpForm__label registerForm__label">Surname
-            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_lastname" placeholder="Enter a lastname">
-        </label>
-        <label class="signUpForm__label registerForm__label">Log in
-            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="name" name="user_login" placeholder="Pick a login name">
-        </label>
-        <label class="signUpForm__label registerForm__label">Password
-            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="password" name="password" placeholder="Create a password">
-        </label>
-        <label class="signUpForm__label registerForm__label">Credit card number
-            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Credit card number 1234567-1234-123456-123">
-        </label>
-        <label class="signUpForm__label registerForm__label">E-mail
-            <input type="text" class="signUpForm__input registerForm__input" data-validation_rule="email" name="email" placeholder="youmail@example.ru">
-        </label>
-        <div class="selectWrap">
-            <label class="signUpForm__label registerForm__label" for="gender" >Gender</label>
-            <select class="signUpForm__gender registerForm__gender" id="gender" name="gender">
-                <option id="empty">Choose</option>
-                <option value="m">male</option>
-                <option value="f">female</option>
-            </select>
-        </div>
-        <button type="submit" name="submitSignUp" id="submit" class="signUpForm__submit registerForm__submit" >Sign up</button>
-    </form>
-    <form class="signUpForm editForm registerForm" name="editForm">
-        <span class="editForm__close signUpForm__close registerForm__close">&times;</span>
-        <label class="signUpForm__label registerForm__label">Name 
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="name" placeholder="Enter new username">
-        </label>
-        <label class="signUpForm__label registerForm__label">Surname
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="user_lastname" placeholder="Enter new lastname">
-        </label>
-        <label class="signUpForm__label registerForm__label">Log in
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name" name="user_login" placeholder="Pick new login name">
-        </label>
-        <label class="signUpForm__label registerForm__label">Password
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="password" name="password" placeholder="Create new password">
-        </label>
-        <label class="signUpForm__label registerForm__label">Credit card number
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="creditCard" name="credit_card" placeholder="Enter credit card number 1234567-1234-123456-123">
-        </label>
-        <label class="signUpForm__label registerForm__label">E-mail
-            <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="email" name="email" placeholder="Enter new email youmail@example.ru">
-        </label>
-        <button type="submit" name="submitEdit" id="submitEdit" class="editForm__submit signUpForm__submit registerForm__submit" >Save data</button>
-    </form>
-    <div class="overlay"></div>
-    
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <!-- build:js script/index.min.js -->
-    <script src="script/index.js"></script>
-    <script src="script/brand.js"></script>
-    <script src="script/signUp_signIn.js"></script>
-    <!-- endbuild -->
+    <button type="submit" name="submitSignUp" id="submit" class="signUpForm__submit registerForm__submit">Sign up
+    </button>
+</form>
+<form class="signUpForm editForm registerForm" name="editForm">
+    <span class="editForm__close signUpForm__close registerForm__close">&times;</span>
+    <label class="signUpForm__label registerForm__label">Name
+        <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name"
+               name="name" placeholder="Enter new username">
+    </label>
+    <label class="signUpForm__label registerForm__label">Surname
+        <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name"
+               name="user_lastname" placeholder="Enter new lastname">
+    </label>
+    <label class="signUpForm__label registerForm__label">Log in
+        <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="name"
+               name="user_login" placeholder="Pick new login name">
+    </label>
+    <label class="signUpForm__label registerForm__label">Password
+        <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="password"
+               name="password" placeholder="Create new password">
+    </label>
+    <label class="signUpForm__label registerForm__label">Credit card number
+        <input type="text" class="editForm__input signUpForm__input registerForm__input"
+               data-validation_rule="creditCard" name="credit_card"
+               placeholder="Enter credit card number 1234567-1234-123456-123">
+    </label>
+    <label class="signUpForm__label registerForm__label">E-mail
+        <input type="text" class="editForm__input signUpForm__input registerForm__input" data-validation_rule="email"
+               name="email" placeholder="Enter new email youmail@example.ru">
+    </label>
+    <button type="submit" name="submitEdit" id="submitEdit"
+            class="editForm__submit signUpForm__submit registerForm__submit">Save data
+    </button>
+</form>
+<div class="overlay"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- build:js script/index.min.js -->
+<script src="script/index.js"></script>
+<script src="script/brand.js"></script>
+<script src="script/signUp_signIn.js"></script>
+<!-- endbuild -->
 
 </body>
 </html>
