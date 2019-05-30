@@ -11,8 +11,8 @@
   "devDependencies": {
     "browser-sync": "^2.26.5",
     "del": "^3.0.0",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-cached": "^1.1.1",
     "gulp-clean-css": "^3.10.0",
     "gulp-if": "^2.0.2",
@@ -20,9 +20,9 @@
     "gulp-less": "^4.0.1",
     "gulp-newer": "^1.4.0",
     "gulp-remember": "^1.0.1",
-    "gulp-uglify": "^3.0.1",
+    "gulp-uglify": "^3.0.2",
     "gulp-useref": "^3.1.6",
-    "imagemin-pngquant": "^6.0.0",
+    "imagemin-pngquant": "^6.0.1",
     "less-plugin-autoprefix": "^2.0.0"
   },
   "scripts": {
